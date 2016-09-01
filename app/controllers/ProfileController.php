@@ -21,12 +21,12 @@ class ProfileController extends ControllerBase
      */
     public function indexAction()
     {
-
     }
 
     public function meAction()
     {
-
+        $data['message'] = 'Victory';
+        $this->pusher->trigger('test_channel', 'my_event', $data);
     }
 
     /**

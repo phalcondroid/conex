@@ -475,7 +475,7 @@
                         </div>
 
                         <div class="panel-body">
-                            
+
                             <div class="row">
                                 <div class="col-md-12">
                                     <p style="text-align : justify">
@@ -715,7 +715,20 @@
   </div>
 </div>
 
+{{ assets.outputJs("deal") }}
 <script>
+
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('f14f3a3162879b286cd0', {
+        encrypted: true
+    });
+
+    var channel = pusher.subscribe('test_channel');
+    channel.bind('my_event', function(data) {
+        alert(data.message);
+        console.log(data);
+    });
 
     window.load = function () {
         $(function () {

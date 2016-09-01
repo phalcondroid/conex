@@ -76,6 +76,35 @@ $di->setShared('modelsMetadata', function () {
 });
 
 /**
+ *
+ * @var Phalcon
+ */
+$di->set('pusher', function () {
+    $options = array(
+        'encrypted' => true
+    );
+
+    $pusher = new Pusher(
+        'f14f3a3162879b286cd0',
+        '228912eb422142237fba',
+        '244225',
+        $options
+    );
+
+    return $pusher;
+}, true);
+
+/**
+ *
+ * @var Phalcon
+ */
+$di->set('assets', function () {
+    $assetsManager = new Phalcon\Assets\Manager();
+    $assetsManager->collection("deal")->addJs("js/pusher.js");
+    return $assetsManager;
+}, true);
+
+/**
  * Register the session flash service with the Twitter Bootstrap classes
  */
 $di->set('flash', function () {

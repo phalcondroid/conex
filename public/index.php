@@ -12,6 +12,11 @@ try {
     $config = include APP_PATH . "/app/config/config.php";
 
     /**
+     * Composer autoload
+     */
+    include APP_PATH . "/app/library/autoload.php";
+
+    /**
      * Read auto-loader
      */
     include APP_PATH . "/app/config/loader.php";
