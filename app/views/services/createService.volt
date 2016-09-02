@@ -1,10 +1,13 @@
 
-<div class="container" style="margin-top: 80px;">
+{{ form("services/createService", "method" : "post") }}
+
     <h2>Nuevo servicio</h2>
+
     <a href="{{ url("services/index") }}" class="btn btn-danger pull-right">
         <i class="glyphicon glyphicon-share-alt"></i>
         Volver
     </a>
+
     <div class="panel panel-default" style="margin-top : 60px; background-color : #ffffff;">
         <div class="panel-body">
             <table class="table">
@@ -43,12 +46,22 @@
                             Tipo de servicio
                         </th>
                         <th>
-                            <select class="btn" style="width : 100%;">
+                            <select class="form-control" name="serviceType">
                                 <option>......</option>
-                                <option>Tecnología</option>
-                                <option>Alimentos</option>
-                                <option>Medicinal</option>
+                                {% for item in serviceType %}
+                                    <option value="{{ item.id_service_type }}">
+                                        {{ item.service_type }}
+                                    </option>
+                                {% endfor %}
                             </select>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            Nombre
+                        </th>
+                        <th>
+                            <input type="text" name="name" value="">
                         </th>
                     </tr>
                     <tr>
@@ -56,7 +69,7 @@
                             Descripción
                         </th>
                         <th>
-                            <textarea style="width : 100%;"name="name" rows="8" cols="40"></textarea>
+                            <textarea class="form-control" name="description" rows="8" cols="40"></textarea>
                         </th>
                     </tr>
                     <tr>
@@ -64,23 +77,7 @@
                             Elogan
                         </th>
                         <th>
-                            <textarea style="width : 100%;"name="name" rows="8" cols="40"></textarea>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                            ¿Que diferencia tu producto?
-                        </th>
-                        <th>
-                            <textarea style="width : 100%;"name="name" rows="8" cols="40"></textarea>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                            Otros detalles
-                        </th>
-                        <th>
-                            <textarea style="width : 100%;"name="name" rows="8" cols="40"></textarea>
+                            <textarea class="form-control" name="slogan" rows="8" cols="40"></textarea>
                         </th>
                     </tr>
 
@@ -122,10 +119,10 @@
                     </tr>
                     <tr>
                         <th colspan="2" style="text-align : center;">
-                            <a href="{{ url("services/index") }}" class="btn btn-success">
+                            <button type="submit" class="btn btn-success">
                                 <i class="glyphicon glyphicon-floppy-disk"></i>
                                 Guardar
-                            </a>
+                            </button>
                         </th>
                     </tr>
                 </tbody>

@@ -6,78 +6,60 @@ class Events extends \Phalcon\Mvc\Model
     /**
      *
      * @var integer
-     * @Primary
-     * @Column(type="integer", length=11, nullable=false)
      */
     public $id_events;
 
     /**
      *
      * @var integer
-     * @Column(type="integer", length=11, nullable=false)
      */
     public $id_event_type;
 
     /**
      *
      * @var integer
-     * @Column(type="integer", length=11, nullable=false)
      */
     public $id_users;
 
     /**
      *
      * @var string
-     * @Column(type="string", length=45, nullable=true)
      */
     public $name;
 
     /**
      *
      * @var string
-     * @Column(type="string", length=45, nullable=true)
      */
     public $address;
 
     /**
      *
      * @var string
-     * @Column(type="string", length=45, nullable=true)
      */
     public $description;
 
     /**
      *
      * @var string
-     * @Column(type="string", length=45, nullable=true)
-     */
-    public $details;
-
-    /**
-     *
-     * @var string
-     * @Column(type="string", length=45, nullable=true)
      */
     public $slogan;
 
     /**
      *
      * @var string
-     * @Column(type="string", nullable=true)
      */
     public $start_date;
 
     /**
      *
      * @var string
-     * @Column(type="string", nullable=true)
      */
     public $finish_date;
 
     /**
      *
      * @var string
-     * @Column(type="string", nullable=false)
      */
     public $created_at;
 
@@ -86,8 +68,8 @@ class Events extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-        $this->hasMany('id_events', 'EventGallery', 'id_events', ['alias' => 'EventGallery']);
-        $this->hasMany('id_events', 'EventTopic', 'id_events', ['alias' => 'EventTopic']);
+        $this->hasMany('id_events', 'EventGallery', 'id_events', array('alias' => 'EventGallery'));
+        $this->hasMany('id_events', 'EventTopic', 'id_events', array('alias' => 'EventTopic'));
     }
 
     /**

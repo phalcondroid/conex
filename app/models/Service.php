@@ -6,51 +6,42 @@ class Service extends \Phalcon\Mvc\Model
     /**
      *
      * @var integer
-     * @Primary
-     * @Identity
-     * @Column(type="integer", length=11, nullable=false)
      */
     public $id_service;
 
     /**
      *
      * @var integer
-     * @Column(type="integer", length=11, nullable=false)
      */
     public $id_service_type;
 
     /**
      *
      * @var integer
-     * @Column(type="integer", length=11, nullable=false)
      */
     public $id_users;
 
     /**
      *
      * @var string
-     * @Column(type="string", length=45, nullable=true)
      */
     public $name;
 
     /**
      *
      * @var string
-     * @Column(type="string", nullable=true)
      */
     public $description;
 
     /**
      *
      * @var string
-     * @Column(type="string", nullable=true)
      */
     public $info_json;
 
     /**
      *
      * @var string
-     * @Column(type="string", nullable=false)
      */
     public $created_at;
 
@@ -59,9 +50,9 @@ class Service extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-        $this->hasMany('id_service', 'ServiceGallery', 'id_service', ['alias' => 'ServiceGallery']);
-        $this->belongsTo('id_service_type', 'ServiceType', 'id_service_type', ['alias' => 'ServiceType']);
-        $this->belongsTo('id_users', 'Users', 'id_users', ['alias' => 'Users']);
+        $this->hasMany('id_service', 'ServiceGallery', 'id_service', array('alias' => 'ServiceGallery'));
+        $this->belongsTo('id_service_type', 'ServiceType', 'id_service_type', array('alias' => 'ServiceType'));
+        $this->belongsTo('id_users', 'Users', 'id_users', array('alias' => 'Users'));
     }
 
     /**

@@ -6,37 +6,30 @@ class EventGuest extends \Phalcon\Mvc\Model
     /**
      *
      * @var integer
-     * @Primary
-     * @Identity
-     * @Column(type="integer", length=11, nullable=false)
      */
     public $id_event_guest;
 
     /**
      *
      * @var string
-     * @Column(type="string", length=45, nullable=true)
      */
     public $name;
 
     /**
      *
      * @var string
-     * @Column(type="string", nullable=true)
      */
     public $details;
 
     /**
      *
      * @var string
-     * @Column(type="string", nullable=true)
      */
     public $speaker_time;
 
     /**
      *
      * @var string
-     * @Column(type="string", nullable=false)
      */
     public $created_at;
 
@@ -45,7 +38,7 @@ class EventGuest extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-        $this->hasMany('id_event_guest', 'EventTopic', 'id_event_guest', ['alias' => 'EventTopic']);
+        $this->hasMany('id_event_guest', 'EventTopic', 'id_event_guest', array('alias' => 'EventTopic'));
     }
 
     /**

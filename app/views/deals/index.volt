@@ -46,11 +46,14 @@
         <div class="col-md-9">
 
             <div class="row">
+
+                {% for item in events %}
+
                 <div class="col-md-12">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h3 style="margin-top : 3px;">
-                                Saber pro para estudiantes nacional 2015
+                                {{ item.name }}
                             </h3>
                             {{ image("img/calendar.png", "style" : "float:right; margin-top : -35px; width : 32px") }}
                         </div>
@@ -59,10 +62,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <p style="text-align : justify">
-                                        Collaboration Lab ‘Juntos por el Agua’ es una iniciativa conjunta de la Red Local de Pacto
-                                        Global en Colombia, la plataforma internacional “CEO Water Mandate – Mandato por el Agua”, y
-                                        el Pacific Institute (California, Estados Unidos), que se llevará a cabo en Bogotá el 14 de
-                                        junio de 2016 en la Universidad EAN (Calle 79 # 11 – 45).
+                                        {{ item.description }}
                                     </p>
                                 </div>
                             </div>
@@ -83,7 +83,7 @@
                                                 </th>
                                                 <td>
                                                     <div class='input-group date' id='datetimepicker1'>
-                                                        <input type='text' class="form-control" />
+                                                        <input type='text' class="form-control" value="{{ item.start_date }}"/>
                                                         <span class="input-group-addon">
                                                             <span class="glyphicon glyphicon-calendar"></span>
                                                         </span>
@@ -91,12 +91,9 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th>
-                                                    Horario
+                                                <th colspan="2">
+                                                    {{ item.finish_date }}
                                                 </th>
-                                                <td>
-                                                    8:30 am a 3pm
-                                                </td>
                                             </tr>
                                             <tr>
                                                 <th>
@@ -139,7 +136,7 @@
                                                     Dirección
                                                 </th>
                                                 <td>
-                                                    Calle 79 # 11 - 45
+                                                    {{ item.address }}
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -176,6 +173,7 @@
                     </div>
                 </div>
             </div>
+            {% endfor %}
 
             <div class="row">
                 <div class="col-md-12">
@@ -671,7 +669,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-success">Confirmar</button>
+        <button type="button" class="btn btn-success" id="btnAggrement">Confirmar</button>
       </div>
     </div>
   </div>
@@ -725,14 +723,40 @@
     });
 
     var channel = pusher.subscribe('test_channel');
-    channel.bind('my_event', function(data) {
-        alert(data.message);
-        console.log(data);
+    channel.bind('agreement', function(data) {
+        $(function () {
+            $("#aggrementsBadge").html(
+                parseInt($("#aggrementsBadge").html()) + 1
+            );
+        });
+    });
+
+    channel.bind('notice', function(data) {
+        $(function () {
+            console.log($("#noticeBadge").html());
+            $("#noticeBadge").html(
+                parseInt($("#noticeBadge").html()) + 1
+            );
+        });
+    });
+
+    channel.bind('message', function(data) {
+        $(function () {
+            $("#messageBadge").html(
+                parseInt($("#messageBadge").html()) + 1
+            );
+        });
     });
 
     window.load = function () {
         $(function () {
             $('#datetimepicker1').datetimepicker();
+
+            $("#btnAggrement").click(function() {
+                $.ajax({
+                    "url" : "{{ url("deal/pusher") }}",
+                });
+            });
         });
     };
 

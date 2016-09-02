@@ -6,22 +6,18 @@ class StudentType extends \Phalcon\Mvc\Model
     /**
      *
      * @var integer
-     * @Primary
-     * @Column(type="integer", length=11, nullable=false)
      */
     public $id_student_type;
 
     /**
      *
      * @var string
-     * @Column(type="string", length=45, nullable=true)
      */
     public $student_type;
 
     /**
      *
      * @var string
-     * @Column(type="string", nullable=false)
      */
     public $created_at;
 
@@ -30,7 +26,7 @@ class StudentType extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-        $this->hasMany('id_student_type', 'Users', 'id_student_type', ['alias' => 'Users']);
+        $this->hasMany('id_student_type', 'Users', 'id_student_type', array('alias' => 'Users'));
     }
 
     /**

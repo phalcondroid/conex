@@ -6,22 +6,18 @@ class Coverage extends \Phalcon\Mvc\Model
     /**
      *
      * @var integer
-     * @Primary
-     * @Column(type="integer", length=11, nullable=false)
      */
     public $id_coverage;
 
     /**
      *
      * @var string
-     * @Column(type="string", length=45, nullable=true)
      */
     public $coverage;
 
     /**
      *
      * @var string
-     * @Column(type="string", nullable=false)
      */
     public $created_at;
 
@@ -30,7 +26,7 @@ class Coverage extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-        $this->hasMany('id_coverage', 'Company', 'id_coverage', ['alias' => 'Company']);
+        $this->hasMany('id_coverage', 'Company', 'id_coverage', array('alias' => 'Company'));
     }
 
     /**

@@ -22,7 +22,7 @@
                     Productos
                     &nbsp;
                     <span class="label label-pill label-success">
-                        {{ cProducts }}
+                        <?php echo $cProducts; ?>
                     </span>
                 </a>
             </li>
@@ -31,7 +31,7 @@
                     Eventos
                     &nbsp;
                     <span class="label label-pill label-danger">
-                        {{ cEvents }}
+                        <?php echo $cEvents; ?>
                     </span>
                 </a>
             </li>
@@ -40,7 +40,7 @@
                     Anuncios
                     &nbsp;
                     <span class="label label-pill label-warning">
-                        {{ cAdvertisement }}
+                        <?php echo $cAdvertisement; ?>
                     </span>
                 </a>
             </li>
@@ -49,7 +49,7 @@
                     Servicios
                     &nbsp;
                     <span class="label label-pill label-primary">
-                        {{ cServices }}
+                        <?php echo $cServices; ?>
                     </span>
                 </a>
             </li>
@@ -61,37 +61,37 @@
 
                 <div class="row" style="margin-top : 10px;">
                     <div class="col-md-12">
-                        <a href="{{ url("services/createProduct") }}" class="btn btn-default pull-right">
-                            {{ image("img/barcode.png", "style" : "height : 24px;") }}
+                        <a href="<?php echo $this->url->get('services/createProduct'); ?>" class="btn btn-default pull-right">
+                            <?php echo $this->tag->image(array('img/barcode.png', 'style' => 'height : 24px;')); ?>
                             Nuevo producto
                         </a>
                     </div>
                 </div>
 
                 <div class="row" style="margin-top : 10px;">
-                    {% for item in products %}
+                    <?php foreach ($products as $item) { ?>
                         <div class="col-sm-6 col-md-4">
                             <div class="thumbnail">
-                                {{ image("img/inovatio1.png", "style" : "widht : 400px; height : 350px") }}
+                                <?php echo $this->tag->image(array('img/inovatio1.png', 'style' => 'widht : 400px; height : 350px')); ?>
                                 <div class="caption">
                                     <h3>
-                                        {{ item.name }}
+                                        <?php echo $item->name; ?>
                                     </h3>
                                     <p class="trunk">
-                                        {{ item.description }}
+                                        <?php echo $item->description; ?>
                                     </p>
                                     <p>
-                                        <a href="{{ url("services/editProduct") }}" class="btn btn-warning" role="button">
+                                        <a href="<?php echo $this->url->get('services/editProduct'); ?>" class="btn btn-warning" role="button">
                                               <i class="glyphicon glyphicon-pencil"></i>
                                         </a>
-                                        <a href="{{ url("services/deleteProduct") }}" class="btn btn-danger" role="button">
+                                        <a href="<?php echo $this->url->get('services/deleteProduct'); ?>" class="btn btn-danger" role="button">
                                               <i class="glyphicon glyphicon-trash"></i>
                                         </a>
                                     </p>
                                 </div>
                             </div>
                         </div>
-                    {% endfor %}
+                    <?php } ?>
                 </div>
 
             </div>
@@ -99,8 +99,8 @@
 
                 <div class="row" style="margin-top : 10px;">
                     <div class="col-md-12">
-                        <a href="{{ url("services/createEvent") }}" class="btn btn-default pull-right">
-                            {{ image("img/calendar.png", "style" : "height : 24px;") }}
+                        <a href="<?php echo $this->url->get('services/createEvent'); ?>" class="btn btn-default pull-right">
+                            <?php echo $this->tag->image(array('img/calendar.png', 'style' => 'height : 24px;')); ?>
                             Nuevo evento
                         </a>
                     </div>
@@ -108,7 +108,7 @@
 
                 <div class="row" style="margin-top : 10px;">
 
-                    {% for item in events %}
+                    <?php foreach ($events as $item) { ?>
                         <div class="col-sm-6 col-md-4">
                             <div class="thumbnail">
                                 <div style="width : 100%; height : 300px" id="mapEvent1">
@@ -116,43 +116,43 @@
                                 </div>
                                 <div class="caption">
                                   <h3>
-                                      {{ item.name }}
+                                      <?php echo $item->name; ?>
                                   </h3>
                                   <p class="trunk">
-                                    {{ item.description }}
+                                    <?php echo $item->description; ?>
                                   </p>
                                   <p >
-                                      <a href="{{ url("services/editEvent") }}" class="btn btn-warning" role="button">
+                                      <a href="<?php echo $this->url->get('services/editEvent'); ?>" class="btn btn-warning" role="button">
                                             <i class="glyphicon glyphicon-pencil"></i>
                                       </a>
-                                      <a href="{{ url("services/deleteEvent") }}" class="btn btn-danger" role="button">
+                                      <a href="<?php echo $this->url->get('services/deleteEvent'); ?>" class="btn btn-danger" role="button">
                                             <i class="glyphicon glyphicon-trash"></i>
                                       </a>
                                   </p>
                                 </div>
                             </div>
                         </div>
-                    {% endfor %}
+                    <?php } ?>
                 </div>
             </div>
             <div role="tabpanel" class="tab-pane" id="vacancy">
 
                 <div class="row" style="margin-top : 10px;">
                     <div class="col-md-12">
-                        <a href="{{ url("services/createAdvertisement") }}" class="btn btn-default pull-right">
-                            {{ image("img/cart.png", "style" : "height : 24px;") }}
+                        <a href="<?php echo $this->url->get('services/createAdvertisement'); ?>" class="btn btn-default pull-right">
+                            <?php echo $this->tag->image(array('img/cart.png', 'style' => 'height : 24px;')); ?>
                             Crear anuncio
                         </a>
                     </div>
                 </div>
 
                 <div class="row" style="margin-top : 10px;">
-                    {% for item in advertisement %}
+                    <?php foreach ($advertisement as $item) { ?>
                     <div class="col-sm-6 col-md-4">
                       <div class="thumbnail">
                           <div class="caption">
                             <h3>
-                                {{ item.name }}
+                                <?php echo $item->name; ?>
                             </h3>
                           </div>
                         <div>
@@ -164,9 +164,9 @@
                                         </th>
                                         <td>
                                             <ul>
-                                                {% for character in advertisementCharacter %}
-                                                    <li>{{ character.title }}</li>
-                                                {% endfor %}
+                                                <?php foreach ($advertisementCharacter as $character) { ?>
+                                                    <li><?php echo $character->title; ?></li>
+                                                <?php } ?>
                                             </ul>
                                         </td>
                                     </tr>
@@ -176,7 +176,7 @@
                                         </th>
                                         <td>
                                             <div class='input-group date' id='datetimepicker1'>
-                                                <input type='text' class="form-control" value="{{ item.publish_date }}" />
+                                                <input type='text' class="form-control" value="<?php echo $item->publish_date; ?>" />
                                                 <span class="input-group-addon">
                                                     <span class="glyphicon glyphicon-calendar"></span>
                                                 </span>
@@ -214,30 +214,30 @@
                         </div>
                       </div>
                     </div>
-                    {% endfor %}
+                    <?php } ?>
                 </div>
             </div>
             <div role="tabpanel" class="tab-pane" id="settings">
 
                 <div class="row" style="margin-top : 10px;">
                     <div class="col-md-12">
-                        <a href="{{ url("services/createService") }}" class="btn btn-default pull-right">
-                            {{ image("img/truck.png", "style" : "height : 24px;") }}
+                        <a href="<?php echo $this->url->get('services/createService'); ?>" class="btn btn-default pull-right">
+                            <?php echo $this->tag->image(array('img/truck.png', 'style' => 'height : 24px;')); ?>
                             Nuevo servicio
                         </a>
                     </div>
                 </div>
 
                 <div class="row" style="margin-top : 10px;">
-                    {% for item in services %}
+                    <?php foreach ($services as $item) { ?>
                     <div class="col-sm-12 col-md-12">
                       <div class="thumbnail">
                         <div class="caption">
                             <h3>
-                                {{ item.name }}
+                                <?php echo $item->name; ?>
                             </h3>
                             <p class="trunk">
-                                {{ item.description }}
+                                <?php echo $item->description; ?>
                             </p>
                         </div>
                         <div class="">
@@ -246,7 +246,7 @@
                                 <thead>
                                     <tr>
                                         <th colspan="2">
-                                            {{ image("img/truck.png", "style" : "width : 80px") }}
+                                            <?php echo $this->tag->image(array('img/truck.png', 'style' => 'width : 80px')); ?>
                                         </th>
                                         <td colspan="2">
                                             <p style="text-align : middle;">Go Colombia</p>
@@ -327,17 +327,17 @@
                         </div>
                         <div class="">
                             <p>
-                                <a href="{{ url("services/editProduct") }}" class="btn btn-warning" role="button">
+                                <a href="<?php echo $this->url->get('services/editProduct'); ?>" class="btn btn-warning" role="button">
                                       <i class="glyphicon glyphicon-pencil"></i>
                                 </a>
-                                <a href="{{ url("services/deleteProduct") }}" class="btn btn-danger" role="button">
+                                <a href="<?php echo $this->url->get('services/deleteProduct'); ?>" class="btn btn-danger" role="button">
                                       <i class="glyphicon glyphicon-trash"></i>
                                 </a>
                             </p>
                         </div>
                       </div>
                     </div>
-                    {% endfor %}
+                    <?php } ?>
                 </div>
             </div>
         </div>

@@ -9,7 +9,7 @@
                             <h2>Perfil personal</h2>
                         </th>
                         <th>
-                            <a href="{{ url("services/index") }}" class="btn btn-danger pull-right">
+                            <a href="<?php echo $this->url->get('services/index'); ?>" class="btn btn-danger pull-right">
                                 <i class="glyphicon glyphicon-share-alt"></i>
                                 Volver
                             </a>
@@ -25,7 +25,7 @@
                             <div class="row">
                                 <div class="col-xs-12 col-md-12">
                                     <a href="#" class="thumbnail">
-                                        {{ image('img/inovatio1.png', "style" : "width : 180px; height : 160px;") }}
+                                        <?php echo $this->tag->image(array('img/inovatio1.png', 'style' => 'width : 180px; height : 160px;')); ?>
                                     </a>
                                 </div>
                             </div>
@@ -125,7 +125,7 @@
                     </tr>
                     <tr>
                         <th colspan="2" style="text-align : center;">
-                            <a href="{{ url("services/index") }}" class="btn btn-success">
+                            <a href="<?php echo $this->url->get('services/index'); ?>" class="btn btn-success">
                                 <i class="glyphicon glyphicon-floppy-disk"></i>
                                 Guardar
                             </a>

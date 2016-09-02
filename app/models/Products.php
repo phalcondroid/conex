@@ -6,58 +6,48 @@ class Products extends \Phalcon\Mvc\Model
     /**
      *
      * @var integer
-     * @Primary
-     * @Identity
-     * @Column(type="integer", length=11, nullable=false)
      */
     public $id_products;
 
     /**
      *
      * @var integer
-     * @Column(type="integer", length=11, nullable=false)
      */
     public $id_product_type;
 
     /**
      *
      * @var integer
-     * @Column(type="integer", length=11, nullable=false)
      */
     public $id_users;
 
     /**
      *
      * @var integer
-     * @Column(type="integer", length=11, nullable=false)
      */
     public $id_product_capacity;
 
     /**
      *
      * @var string
-     * @Column(type="string", length=45, nullable=true)
      */
     public $name;
 
     /**
      *
      * @var string
-     * @Column(type="string", length=45, nullable=true)
      */
     public $slogan;
 
     /**
      *
      * @var string
-     * @Column(type="string", length=45, nullable=true)
      */
     public $description;
 
     /**
      *
      * @var string
-     * @Column(type="string", nullable=false)
      */
     public $created_at;
 
@@ -66,10 +56,10 @@ class Products extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-        $this->hasMany('id_products', 'ProductsGallery', 'products_id_products', ['alias' => 'ProductsGallery']);
-        $this->belongsTo('id_product_type', 'ProductType', 'id_product_type', ['alias' => 'ProductType']);
-        $this->belongsTo('id_users', 'Users', 'id_users', ['alias' => 'Users']);
-        $this->belongsTo('id_product_capacity', 'ProductCapacity', 'id_product_capacity', ['alias' => 'ProductCapacity']);
+        $this->hasMany('id_products', 'ProductsGallery', 'products_id_products', array('alias' => 'ProductsGallery'));
+        $this->belongsTo('id_product_capacity', 'ProductCapacity', 'id_product_capacity', array('alias' => 'ProductCapacity'));
+        $this->belongsTo('id_product_type', 'ProductType', 'id_product_type', array('alias' => 'ProductType'));
+        $this->belongsTo('id_users', 'Users', 'id_users', array('alias' => 'Users'));
     }
 
     /**

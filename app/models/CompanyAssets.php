@@ -6,23 +6,18 @@ class CompanyAssets extends \Phalcon\Mvc\Model
     /**
      *
      * @var integer
-     * @Primary
-     * @Identity
-     * @Column(type="integer", length=11, nullable=false)
      */
     public $id_company_assets;
 
     /**
      *
      * @var string
-     * @Column(type="string", length=45, nullable=true)
      */
     public $company_assets;
 
     /**
      *
      * @var string
-     * @Column(type="string", nullable=false)
      */
     public $created_at;
 
@@ -31,7 +26,7 @@ class CompanyAssets extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-        $this->hasMany('id_company_assets', 'Company', 'id_company_assets', ['alias' => 'Company']);
+        $this->hasMany('id_company_assets', 'Company', 'id_company_assets', array('alias' => 'Company'));
     }
 
     /**

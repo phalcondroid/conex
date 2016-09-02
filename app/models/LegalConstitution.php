@@ -6,23 +6,18 @@ class LegalConstitution extends \Phalcon\Mvc\Model
     /**
      *
      * @var integer
-     * @Primary
-     * @Identity
-     * @Column(type="integer", length=11, nullable=false)
      */
     public $id_legal_constitution;
 
     /**
      *
      * @var string
-     * @Column(type="string", length=45, nullable=true)
      */
     public $legal_constitution;
 
     /**
      *
      * @var string
-     * @Column(type="string", nullable=false)
      */
     public $created_at;
 
@@ -31,7 +26,7 @@ class LegalConstitution extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-        $this->hasMany('id_legal_constitution', 'Company', 'id_legal_constitution', ['alias' => 'Company']);
+        $this->hasMany('id_legal_constitution', 'Company', 'id_legal_constitution', array('alias' => 'Company'));
     }
 
     /**

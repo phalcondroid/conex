@@ -1,7 +1,7 @@
 
-{{ form("services/createEvent") }}
+<?php echo $this->tag->form(array('services/createEvent')); ?>
     <h2>Nuevo evento</h2>
-    <a href="{{ url("services/index") }}" class="btn btn-danger pull-right">
+    <a href="<?php echo $this->url->get('services/index'); ?>" class="btn btn-danger pull-right">
         <i class="glyphicon glyphicon-share-alt"></i>
         Volver
     </a>
@@ -17,17 +17,17 @@
                             <div class="row">
                                 <div class="col-xs-4 col-md-4">
                                     <a href="#" class="thumbnail">
-                                        {{ image('img/car1.jpg', "style" : "width : 180px; height : 160px;") }}
+                                        <?php echo $this->tag->image(array('img/car1.jpg', 'style' => 'width : 180px; height : 160px;')); ?>
                                     </a>
                                 </div>
                                 <div class="col-xs-4 col-md-4">
                                     <a href="#" class="thumbnail">
-                                        {{ image('img/car2.jpg', "style" : "width : 180px; height : 160px;") }}
+                                        <?php echo $this->tag->image(array('img/car2.jpg', 'style' => 'width : 180px; height : 160px;')); ?>
                                     </a>
                                 </div>
                                 <div class="col-xs-4 col-md-4">
                                     <a href="#" class="thumbnail">
-                                        {{ image('img/car3.jpg', "style" : "width : 180px; height : 160px;") }}
+                                        <?php echo $this->tag->image(array('img/car3.jpg', 'style' => 'width : 180px; height : 160px;')); ?>
                                     </a>
                                 </div>
                             </div>
@@ -53,11 +53,11 @@
                         <th>
                             <select class="form-control" name="eventType">
                                 <option>......</option>
-                                {% for item in eventType %}
-                                    <option value="{{ item.id_event_type }}">
-                                        {{ item.event_type }}
+                                <?php foreach ($eventType as $item) { ?>
+                                    <option value="<?php echo $item->id_event_type; ?>">
+                                        <?php echo $item->event_type; ?>
                                     </option>
-                                {% endfor %}
+                                <?php } ?>
                             </select>
                         </th>
                     </tr>
@@ -156,7 +156,7 @@
             </table>
         </div>
     </div>
-{{ end_form() }}
+<?php echo $this->tag->endForm(); ?>
 
 <script type="text/javascript">
     window.onload = function () {

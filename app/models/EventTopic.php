@@ -6,44 +6,36 @@ class EventTopic extends \Phalcon\Mvc\Model
     /**
      *
      * @var integer
-     * @Primary
-     * @Identity
-     * @Column(type="integer", length=11, nullable=false)
      */
     public $id_event_topic;
 
     /**
      *
      * @var integer
-     * @Column(type="integer", length=11, nullable=false)
      */
     public $id_event_guest;
 
     /**
      *
      * @var integer
-     * @Column(type="integer", length=11, nullable=false)
      */
     public $id_events;
 
     /**
      *
      * @var string
-     * @Column(type="string", nullable=true)
      */
     public $event_topic;
 
     /**
      *
      * @var string
-     * @Column(type="string", nullable=true)
      */
     public $date;
 
     /**
      *
      * @var string
-     * @Column(type="string", nullable=true)
      */
     public $created_at;
 
@@ -52,8 +44,8 @@ class EventTopic extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-        $this->belongsTo('id_event_guest', 'EventGuest', 'id_event_guest', ['alias' => 'EventGuest']);
-        $this->belongsTo('id_events', 'Events', 'id_events', ['alias' => 'Events']);
+        $this->belongsTo('id_event_guest', 'EventGuest', 'id_event_guest', array('alias' => 'EventGuest'));
+        $this->belongsTo('id_events', 'Events', 'id_events', array('alias' => 'Events'));
     }
 
     /**

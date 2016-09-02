@@ -6,23 +6,18 @@ class SizeCompany extends \Phalcon\Mvc\Model
     /**
      *
      * @var integer
-     * @Primary
-     * @Identity
-     * @Column(type="integer", length=11, nullable=false)
      */
     public $id_size_company;
 
     /**
      *
      * @var string
-     * @Column(type="string", length=45, nullable=true)
      */
     public $size_company;
 
     /**
      *
      * @var string
-     * @Column(type="string", length=45, nullable=false)
      */
     public $created_at;
 
@@ -31,7 +26,7 @@ class SizeCompany extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-        $this->hasMany('id_size_company', 'Company', 'id_size_company', ['alias' => 'Company']);
+        $this->hasMany('id_size_company', 'Company', 'id_size_company', array('alias' => 'Company'));
     }
 
     /**

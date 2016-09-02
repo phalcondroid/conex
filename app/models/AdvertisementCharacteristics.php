@@ -6,30 +6,30 @@ class AdvertisementCharacteristics extends \Phalcon\Mvc\Model
     /**
      *
      * @var integer
-     * @Primary
-     * @Identity
-     * @Column(type="integer", length=11, nullable=false)
      */
     public $id_advertisement_characteristics;
 
     /**
      *
+     * @var integer
+     */
+    public $id_advertisement;
+
+    /**
+     *
      * @var string
-     * @Column(type="string", length=45, nullable=true)
      */
     public $title;
 
     /**
      *
      * @var string
-     * @Column(type="string", nullable=true)
      */
     public $description;
 
     /**
      *
      * @var string
-     * @Column(type="string", nullable=false)
      */
     public $created_at;
 
@@ -38,7 +38,7 @@ class AdvertisementCharacteristics extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-        $this->hasMany('id_advertisement_characteristics', 'Advertisement', 'id_advertisement_characteristics', ['alias' => 'Advertisement']);
+        $this->belongsTo('id_advertisement', 'Advertisement', 'id_advertisement', array('alias' => 'Advertisement'));
     }
 
     /**

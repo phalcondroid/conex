@@ -1,10 +1,13 @@
 
-{{ form("services/createEvent") }}
-    <h2>Nuevo evento</h2>
-    <a href="{{ url("services/index") }}" class="btn btn-danger pull-right">
+<?php echo $this->tag->form(array('services/createService', 'method' => 'post')); ?>
+
+    <h2>Nuevo servicio</h2>
+
+    <a href="<?php echo $this->url->get('services/index'); ?>" class="btn btn-danger pull-right">
         <i class="glyphicon glyphicon-share-alt"></i>
         Volver
     </a>
+
     <div class="panel panel-default" style="margin-top : 60px; background-color : #ffffff;">
         <div class="panel-body">
             <table class="table">
@@ -17,25 +20,40 @@
                             <div class="row">
                                 <div class="col-xs-4 col-md-4">
                                     <a href="#" class="thumbnail">
-                                        {{ image('img/car1.jpg', "style" : "width : 180px; height : 160px;") }}
+                                        <?php echo $this->tag->image(array('img/ex1.jpg', 'style' => 'width : 180px; height : 160px;')); ?>
                                     </a>
                                 </div>
                                 <div class="col-xs-4 col-md-4">
                                     <a href="#" class="thumbnail">
-                                        {{ image('img/car2.jpg', "style" : "width : 180px; height : 160px;") }}
+                                        <?php echo $this->tag->image(array('img/ex2.jpg', 'style' => 'width : 180px; height : 160px;')); ?>
                                     </a>
                                 </div>
                                 <div class="col-xs-4 col-md-4">
                                     <a href="#" class="thumbnail">
-                                        {{ image('img/car3.jpg', "style" : "width : 180px; height : 160px;") }}
+                                        <?php echo $this->tag->image(array('img/ex3.jpg', 'style' => 'width : 180px; height : 160px;')); ?>
                                     </a>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-xs-3 col-md-3">
-                                    <input type="file" name="image" value="">
+                                    <input type="file" name="name" value="">
                                 </div>
                             </div>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            Tipo de servicio
+                        </th>
+                        <th>
+                            <select class="form-control" name="serviceType">
+                                <option>......</option>
+                                <?php foreach ($serviceType as $item) { ?>
+                                    <option value="<?php echo $item->id_service_type; ?>">
+                                        <?php echo $item->service_type; ?>
+                                    </option>
+                                <?php } ?>
+                            </select>
                         </th>
                     </tr>
                     <tr>
@@ -43,37 +61,7 @@
                             Nombre
                         </th>
                         <th>
-                            <input type="text" class="form-control" name="name" value="">
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                            Tipo de evento
-                        </th>
-                        <th>
-                            <select class="form-control" name="eventType">
-                                <option>......</option>
-                                {% for item in eventType %}
-                                    <option value="{{ item.id_event_type }}">
-                                        {{ item.event_type }}
-                                    </option>
-                                {% endfor %}
-                            </select>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                            Dirección
-                        </th>
-                        <th>
-                            <div class="row">
-                                <div class="col-xs-4 col-md-4">
-                                    <div id="map" style="width : 300px; height:200px">
-
-                                    </div>
-                                </div>
-                            </div>
-                            <input type="text" name="address" id="direccion" class="form-control">
+                            <input type="text" name="name" value="">
                         </th>
                     </tr>
                     <tr>
@@ -92,25 +80,10 @@
                             <textarea class="form-control" name="slogan" rows="8" cols="40"></textarea>
                         </th>
                     </tr>
-                    <tr>
-                        <th>
-                            Fecha de inicio
-                        </th>
-                        <th>
-                            <input type="text" class="form-control" name="startDate" id="startDate" value="">
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                            Fecha de finalización
-                        </th>
-                        <th>
-                            <input type="text" class="form-control" name="finishDate" id="finishDate" value="">
-                        </th>
-                    </tr>
+
                     <tr>
                         <th colspan="2" style="text-align : center;">
-                            Registro de invitados y horarios
+                            Crear servicios
                         </th>
                     </tr>
                     <tr>
@@ -134,7 +107,7 @@
                                 <thead>
                                     <tr>
                                         <th colspan="100">
-                                            Invitados
+                                            Describe cada item de tu paquete de servicios
                                         </th>
                                     </tr>
                                 </thead>
@@ -156,12 +129,14 @@
             </table>
         </div>
     </div>
-{{ end_form() }}
+</div>
 
 <script type="text/javascript">
     window.onload = function () {
         $(function () {
             $("#agregar").click(function () {
+
+                console.log("kasjksajk");
 
                 var cols = parseInt($("#columns").val());
                 var rows = parseInt($("#rows").val());
@@ -182,21 +157,5 @@
                 }
             });
         });
-
-        $("#startDate").datepicker( "option", "dateFormat", "yy-mm-dd" );
-        $("#finishDate").datepicker({
-            dateFormat : "yy-mm-dd"
-        });
-    }
-
-    function initMap() {
-
-        var mapDivE = document.getElementById('map');
-        var map = new google.maps.Map(mapDivE, {
-            center: {lat: 44.540, lng: -78.546},
-            zoom: 8
-        });
     }
 </script>
-
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGNsm6WSTUNTdoPh4PSbxjkY8DrQU6zww&callback=initMap"></script>

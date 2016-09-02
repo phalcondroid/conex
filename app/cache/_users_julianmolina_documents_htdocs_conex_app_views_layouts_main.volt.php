@@ -40,19 +40,19 @@
             <li class="">
                 <a href="<?php echo $this->url->get('deals/index'); ?>">
                     <?php echo $this->tag->image(array('img/worldwide.png', 'style' => 'width : 24px')); ?>
-                    <span class="badge">16</span>
+                    <span class="badge" style="background:red;" id="noticeBadge">0</span>
                 </a>
             </li>
             <li>
                 <a href="#about">
                     <?php echo $this->tag->image(array('img/alarm.png', 'style' => 'width : 24px')); ?>
-                    <span class="badge">4</span>
+                    <span class="badge" style="background:red;" id="aggrementsBadge">0</span>
                 </a>
             </li>
             <li>
                 <a href="#about">
                     <?php echo $this->tag->image(array('img/close-envelope.png', 'style' => 'width : 24px')); ?>
-                    <span class="badge">10</span>
+                    <span class="badge" style="background:red;" id="messagesBadge">0</span>
                 </a>
             </li>
             <li class="dropdown">
@@ -91,7 +91,7 @@
                         Configuración
                     </li>
                     <li>
-                        <a href="<?php echo $this->url->get('profile/me'); ?>">Mi perfil</a>
+                        <a href="<?php echo $this->url->get('profile/index'); ?>">Mi perfil</a>
                     </li>
                     <li>
                         <a href="<?php echo $this->url->get('profile/company'); ?>">Empresarial</a>
@@ -108,4 +108,10 @@
     </div><!--/.nav-collapse -->
   </div>
 </nav>
-<?php echo $this->getContent(); ?>
+
+<div class="container" style="margin-top: 80px;">
+
+    <?php echo $this->flash->output(); ?>
+
+    <?php echo $this->getContent(); ?>
+</div>

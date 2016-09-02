@@ -1,7 +1,7 @@
 
-{{ form("services/createProduct", "method" : "post") }}
+<?php echo $this->tag->form(array('services/createProduct', 'method' => 'post')); ?>
     <h2>Nuevo producto</h2>
-    <a href="{{ url("services/index") }}" class="btn btn-danger pull-right">
+    <a href="<?php echo $this->url->get('services/index'); ?>" class="btn btn-danger pull-right">
         <i class="glyphicon glyphicon-share-alt"></i>
         Volver
     </a>
@@ -17,17 +17,17 @@
                             <div class="row">
                                 <div class="col-xs-4 col-md-4">
                                     <a href="#" class="thumbnail">
-                                        {{ image('img/inovatio1.png', "style" : "width : 180px; height : 160px;") }}
+                                        <?php echo $this->tag->image(array('img/inovatio1.png', 'style' => 'width : 180px; height : 160px;')); ?>
                                     </a>
                                 </div>
                                 <div class="col-xs-4 col-md-4">
                                     <a href="#" class="thumbnail">
-                                        {{ image('img/inovatio1.png', "style" : "width : 180px; height : 160px;") }}
+                                        <?php echo $this->tag->image(array('img/inovatio1.png', 'style' => 'width : 180px; height : 160px;')); ?>
                                     </a>
                                 </div>
                                 <div class="col-xs-4 col-md-4">
                                     <a href="#" class="thumbnail">
-                                        {{ image('img/inovatio1.png', "style" : "width : 180px; height : 160px;") }}
+                                        <?php echo $this->tag->image(array('img/inovatio1.png', 'style' => 'width : 180px; height : 160px;')); ?>
                                     </a>
                                 </div>
                             </div>
@@ -53,11 +53,11 @@
                         <th>
                             <select class="form-control" name="productType">
                                 <option>......</option>
-                                {% for item in productType %}
-                                    <option value="{{ item.id_product_type }}">
-                                        {{ item.product_type }}
+                                <?php foreach ($productType as $item) { ?>
+                                    <option value="<?php echo $item->id_product_type; ?>">
+                                        <?php echo $item->product_type; ?>
                                     </option>
-                                {% endfor %}
+                                <?php } ?>
                             </select>
                         </th>
                     </tr>
@@ -68,11 +68,11 @@
                         <th>
                             <select class="form-control" name="productCapacity">
                                 <option>......</option>
-                                {% for item in productCapacity %}
-                                    <option value="{{ item.id_product_capacity }}">
-                                        {{ item.product_capacity }}
+                                <?php foreach ($productCapacity as $item) { ?>
+                                    <option value="<?php echo $item->id_product_capacity; ?>">
+                                        <?php echo $item->product_capacity; ?>
                                     </option>
-                                {% endfor %}
+                                <?php } ?>
                             </select>
                         </th>
                     </tr>
@@ -104,4 +104,4 @@
             </table>
         </div>
     </div>
-{{ end_form() }}
+<?php echo $this->tag->endForm(); ?>

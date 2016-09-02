@@ -8,114 +8,96 @@ class Company extends \Phalcon\Mvc\Model
     /**
      *
      * @var integer
-     * @Primary
-     * @Identity
-     * @Column(type="integer", length=11, nullable=false)
      */
     public $id_company;
 
     /**
      *
      * @var integer
-     * @Column(type="integer", length=11, nullable=false)
      */
     public $id_users;
 
     /**
      *
      * @var integer
-     * @Column(type="integer", length=11, nullable=false)
      */
     public $id_legal_constitution;
 
     /**
      *
      * @var integer
-     * @Column(type="integer", length=11, nullable=false)
      */
     public $id_size_company;
 
     /**
      *
      * @var integer
-     * @Column(type="integer", length=11, nullable=false)
      */
     public $id_company_assets;
 
     /**
      *
      * @var integer
-     * @Column(type="integer", length=11, nullable=false)
      */
     public $id_employee_number;
 
     /**
      *
      * @var integer
-     * @Column(type="integer", length=11, nullable=false)
      */
     public $id_company_sector;
 
     /**
      *
      * @var integer
-     * @Column(type="integer", length=11, nullable=false)
      */
     public $id_coverage;
 
     /**
      *
      * @var string
-     * @Column(type="string", length=45, nullable=true)
      */
     public $name;
 
     /**
      *
      * @var string
-     * @Column(type="string", length=45, nullable=true)
      */
     public $slogan;
 
     /**
      *
      * @var string
-     * @Column(type="string", length=45, nullable=true)
      */
     public $logo;
 
     /**
      *
      * @var string
-     * @Column(type="string", length=45, nullable=true)
      */
     public $address;
 
     /**
      *
      * @var string
-     * @Column(type="string", length=45, nullable=true)
      */
     public $ceo;
 
     /**
      *
      * @var string
-     * @Column(type="string", length=45, nullable=true)
      */
     public $webpage;
 
     /**
      *
      * @var string
-     * @Column(type="string", length=45, nullable=true)
      */
     public $email;
 
     /**
      *
      * @var string
-     * @Column(type="string", nullable=false)
      */
     public $created_at;
 
@@ -128,10 +110,10 @@ class Company extends \Phalcon\Mvc\Model
     {
         $this->validate(
             new Email(
-                [
+                array(
                     'field'    => 'email',
                     'required' => true,
-                ]
+                )
             )
         );
 
@@ -147,13 +129,13 @@ class Company extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-        $this->belongsTo('id_legal_constitution', 'LegalConstitution', 'id_legal_constitution', ['alias' => 'LegalConstitution']);
-        $this->belongsTo('id_size_company', 'SizeCompany', 'id_size_company', ['alias' => 'SizeCompany']);
-        $this->belongsTo('id_company_assets', 'CompanyAssets', 'id_company_assets', ['alias' => 'CompanyAssets']);
-        $this->belongsTo('id_employee_number', 'EmployeeNumber', 'id_employee_number', ['alias' => 'EmployeeNumber']);
-        $this->belongsTo('id_company_sector', 'CompanySector', 'id_company_sector', ['alias' => 'CompanySector']);
-        $this->belongsTo('id_coverage', 'Coverage', 'id_coverage', ['alias' => 'Coverage']);
-        $this->belongsTo('id_users', 'Users', 'id_users', ['alias' => 'Users']);
+        $this->belongsTo('id_company_assets', 'CompanyAssets', 'id_company_assets', array('alias' => 'CompanyAssets'));
+        $this->belongsTo('id_company_sector', 'CompanySector', 'id_company_sector', array('alias' => 'CompanySector'));
+        $this->belongsTo('id_coverage', 'Coverage', 'id_coverage', array('alias' => 'Coverage'));
+        $this->belongsTo('id_employee_number', 'EmployeeNumber', 'id_employee_number', array('alias' => 'EmployeeNumber'));
+        $this->belongsTo('id_legal_constitution', 'LegalConstitution', 'id_legal_constitution', array('alias' => 'LegalConstitution'));
+        $this->belongsTo('id_size_company', 'SizeCompany', 'id_size_company', array('alias' => 'SizeCompany'));
+        $this->belongsTo('id_users', 'Users', 'id_users', array('alias' => 'Users'));
     }
 
     /**

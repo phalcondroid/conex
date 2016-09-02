@@ -1,8 +1,8 @@
 
-<div class="container" style="margin-top: 80px;">
-    
+<?php echo $this->tag->form(array('services/createAdvertisement', 'method' => 'post')); ?>
+
     <h2>Nuevo Anuncio</h2>
-    <a href="{{ url("services/index") }}" class="btn btn-danger pull-right">
+    <a href="<?php echo $this->url->get('services/index'); ?>" class="btn btn-danger pull-right">
         <i class="glyphicon glyphicon-share-alt"></i>
         Volver
     </a>
@@ -16,7 +16,7 @@
                             Titulo
                         </th>
                         <th>
-                            <input type="text" name="name" value="">
+                            <input type="text" class="form-control" name="name" value="">
                         </th>
                     </tr>
                     <tr>
@@ -31,11 +31,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-xs-3 col-md-3">
-                                    <input type="text" name="name" id="direccion" value="">
-                                </div>
-                            </div>
+                            <input type="text" class="form-control" name="address" id="direccion" value="">
                         </th>
                     </tr>
                     <tr>
@@ -43,7 +39,7 @@
                             Descripción
                         </th>
                         <th>
-                            <textarea style="width : 100%;"name="name" rows="8" cols="40"></textarea>
+                            <textarea style="width : 100%;"name="description" rows="8" cols="40"></textarea>
                         </th>
                     </tr>
                     <tr>
@@ -51,7 +47,7 @@
                             Fecha de publicación
                         </th>
                         <th>
-                            <input type="text" id="startDate" value="">
+                            <input type="text" id="startDate" name="publishDate" value="">
                         </th>
                     </tr>
 
@@ -81,24 +77,24 @@
                             Valor
                         </th>
                         <th>
-                            <input type="text" name="name" value="">
+                            <input type="text" name="value" value="">
                             <span>A convenir</span>
                             <input type="checkbox" name="name" value="">
                         </th>
                     </tr>
                     <tr>
                         <th colspan="2" style="text-align : center;">
-                            <a href="{{ url("services/index") }}" class="btn btn-success">
+                            <button type="submit" class="btn btn-success">
                                 <i class="glyphicon glyphicon-floppy-disk"></i>
                                 Guardar
-                            </a>
+                            </button>
                         </th>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
-</div>
+<?php echo $this->tag->endForm(); ?>
 
 <script type="text/javascript">
 

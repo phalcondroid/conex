@@ -40,19 +40,19 @@
             <li class="">
                 <a href="{{ url("deals/index") }}">
                     {{ image("img/worldwide.png", "style" : "width : 24px") }}
-                    <span class="badge">16</span>
+                    <span class="badge" style="background:red;" id="noticeBadge">0</span>
                 </a>
             </li>
             <li>
                 <a href="#about">
                     {{ image("img/alarm.png", "style" : "width : 24px") }}
-                    <span class="badge">4</span>
+                    <span class="badge" style="background:red;" id="aggrementsBadge">0</span>
                 </a>
             </li>
             <li>
                 <a href="#about">
                     {{ image("img/close-envelope.png", "style" : "width : 24px") }}
-                    <span class="badge">10</span>
+                    <span class="badge" style="background:red;" id="messagesBadge">0</span>
                 </a>
             </li>
             <li class="dropdown">
@@ -91,7 +91,7 @@
                         Configuración
                     </li>
                     <li>
-                        <a href="{{ url("profile/me")}}">Mi perfil</a>
+                        <a href="{{ url("profile/index")}}">Mi perfil</a>
                     </li>
                     <li>
                         <a href="{{ url("profile/company")}}">Empresarial</a>
@@ -108,4 +108,10 @@
     </div><!--/.nav-collapse -->
   </div>
 </nav>
-{{ content() }}
+
+<div class="container" style="margin-top: 80px;">
+
+    {{ flash.output() }}
+
+    {{ content() }}
+</div>

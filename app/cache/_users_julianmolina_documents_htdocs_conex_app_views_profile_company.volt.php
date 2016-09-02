@@ -1,5 +1,5 @@
 
-{{ form("profile/company", "method" : "post") }}
+<?php echo $this->tag->form(array('profile/company', 'method' => 'post')); ?>
     <div class="panel panel-default" style="margin-top : 60px; background-color : #ffffff;">
         <div class="panel-body">
             <table class="table">
@@ -9,7 +9,7 @@
                             <h2>Perfil empresarial</h2>
                         </th>
                         <th>
-                            <a href="{{ url("services/index") }}" class="btn btn-success pull-right">
+                            <a href="<?php echo $this->url->get('services/index'); ?>" class="btn btn-success pull-right">
                                 <i class="glyphicon glyphicon-plus"></i>
                                 Agregar
                             </a>
@@ -25,7 +25,7 @@
                             <div class="row">
                                 <div class="col-xs-12 col-md-12">
                                     <a href="#" class="thumbnail">
-                                        {{ image('img/inovatio1.png', "style" : "width : 180px; height : 160px;") }}
+                                        <?php echo $this->tag->image(array('img/inovatio1.png', 'style' => 'width : 180px; height : 160px;')); ?>
                                     </a>
                                 </div>
                             </div>
@@ -197,7 +197,7 @@
                     </tr>
                     <tr>
                         <th colspan="2" style="text-align : center;">
-                            <a href="{{ url("services/index") }}" class="btn btn-success">
+                            <a href="<?php echo $this->url->get('services/index'); ?>" class="btn btn-success">
                                 <i class="glyphicon glyphicon-floppy-disk"></i>
                                 Guardar
                             </a>
@@ -207,7 +207,7 @@
             </table>
         </div>
     </div>
-{{ end_form() }}
+<?php echo $this->tag->endForm(); ?>
 
 <script type="text/javascript">
 
