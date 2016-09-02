@@ -1,0 +1,8 @@
+{
+    "require": {
+        "pusher/pusher-php-server": "^2.2"
+    },
+    "config" : {
+        "vendor-dir" : "app/library"
+    }
+}

@@ -28,7 +28,7 @@
                         </div>
                     </div>
                     &nbsp;
-                    {{ image("img/search.png", "style" : "width : 18px; margin-top : 10px", "class" : "pull-right") }}
+                    <?= $this->tag->image(['img/search.png', 'style' => 'width : 18px; margin-top : 10px', 'class' => 'pull-right']) ?>
                 </form>
             </div>
         </div>
@@ -52,7 +52,7 @@
                             <h3 style="margin-top : 3px;">
                                 Saber pro para estudiantes nacional 2015
                             </h3>
-                            {{ image("img/calendar.png", "style" : "float:right; margin-top : -35px; width : 32px") }}
+                            <?= $this->tag->image(['img/calendar.png', 'style' => 'float:right; margin-top : -35px; width : 32px']) ?>
                         </div>
                         <div class="panel-body">
 
@@ -151,22 +151,22 @@
                                 <div class="col-md-12" style="text-align : right">
 
                                     <button type="button" data-toggle="modal" data-target="#myModal3" class="btnModal btn btn-default" style="float:left;">
-                                        {{ image("img/agreement.png", "style" : " width : 48px")}}
+                                        <?= $this->tag->image(['img/agreement.png', 'style' => ' width : 48px']) ?>
                                     </button>
 
-                                    {{ image("img/binoculars.png", "style" : "width : 18px")}}
+                                    <?= $this->tag->image(['img/binoculars.png', 'style' => 'width : 18px']) ?>
                                     <span class="badge">214</span>
 
                                     &nbsp;&nbsp;
 
                                     <button type="button" class="btnModal" data-toggle="modal" data-target="#myModal">
-                                        {{ image("img/speech-bubble.png", "style" : "width : 18px")}}
+                                        <?= $this->tag->image(['img/speech-bubble.png', 'style' => 'width : 18px']) ?>
                                         <span class="badge">10</span>
                                     </button>
 
                                     &nbsp;&nbsp;
 
-                                    {{ image("img/favorite.png", "style" : "width : 18px")}}
+                                    <?= $this->tag->image(['img/favorite.png', 'style' => 'width : 18px']) ?>
                                     <span class="badge">5</span>
 
                                 </div>
@@ -184,7 +184,7 @@
                             <h3 style="margin-top : 3px;">
                                 Almohadas creativas
                             </h3>
-                            {{ image("img/barcode.png", "style" : "float:right; margin-top : -35px; width : 32px") }}
+                            <?= $this->tag->image(['img/barcode.png', 'style' => 'float:right; margin-top : -35px; width : 32px']) ?>
                         </div>
                         <div class="panel-body">
 
@@ -209,19 +209,19 @@
                                         <!-- Wrapper for slides -->
                                         <div class="carousel-inner" role="listbox">
                                             <div class="item active">
-                                                {{ image("img/inovatio1.png") }}
+                                                <?= $this->tag->image(['img/inovatio1.png']) ?>
                                                 <div class="carousel-caption">
                                                 Almohada Noel
                                                 </div>
                                             </div>
                                             <div class="item">
-                                                {{ image("img/inovatio2.jpg") }}
+                                                <?= $this->tag->image(['img/inovatio2.jpg']) ?>
                                                 <div class="carousel-caption">
                                                 Corchos reutilizables
                                                 </div>
                                             </div>
                                             <div class="item">
-                                                {{ image("img/inovatio3.jpg") }}
+                                                <?= $this->tag->image(['img/inovatio3.jpg']) ?>
                                                 <div class="carousel-caption">
                                                 Tostada pad
                                                 </div>
@@ -244,7 +244,7 @@
                                     <table class="table">
                                         <thead>
                                             <th>
-                                                {{ image("img/logo2.png", "style" : "width : 80px") }}
+                                                <?= $this->tag->image(['img/logo2.png', 'style' => 'width : 80px']) ?>
                                             </th>
                                             <td>
                                                 <p style="text-align : middle;">Universidad EAN</p>
@@ -304,22 +304,22 @@
                                 <div class="col-md-12" style="text-align : right">
 
                                     <button type="button" data-toggle="modal" data-target="#myModal3" class="btnModal btn btn-default" style="float:left;">
-                                        {{ image("img/agreement.png", "style" : " width : 48px")}}
+                                        <?= $this->tag->image(['img/agreement.png', 'style' => ' width : 48px']) ?>
                                     </button>
 
-                                    {{ image("img/binoculars.png", "style" : "width : 18px")}}
+                                    <?= $this->tag->image(['img/binoculars.png', 'style' => 'width : 18px']) ?>
                                     <span class="badge">214</span>
 
                                     &nbsp;&nbsp;
 
                                     <button type="button" class="btnModal" data-toggle="modal" data-target="#myModal2">
-                                        {{ image("img/speech-bubble.png", "style" : "width : 18px")}}
+                                        <?= $this->tag->image(['img/speech-bubble.png', 'style' => 'width : 18px']) ?>
                                         <span class="badge">10</span>
                                     </button>
 
                                     &nbsp;&nbsp;
 
-                                    {{ image("img/favorite.png", "style" : "width : 18px")}}
+                                    <?= $this->tag->image(['img/favorite.png', 'style' => 'width : 18px']) ?>
                                     <span class="badge">5</span>
 
                                 </div>
@@ -338,7 +338,7 @@
                             <h3 style="margin-top : 3px;">
                                 Servicio de mensajería GPS
                             </h3>
-                            {{ image("img/cart.png", "style" : "float:right; margin-top : -35px; width : 32px") }}
+                            <?= $this->tag->image(['img/cart.png', 'style' => 'float:right; margin-top : -35px; width : 32px']) ?>
                         </div>
 
                         <div class="panel-body">
@@ -359,7 +359,7 @@
                                     <table class="table">
                                         <thead>
                                             <th>
-                                                {{ image("http://biclamensajeria.co/img/Logo_Bicla.png") }}
+                                                <?= $this->tag->image(['http://biclamensajeria.co/img/Logo_Bicla.png']) ?>
                                             </th>
                                             <td>
 
@@ -439,20 +439,20 @@
                                 <div class="col-md-12" style="text-align : right">
 
                                     <button type="button" data-toggle="modal" data-target="#myModal3" class="btnModal btn btn-default" style="float:left;">
-                                        {{ image("img/agreement.png", "style" : " width : 48px")}}
+                                        <?= $this->tag->image(['img/agreement.png', 'style' => ' width : 48px']) ?>
                                     </button>
 
-                                    {{ image("img/binoculars.png", "style" : "width : 18px")}}
+                                    <?= $this->tag->image(['img/binoculars.png', 'style' => 'width : 18px']) ?>
                                     <span class="badge">214</span>
 
                                     &nbsp;&nbsp;
 
-                                    {{ image("img/speech-bubble.png", "style" : "width : 18px")}}
+                                    <?= $this->tag->image(['img/speech-bubble.png', 'style' => 'width : 18px']) ?>
                                     <span class="badge">10</span>
 
                                     &nbsp;&nbsp;
 
-                                    {{ image("img/favorite.png", "style" : "width : 18px")}}
+                                    <?= $this->tag->image(['img/favorite.png', 'style' => 'width : 18px']) ?>
                                     <span class="badge">5</span>
 
                                 </div>
@@ -471,7 +471,7 @@
                             <h3 style="margin-top : 3px;">
                                 Paquete turistico - Go Colombia
                             </h3>
-                            {{ image("img/truck.png", "style" : "float:right; margin-top : -35px; width : 32px") }}
+                            <?= $this->tag->image(['img/truck.png', 'style' => 'float:right; margin-top : -35px; width : 32px']) ?>
                         </div>
 
                         <div class="panel-body">
@@ -497,19 +497,19 @@
                                         <!-- Wrapper for slides -->
                                         <div class="carousel-inner" role="listbox">
                                             <div class="item active">
-                                                {{ image("img/ex1.jpg") }}
+                                                <?= $this->tag->image(['img/ex1.jpg']) ?>
                                                 <div class="carousel-caption">
                                                 Almohada Noel
                                                 </div>
                                             </div>
                                             <div class="item">
-                                                {{ image("img/ex2.jpg") }}
+                                                <?= $this->tag->image(['img/ex2.jpg']) ?>
                                                 <div class="carousel-caption">
                                                 Corchos reutilizables
                                                 </div>
                                             </div>
                                             <div class="item">
-                                                {{ image("img/ex2.jpg") }}
+                                                <?= $this->tag->image(['img/ex2.jpg']) ?>
                                                 <div class="carousel-caption">
                                                 Tostada pad
                                                 </div>
@@ -532,7 +532,7 @@
                                     <table class="table">
                                         <thead>
                                             <th colspan="2">
-                                                {{ image("img/truck.png", "style" : "width : 80px") }}
+                                                <?= $this->tag->image(['img/truck.png', 'style' => 'width : 80px']) ?>
                                             </th>
                                             <td colspan="2">
                                                 <p style="text-align : middle;">Go Colombia</p>
@@ -616,20 +616,20 @@
                                 <div class="col-md-12" style="text-align : right">
 
                                     <button type="button" data-toggle="modal" data-target="#myModal3" class="btnModal btn btn-default" style="float:left;">
-                                        {{ image("img/agreement.png", "style" : " width : 48px")}}
+                                        <?= $this->tag->image(['img/agreement.png', 'style' => ' width : 48px']) ?>
                                     </button>
 
-                                    {{ image("img/binoculars.png", "style" : "width : 18px")}}
+                                    <?= $this->tag->image(['img/binoculars.png', 'style' => 'width : 18px']) ?>
                                     <span class="badge">214</span>
 
                                     &nbsp;&nbsp;
 
-                                    {{ image("img/speech-bubble.png", "style" : "width : 18px")}}
+                                    <?= $this->tag->image(['img/speech-bubble.png', 'style' => 'width : 18px']) ?>
                                     <span class="badge">10</span>
 
                                     &nbsp;&nbsp;
 
-                                    {{ image("img/favorite.png", "style" : "width : 18px")}}
+                                    <?= $this->tag->image(['img/favorite.png', 'style' => 'width : 18px']) ?>
                                     <span class="badge">5</span>
 
                                 </div>
@@ -715,7 +715,7 @@
   </div>
 </div>
 
-{{ assets.outputJs("deal") }}
+<?= $this->assets->outputJs('deal') ?>
 <script>
 
     Pusher.logToConsole = true;
