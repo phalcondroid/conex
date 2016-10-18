@@ -1,5 +1,5 @@
 
-<a href="{{ url("menuitem/index/" ~ idMenu) }}" class="btn btn-danger pull-right">
+<a href="<?= $this->url->get('menuitem/index/' . $idMenu) ?>" class="btn btn-danger pull-right">
     <i class="glyphicon glyphicon-backward"></i>
 </a>
 
@@ -7,7 +7,7 @@
 
 <br>
 
-{{ form("menuitem/edit/" ~ idMenu ~ "/" ~ idMenuItem, "method" : "post") }}
+<?= $this->tag->form(['menuitem/edit/' . $idMenu . '/' . $idMenuItem, 'method' => 'post']) ?>
 
     <table class="table table-striped">
         <tbody>
@@ -16,7 +16,7 @@
                     Name menu item
                 </th>
                 <td>
-                    {{ menuItemForm.render("menu_item") }}
+                    <?= $menuItemForm->render('menu_item') ?>
                 </td>
             </tr>
             <tr>
@@ -24,7 +24,7 @@
                     Label
                 </th>
                 <td>
-                    {{ menuItemForm.render("label") }}
+                    <?= $menuItemForm->render('label') ?>
                 </td>
             </tr>
             <tr>
@@ -32,7 +32,7 @@
                     Logo
                 </th>
                 <td>
-                    {{ menuItemForm.render("logo") }}
+                    <?= $menuItemForm->render('logo') ?>
                 </td>
             </tr>
         </tbody>
@@ -48,4 +48,4 @@
             </tr>
         </tfoot>
     </table>
-{{ end_Form() }}
+<?= $this->tag->endForm() ?>

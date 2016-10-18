@@ -7,8 +7,6 @@
 
 <br>
 
-{{ content() }}
-
 {{ form("roles/edit/" ~ idRole, "method" : "post") }}
 
     {{ roleForm.render("id_role") }}

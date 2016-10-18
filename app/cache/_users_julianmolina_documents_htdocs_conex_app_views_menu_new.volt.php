@@ -1,5 +1,5 @@
 
-<a href="{{ url("menu/index") }}" class="btn btn-danger pull-right">
+<a href="<?= $this->url->get('menu/index') ?>" class="btn btn-danger pull-right">
     <i class="glyphicon glyphicon-backward"></i>
 </a>
 
@@ -7,20 +7,20 @@
 
 <br>
 
-{{ form("menu/new", "method" : "post") }}
+<?= $this->tag->form(['menu/new', 'method' => 'post']) ?>
 
     <table class="table table-striped">
         <tbody>
-            {% for element in menuForm %}
+            <?php foreach ($menuForm as $element) { ?>
                 <tr>
                     <th>
-                        {{ element.getLabel() }}
+                        <?= $element->getLabel() ?>
                     </th>
                     <td>
-                        <input type="text" class="form-control" name="{{ element.getName() }}" >
+                        <input type="text" class="form-control" name="<?= $element->getName() ?>" >
                     </td>
                 </tr>
-            {% endFor %}
+            <?php } ?>
         </tbody>
         <tfoot>
             <tr>
@@ -34,4 +34,4 @@
             </tr>
         </tfoot>
     </table>
-{{ end_Form() }}
+<?= $this->tag->endForm() ?>

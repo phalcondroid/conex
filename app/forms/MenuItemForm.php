@@ -8,7 +8,7 @@ use Phalcon\Validation\Validator\PresenceOf;
 
 class MenuItemForm extends Form
 {
-    public function initialize(Role $role, array $options)
+    public function initialize(MenuItem $menuItemEntity, array $options)
     {
         if (isset($options["edit"])) {
             $this->add(
@@ -18,26 +18,37 @@ class MenuItemForm extends Form
             );
         }
 
-        $profile = new Text(
-            "profile"
+        $menuItem = new Text(
+            "menu_item"
         );
-        $profile->setLabel("Perfil");
-        $profile->addValidator(
+        $menuItem->setLabel("Action");
+        $menuItem->addValidator(
             new PresenceOf(array(
-                "message" => "The name is required"
+                "message" => "The action is required"
             ))
         );
-        $this->add($profile);
+        $this->add($menuItem);
 
-        $defaultRedirect = new Text(
-            "default_redirect"
+        $label = new Text(
+            "label"
         );
-        $defaultRedirect->setLabel("Dirección por defecto");
-        $defaultRedirect->addValidator(
+        $label->setLabel("Name menu");
+        $label->addValidator(
             new PresenceOf(array(
                 "message" => "The name is required"
             ))
         );
-        $this->add($defaultRedirect);
+        $this->add($label);
+
+        $logo = new Text(
+            "logo"
+        );
+        $logo->setLabel("Logo");
+        $logo->addValidator(
+            new PresenceOf(array(
+                "message" => "Logo"
+            ))
+        );
+        $this->add($logo);
     }
 }

@@ -2,12 +2,9 @@
     <i class="glyphicon glyphicon-backward"></i>
 </a>
 
-<?= $this->tag->form(['menuitem/new', 'method' => 'post']) ?>
-    <?= $this->tag->hiddenField(['', 'value' => $id_menu, 'name' => 'id_menu']) ?>
-    <button  type="submit" class="btn btn-success pull-right">
-        <i class="glyphicon glyphicon-plus"></i>
-    </button>
-<?= $this->tag->endForm() ?>
+<a href="<?= $this->url->get('menuitem/new/' . $id_menu) ?>" class="btn btn-success pull-right">
+    <i class="glyphicon glyphicon-plus"></i>
+</a>
 
 <h1>Menú item</h1>
 
@@ -27,6 +24,9 @@
             </th>
             <th>
                 Habilitado
+            </th>
+            <th>
+                #
             </th>
             <th>
                 #
@@ -71,8 +71,13 @@
                     <?php } ?>
                 </td>
                 <td>
-                    <a class="btn btn-warning" href="<?= $this->url->get('menuitem/edit/' . $item->id_menu_item) ?>">
+                    <a class="btn btn-warning" href="<?= $this->url->get('menuitem/edit/' . $id_menu . '/' . $item->id_menu_item) ?>">
                         <i class="glyphicon glyphicon-pencil"></i>
+                    </a>
+                </td>
+                <td>
+                    <a class="btn btn-danger" href="<?= $this->url->get('menuitem/delete/' . $id_menu . '/' . $item->id_menu_item) ?>">
+                        <i class="glyphicon glyphicon-trash"></i>
                     </a>
                 </td>
             </tr>
