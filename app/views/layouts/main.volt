@@ -1,4 +1,5 @@
-<link rel="stylesheet" href="css/index.css">
+
+{{ stylesheet_link("css/index.css") }}
 
 <style media="screen">
     html {
@@ -61,47 +62,16 @@
                     <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                    <li>
-                        <a href="{{ url("services/index") }}">
-                            {{ image("img/calendar.png", "style" : "width : 24px") }}
-                            Crear evento
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ url("services/index") }}">
-                            {{ image("img/barcode.png", "style" : "width : 24px") }}
-                            Crear producto
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ url("services/index") }}">
-                            {{ image("img/cart.png", "style" : "width : 24px") }}
-                            Crear anuncio
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ url("services/index") }}">
-                            {{ image("img/truck.png", "style" : "width : 24px") }}
-                            Crear servicio
-                        </a>
-                    </li>
-                    <li role="separator" class="divider">
-                    </li>
-                    <li class="dropdown-header">
-                        Configuración
-                    </li>
-                    <li>
-                        <a href="{{ url("profile/index")}}">Mi perfil</a>
-                    </li>
-                    <li>
-                        <a href="{{ url("profile/company")}}">Empresarial</a>
-                    </li>
-                    <li>
-                        <a href="{{ url("reports/sales")}}">Reportes</a>
-                    </li>
-                    <li>
-                        <a href="{{ url("")}}">Cerrar sesión</a>
-                    </li>
+                    {% for item in mainMenu %}
+                        <li>
+                            <a href="{{ url(item.name ~ "/" ~ item.default) }}">
+                                {% if item.logo is defined %}
+                                    {{ image(item.logo , "style" : "width : 24px") }}
+                                {% endif %}
+                                {{ item.label }}
+                            </a>
+                        </li>
+                    {% endfor %}
                 </ul>
             </li>
         </ul>

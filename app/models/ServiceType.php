@@ -6,18 +6,23 @@ class ServiceType extends \Phalcon\Mvc\Model
     /**
      *
      * @var integer
+     * @Primary
+     * @Identity
+     * @Column(type="integer", length=11, nullable=false)
      */
     public $id_service_type;
 
     /**
      *
      * @var string
+     * @Column(type="string", length=45, nullable=true)
      */
     public $service_type;
 
     /**
      *
      * @var string
+     * @Column(type="string", nullable=false)
      */
     public $created_at;
 
@@ -26,7 +31,7 @@ class ServiceType extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-        $this->hasMany('id_service_type', 'Service', 'id_service_type', array('alias' => 'Service'));
+        $this->hasMany('id_service_type', 'Service', 'id_service_type', ['alias' => 'Service']);
     }
 
     /**

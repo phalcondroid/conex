@@ -6,18 +6,23 @@ class CompanySector extends \Phalcon\Mvc\Model
     /**
      *
      * @var integer
+     * @Primary
+     * @Identity
+     * @Column(type="integer", length=11, nullable=false)
      */
     public $id_company_sector;
 
     /**
      *
      * @var string
+     * @Column(type="string", length=45, nullable=true)
      */
     public $company_sector;
 
     /**
      *
      * @var string
+     * @Column(type="string", nullable=false)
      */
     public $created_at;
 
@@ -26,7 +31,7 @@ class CompanySector extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-        $this->hasMany('id_company_sector', 'Company', 'id_company_sector', array('alias' => 'Company'));
+        $this->hasMany('id_company_sector', 'Company', 'id_company_sector', ['alias' => 'Company']);
     }
 
     /**

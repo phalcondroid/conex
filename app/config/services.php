@@ -56,6 +56,14 @@ $di->setShared('view', function () use ($config) {
 });
 
 /**
+ *
+ */
+$di->setShared("guzzle", function () {
+    $guzzle = new GuzzleHttp\Client();
+    return $guzzle;
+});
+
+/**
  * Database connection is created based in the parameters defined in the configuration file
  */
 $di->setShared('db', function () use ($config) {
@@ -112,10 +120,10 @@ $di->set('assets', function () {
  */
 $di->set('flash', function () {
     return new Flash(array(
-        'error'   => 'alert alert-danger',
-        'success' => 'alert alert-success',
-        'notice'  => 'alert alert-info',
-        'warning' => 'alert alert-warning'
+        'error'   => 'custom-alert alert alert-danger',
+        'success' => 'custom-alert alert alert-success',
+        'notice'  => 'custom-alert alert alert-info',
+        'warning' => 'custom-alert alert alert-warning'
     ));
 });
 

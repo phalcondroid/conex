@@ -1,4 +1,17 @@
-<link rel="stylesheet" href="css/index.css">
+
+<?= $this->tag->stylesheetLink('css/index.css') ?>
+
+<style media="screen">
+    .custom-alert {
+
+        width: 75%;
+        float: right;
+        margin-top: 6%;
+        margin-left: 1%;
+        margin-right: 1%;
+        margin-bottom: -6%;
+    }
+</style>
 
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container">
@@ -10,7 +23,7 @@
             <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="#" style="background: #a4ba29; padding-left : 1px ; padding-right : 1px;">
-            <?php echo $this->tag->image(array('img/logo2', 'class' => 'logoClass')); ?>
+            <?= $this->tag->image(['img/logo2.png', 'class' => 'logoClass']) ?>
         </a>
     </div>
     <div id="navbar" class="collapse navbar-collapse">
@@ -57,4 +70,6 @@
   </div>
 </nav>
 
-<?php echo $this->getContent(); ?>
+<?= $this->flash->output() ?>
+
+<?= $this->getContent() ?>

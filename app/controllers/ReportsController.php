@@ -15,6 +15,11 @@ class ReportsController extends ControllerBase
         $this->view->setLayout("main");
     }
 
+    public function indexAction()
+    {
+        
+    }
+
     /**
      * [indexAction description]
      * @return [type] [description]

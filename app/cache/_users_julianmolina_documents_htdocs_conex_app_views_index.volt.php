@@ -6,12 +6,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <title>Conexión emprendedores</title>
-        <?php echo $this->assets->outputCss('css'); ?>
-        <link id="bsdp-css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.1/css/bootstrap-datepicker3.min.css" rel="stylesheet">
+        <?= $this->assets->outputCss('css') ?>
+        <!--
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" media="screen" title="no title">
+        -->
     </head>
     <body>
-        <?php echo $this->getContent(); ?>
-        <?php echo $this->assets->outputJs('config'); ?>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.1/js/bootstrap-datepicker.min.js"></script>
+        <?= $this->flash->output() ?>
+        <?= $this->getContent() ?>
+        <?= $this->assets->outputJs('config') ?>
     </body>
 </html>

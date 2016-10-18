@@ -12,16 +12,16 @@
             <div class="panel panel-default" style="margin-top : 150px; background-color : #e6e6e6;">
                 <div class="panel-body">
                     <div class="" style="background-color : #444444; margin : -16px;">
-                        <?php echo $this->tag->image(array('http://ean.edu.co/images/layout/logo.svg', 'style' => 'width : 70px; margin : 20px;')); ?>
+                        <?= $this->tag->image(['http://ean.edu.co/images/layout/logo.svg', 'style' => 'width : 70px; margin : 20px;']) ?>
                     </div>
-                    <form class="form-horizontal" style="margin-top : 45px; " action="<?php echo $this->url->get('deals/index'); ?>">
+                    <form class="form-horizontal" style="margin-top : 45px; " action="<?= $this->url->get('index/index') ?>" method="post">
                         <div class="form-group" style="margin-left : 15px; margin-rigth:15px;">
                             <div class="col-sm-12">
                                 <div class="input-group">
                                     <div class="input-group-addon">
                                         <i class="glyphicon glyphicon-user"></i>
                                     </div>
-                                    <input type="text" class="form-control" id="exampleInputAmount" placeholder="Amount">
+                                    <input type="text" class="form-control" name="user" id="exampleInputAmount" placeholder="Usuario">
                                 </div>
                             </div>
                         </div>
@@ -31,7 +31,7 @@
                                     <div class="input-group-addon">
                                         <i class="glyphicon glyphicon-lock"></i>
                                     </div>
-                                    <input type="password" class="form-control" id="exampleInputAmount" placeholder="Amount">
+                                    <input type="password" class="form-control" name="pass" id="exampleInputAmount" placeholder="Contraseña">
                                 </div>
                             </div>
                         </div>
@@ -69,6 +69,6 @@
 
 <script type="text/javascript">
     window.onload = function () {
-        
+
     }
 </script>

@@ -6,18 +6,23 @@ class ProductType extends \Phalcon\Mvc\Model
     /**
      *
      * @var integer
+     * @Primary
+     * @Identity
+     * @Column(type="integer", length=11, nullable=false)
      */
     public $id_product_type;
 
     /**
      *
      * @var string
+     * @Column(type="string", length=45, nullable=true)
      */
     public $product_type;
 
     /**
      *
      * @var string
+     * @Column(type="string", nullable=false)
      */
     public $created_at;
 
@@ -26,7 +31,7 @@ class ProductType extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-        $this->hasMany('id_product_type', 'Products', 'id_product_type', array('alias' => 'Products'));
+        $this->hasMany('id_product_type', 'Products', 'id_product_type', ['alias' => 'Products']);
     }
 
     /**

@@ -6,18 +6,23 @@ class EmployeeNumber extends \Phalcon\Mvc\Model
     /**
      *
      * @var integer
+     * @Primary
+     * @Identity
+     * @Column(type="integer", length=11, nullable=false)
      */
     public $id_employee_number;
 
     /**
      *
      * @var string
+     * @Column(type="string", length=45, nullable=true)
      */
     public $employee_number;
 
     /**
      *
      * @var string
+     * @Column(type="string", nullable=false)
      */
     public $created_at;
 
@@ -26,7 +31,7 @@ class EmployeeNumber extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-        $this->hasMany('id_employee_number', 'Company', 'id_employee_number', array('alias' => 'Company'));
+        $this->hasMany('id_employee_number', 'Company', 'id_employee_number', ['alias' => 'Company']);
     }
 
     /**

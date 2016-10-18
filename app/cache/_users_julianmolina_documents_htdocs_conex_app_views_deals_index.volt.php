@@ -6,6 +6,8 @@
     }
 </style>
 
+<?= $this->getContent() ?>
+
 <div class="" style="width:100%; background:black; height : 70px">
     <div class="container"style="margin-top: 50px;">
         <div class="row" style="margin-top: 15px;">
@@ -28,7 +30,7 @@
                         </div>
                     </div>
                     &nbsp;
-                    <?php echo $this->tag->image(array('img/search.png', 'style' => 'width : 18px; margin-top : 10px', 'class' => 'pull-right')); ?>
+                    <?= $this->tag->image(['img/search.png', 'style' => 'width : 18px; margin-top : 10px', 'class' => 'pull-right']) ?>
                 </form>
             </div>
         </div>
@@ -53,16 +55,16 @@
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h3 style="margin-top : 3px;">
-                                <?php echo $item->name; ?>
+                                <?= $item->name ?>
                             </h3>
-                            <?php echo $this->tag->image(array('img/calendar.png', 'style' => 'float:right; margin-top : -35px; width : 32px')); ?>
+                            <?= $this->tag->image(['img/calendar.png', 'style' => 'float:right; margin-top : -35px; width : 32px']) ?>
                         </div>
                         <div class="panel-body">
 
                             <div class="row">
                                 <div class="col-md-12">
                                     <p style="text-align : justify">
-                                        <?php echo $item->description; ?>
+                                        <?= $item->description ?>
                                     </p>
                                 </div>
                             </div>
@@ -83,7 +85,7 @@
                                                 </th>
                                                 <td>
                                                     <div class='input-group date' id='datetimepicker1'>
-                                                        <input type='text' class="form-control" value="<?php echo $item->start_date; ?>"/>
+                                                        <input type='text' class="form-control" value="<?= $item->start_date ?>"/>
                                                         <span class="input-group-addon">
                                                             <span class="glyphicon glyphicon-calendar"></span>
                                                         </span>
@@ -92,7 +94,7 @@
                                             </tr>
                                             <tr>
                                                 <th colspan="2">
-                                                    <?php echo $item->finish_date; ?>
+                                                    <?= $item->finish_date ?>
                                                 </th>
                                             </tr>
                                             <tr>
@@ -136,7 +138,7 @@
                                                     Dirección
                                                 </th>
                                                 <td>
-                                                    <?php echo $item->address; ?>
+                                                    <?= $item->address ?>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -148,22 +150,22 @@
                                 <div class="col-md-12" style="text-align : right">
 
                                     <button type="button" data-toggle="modal" data-target="#myModal3" class="btnModal btn btn-default" style="float:left;">
-                                        <?php echo $this->tag->image(array('img/agreement.png', 'style' => ' width : 48px')); ?>
+                                        <?= $this->tag->image(['img/agreement.png', 'style' => ' width : 48px']) ?>
                                     </button>
 
-                                    <?php echo $this->tag->image(array('img/binoculars.png', 'style' => 'width : 18px')); ?>
+                                    <?= $this->tag->image(['img/binoculars.png', 'style' => 'width : 18px']) ?>
                                     <span class="badge">214</span>
 
                                     &nbsp;&nbsp;
 
                                     <button type="button" class="btnModal" data-toggle="modal" data-target="#myModal">
-                                        <?php echo $this->tag->image(array('img/speech-bubble.png', 'style' => 'width : 18px')); ?>
+                                        <?= $this->tag->image(['img/speech-bubble.png', 'style' => 'width : 18px']) ?>
                                         <span class="badge">10</span>
                                     </button>
 
                                     &nbsp;&nbsp;
 
-                                    <?php echo $this->tag->image(array('img/favorite.png', 'style' => 'width : 18px')); ?>
+                                    <?= $this->tag->image(['img/favorite.png', 'style' => 'width : 18px']) ?>
                                     <span class="badge">5</span>
 
                                 </div>
@@ -182,7 +184,7 @@
                             <h3 style="margin-top : 3px;">
                                 Almohadas creativas
                             </h3>
-                            <?php echo $this->tag->image(array('img/barcode.png', 'style' => 'float:right; margin-top : -35px; width : 32px')); ?>
+                            <?= $this->tag->image(['img/barcode.png', 'style' => 'float:right; margin-top : -35px; width : 32px']) ?>
                         </div>
                         <div class="panel-body">
 
@@ -207,19 +209,19 @@
                                         <!-- Wrapper for slides -->
                                         <div class="carousel-inner" role="listbox">
                                             <div class="item active">
-                                                <?php echo $this->tag->image(array('img/inovatio1.png')); ?>
+                                                <?= $this->tag->image(['img/inovatio1.png']) ?>
                                                 <div class="carousel-caption">
                                                 Almohada Noel
                                                 </div>
                                             </div>
                                             <div class="item">
-                                                <?php echo $this->tag->image(array('img/inovatio2.jpg')); ?>
+                                                <?= $this->tag->image(['img/inovatio2.jpg']) ?>
                                                 <div class="carousel-caption">
                                                 Corchos reutilizables
                                                 </div>
                                             </div>
                                             <div class="item">
-                                                <?php echo $this->tag->image(array('img/inovatio3.jpg')); ?>
+                                                <?= $this->tag->image(['img/inovatio3.jpg']) ?>
                                                 <div class="carousel-caption">
                                                 Tostada pad
                                                 </div>
@@ -242,7 +244,7 @@
                                     <table class="table">
                                         <thead>
                                             <th>
-                                                <?php echo $this->tag->image(array('img/logo2.png', 'style' => 'width : 80px')); ?>
+                                                <?= $this->tag->image(['img/logo2.png', 'style' => 'width : 80px']) ?>
                                             </th>
                                             <td>
                                                 <p style="text-align : middle;">Universidad EAN</p>
@@ -302,22 +304,22 @@
                                 <div class="col-md-12" style="text-align : right">
 
                                     <button type="button" data-toggle="modal" data-target="#myModal3" class="btnModal btn btn-default" style="float:left;">
-                                        <?php echo $this->tag->image(array('img/agreement.png', 'style' => ' width : 48px')); ?>
+                                        <?= $this->tag->image(['img/agreement.png', 'style' => ' width : 48px']) ?>
                                     </button>
 
-                                    <?php echo $this->tag->image(array('img/binoculars.png', 'style' => 'width : 18px')); ?>
+                                    <?= $this->tag->image(['img/binoculars.png', 'style' => 'width : 18px']) ?>
                                     <span class="badge">214</span>
 
                                     &nbsp;&nbsp;
 
                                     <button type="button" class="btnModal" data-toggle="modal" data-target="#myModal2">
-                                        <?php echo $this->tag->image(array('img/speech-bubble.png', 'style' => 'width : 18px')); ?>
+                                        <?= $this->tag->image(['img/speech-bubble.png', 'style' => 'width : 18px']) ?>
                                         <span class="badge">10</span>
                                     </button>
 
                                     &nbsp;&nbsp;
 
-                                    <?php echo $this->tag->image(array('img/favorite.png', 'style' => 'width : 18px')); ?>
+                                    <?= $this->tag->image(['img/favorite.png', 'style' => 'width : 18px']) ?>
                                     <span class="badge">5</span>
 
                                 </div>
@@ -336,7 +338,7 @@
                             <h3 style="margin-top : 3px;">
                                 Servicio de mensajería GPS
                             </h3>
-                            <?php echo $this->tag->image(array('img/cart.png', 'style' => 'float:right; margin-top : -35px; width : 32px')); ?>
+                            <?= $this->tag->image(['img/cart.png', 'style' => 'float:right; margin-top : -35px; width : 32px']) ?>
                         </div>
 
                         <div class="panel-body">
@@ -357,7 +359,7 @@
                                     <table class="table">
                                         <thead>
                                             <th>
-                                                <?php echo $this->tag->image(array('http://biclamensajeria.co/img/Logo_Bicla.png')); ?>
+                                                <?= $this->tag->image(['http://biclamensajeria.co/img/Logo_Bicla.png']) ?>
                                             </th>
                                             <td>
 
@@ -437,20 +439,20 @@
                                 <div class="col-md-12" style="text-align : right">
 
                                     <button type="button" data-toggle="modal" data-target="#myModal3" class="btnModal btn btn-default" style="float:left;">
-                                        <?php echo $this->tag->image(array('img/agreement.png', 'style' => ' width : 48px')); ?>
+                                        <?= $this->tag->image(['img/agreement.png', 'style' => ' width : 48px']) ?>
                                     </button>
 
-                                    <?php echo $this->tag->image(array('img/binoculars.png', 'style' => 'width : 18px')); ?>
+                                    <?= $this->tag->image(['img/binoculars.png', 'style' => 'width : 18px']) ?>
                                     <span class="badge">214</span>
 
                                     &nbsp;&nbsp;
 
-                                    <?php echo $this->tag->image(array('img/speech-bubble.png', 'style' => 'width : 18px')); ?>
+                                    <?= $this->tag->image(['img/speech-bubble.png', 'style' => 'width : 18px']) ?>
                                     <span class="badge">10</span>
 
                                     &nbsp;&nbsp;
 
-                                    <?php echo $this->tag->image(array('img/favorite.png', 'style' => 'width : 18px')); ?>
+                                    <?= $this->tag->image(['img/favorite.png', 'style' => 'width : 18px']) ?>
                                     <span class="badge">5</span>
 
                                 </div>
@@ -469,7 +471,7 @@
                             <h3 style="margin-top : 3px;">
                                 Paquete turistico - Go Colombia
                             </h3>
-                            <?php echo $this->tag->image(array('img/truck.png', 'style' => 'float:right; margin-top : -35px; width : 32px')); ?>
+                            <?= $this->tag->image(['img/truck.png', 'style' => 'float:right; margin-top : -35px; width : 32px']) ?>
                         </div>
 
                         <div class="panel-body">
@@ -495,19 +497,19 @@
                                         <!-- Wrapper for slides -->
                                         <div class="carousel-inner" role="listbox">
                                             <div class="item active">
-                                                <?php echo $this->tag->image(array('img/ex1.jpg')); ?>
+                                                <?= $this->tag->image(['img/ex1.jpg']) ?>
                                                 <div class="carousel-caption">
                                                 Almohada Noel
                                                 </div>
                                             </div>
                                             <div class="item">
-                                                <?php echo $this->tag->image(array('img/ex2.jpg')); ?>
+                                                <?= $this->tag->image(['img/ex2.jpg']) ?>
                                                 <div class="carousel-caption">
                                                 Corchos reutilizables
                                                 </div>
                                             </div>
                                             <div class="item">
-                                                <?php echo $this->tag->image(array('img/ex2.jpg')); ?>
+                                                <?= $this->tag->image(['img/ex2.jpg']) ?>
                                                 <div class="carousel-caption">
                                                 Tostada pad
                                                 </div>
@@ -530,7 +532,7 @@
                                     <table class="table">
                                         <thead>
                                             <th colspan="2">
-                                                <?php echo $this->tag->image(array('img/truck.png', 'style' => 'width : 80px')); ?>
+                                                <?= $this->tag->image(['img/truck.png', 'style' => 'width : 80px']) ?>
                                             </th>
                                             <td colspan="2">
                                                 <p style="text-align : middle;">Go Colombia</p>
@@ -614,20 +616,20 @@
                                 <div class="col-md-12" style="text-align : right">
 
                                     <button type="button" data-toggle="modal" data-target="#myModal3" class="btnModal btn btn-default" style="float:left;">
-                                        <?php echo $this->tag->image(array('img/agreement.png', 'style' => ' width : 48px')); ?>
+                                        <?= $this->tag->image(['img/agreement.png', 'style' => ' width : 48px']) ?>
                                     </button>
 
-                                    <?php echo $this->tag->image(array('img/binoculars.png', 'style' => 'width : 18px')); ?>
+                                    <?= $this->tag->image(['img/binoculars.png', 'style' => 'width : 18px']) ?>
                                     <span class="badge">214</span>
 
                                     &nbsp;&nbsp;
 
-                                    <?php echo $this->tag->image(array('img/speech-bubble.png', 'style' => 'width : 18px')); ?>
+                                    <?= $this->tag->image(['img/speech-bubble.png', 'style' => 'width : 18px']) ?>
                                     <span class="badge">10</span>
 
                                     &nbsp;&nbsp;
 
-                                    <?php echo $this->tag->image(array('img/favorite.png', 'style' => 'width : 18px')); ?>
+                                    <?= $this->tag->image(['img/favorite.png', 'style' => 'width : 18px']) ?>
                                     <span class="badge">5</span>
 
                                 </div>
@@ -713,7 +715,7 @@
   </div>
 </div>
 
-<?php echo $this->assets->outputJs('deal'); ?>
+<?= $this->assets->outputJs('deal') ?>
 <script>
 
     Pusher.logToConsole = true;
@@ -754,7 +756,7 @@
 
             $("#btnAggrement").click(function() {
                 $.ajax({
-                    "url" : "<?php echo $this->url->get('deal/pusher'); ?>",
+                    "url" : "<?= $this->url->get('deal/pusher') ?>",
                 });
             });
         });

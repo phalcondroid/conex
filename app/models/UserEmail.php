@@ -8,30 +8,37 @@ class UserEmail extends \Phalcon\Mvc\Model
     /**
      *
      * @var integer
+     * @Primary
+     * @Identity
+     * @Column(type="integer", length=11, nullable=false)
      */
     public $id_user_email;
 
     /**
      *
      * @var integer
+     * @Column(type="integer", length=11, nullable=false)
      */
     public $id_users;
 
     /**
      *
      * @var string
+     * @Column(type="string", length=45, nullable=true)
      */
     public $email;
 
     /**
      *
      * @var string
+     * @Column(type="string", length=45, nullable=true)
      */
     public $domain;
 
     /**
      *
      * @var string
+     * @Column(type="string", nullable=false)
      */
     public $created_at;
 
@@ -44,10 +51,10 @@ class UserEmail extends \Phalcon\Mvc\Model
     {
         $this->validate(
             new Email(
-                array(
+                [
                     'field'    => 'email',
                     'required' => true,
-                )
+                ]
             )
         );
 
@@ -63,7 +70,7 @@ class UserEmail extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-        $this->belongsTo('id_users', 'Users', 'id_users', array('alias' => 'Users'));
+        $this->belongsTo('id_users', 'Users', 'id_users', ['alias' => 'Users']);
     }
 
     /**

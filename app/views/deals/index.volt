@@ -6,6 +6,8 @@
     }
 </style>
 
+{{ content() }}
+
 <div class="" style="width:100%; background:black; height : 70px">
     <div class="container"style="margin-top: 50px;">
         <div class="row" style="margin-top: 15px;">

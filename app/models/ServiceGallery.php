@@ -6,24 +6,30 @@ class ServiceGallery extends \Phalcon\Mvc\Model
     /**
      *
      * @var integer
+     * @Primary
+     * @Identity
+     * @Column(type="integer", length=11, nullable=false)
      */
     public $id_service_gallery;
 
     /**
      *
      * @var integer
+     * @Column(type="integer", length=11, nullable=false)
      */
     public $id_service;
 
     /**
      *
      * @var string
+     * @Column(type="string", nullable=true)
      */
     public $image;
 
     /**
      *
      * @var string
+     * @Column(type="string", nullable=false)
      */
     public $created_at;
 
@@ -32,7 +38,7 @@ class ServiceGallery extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-        $this->belongsTo('id_service', 'Service', 'id_service', array('alias' => 'Service'));
+        $this->belongsTo('id_service', 'Service', 'id_service', ['alias' => 'Service']);
     }
 
     /**

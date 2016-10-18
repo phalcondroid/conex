@@ -1,6 +1,7 @@
 {
     "require": {
-        "pusher/pusher-php-server": "^2.2"
+        "pusher/pusher-php-server": "^2.2",
+         "guzzlehttp/guzzle": "~6.0"
     },
     "config" : {
         "vendor-dir" : "app/library"
