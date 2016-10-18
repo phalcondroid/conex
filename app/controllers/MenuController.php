@@ -65,7 +65,7 @@ class MenuController extends ControllerBase
     {
         if ($id) {
 
-            $menu = new Menu();
+            $menu = Menu::findFirstByIdMenu((int) $id);
             $menuForm = new MenuForm(
                 $menu,
                 array()
@@ -73,8 +73,26 @@ class MenuController extends ControllerBase
 
             if ($this->request->isPost()) {
 
-            } else {
+                $menuForm->bind(
+                    $this->request->getPost(),
+                    $menu
+                );
 
+                if ($menuForm->isValid()) {
+
+                    if ($menu->save()) {
+                        $this->flash->success("Menu updated success");
+                    } else {
+                        foreach ($menu->getMessages() as $message) {
+                            $this->flash->error($message);
+                        }
+                    }
+                } else {
+                    foreach ($menuForm->getMessages() as $message) {
+                        $this->flash->error($message);
+                    }
+                }
+                $this->response->redirect("menu/index");
             }
             $this->view->idMenu = $id;
         } else {

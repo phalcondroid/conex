@@ -1,7 +1,7 @@
 <style media="screen">
     html {
         width: 100%;
-        background : url('{{ url("img/bg_empresa.jpg") }}');
+        background : url('<?= $this->url->get('img/bg_empresa.jpg') ?>');
         background-repeat: no-repeat;
         background-size: 100%;
     }
@@ -15,9 +15,9 @@
             <div class="panel panel-default" style="margin-top : 150px; background-color : #e6e6e6;">
                 <div class="panel-body">
                     <div class="" style="background-color : #444444; margin : -16px;">
-                        {{ image("http://ean.edu.co/images/layout/logo.svg", "style" : "width : 70px; margin : 20px;") }}
+                        <?= $this->tag->image(['http://ean.edu.co/images/layout/logo.svg', 'style' => 'width : 70px; margin : 20px;']) ?>
                     </div>
-                    <form class="form-horizontal" style="margin-top : 45px; " action="{{ url('index/index') }}" method="post">
+                    <form class="form-horizontal" style="margin-top : 45px; " action="<?= $this->url->get('index/index') ?>" method="post">
                         <div class="form-group" style="margin-left : 15px; margin-rigth:15px;">
                             <div class="col-sm-12">
                                 <div class="input-group">
