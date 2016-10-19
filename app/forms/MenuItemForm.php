@@ -44,11 +44,6 @@ class MenuItemForm extends Form
             "logo"
         );
         $logo->setLabel("Logo");
-        $logo->addValidator(
-            new PresenceOf(array(
-                "message" => "Logo"
-            ))
-        );
         $this->add($logo);
     }
 }

@@ -17,13 +17,6 @@ class Users extends \Phalcon\Mvc\Model
      * @var integer
      * @Column(type="integer", length=11, nullable=false)
      */
-    public $id_student_type;
-
-    /**
-     *
-     * @var integer
-     * @Column(type="integer", length=11, nullable=false)
-     */
     public $id_role;
 
     /**
@@ -67,13 +60,6 @@ class Users extends \Phalcon\Mvc\Model
      * @Column(type="string", length=45, nullable=true)
      */
     public $address;
-
-    /**
-     *
-     * @var string
-     * @Column(type="string", length=45, nullable=true)
-     */
-    public $avatar;
 
     /**
      *

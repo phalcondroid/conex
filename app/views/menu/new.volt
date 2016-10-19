@@ -11,16 +11,54 @@
 
     <table class="table table-striped">
         <tbody>
-            {% for element in menuForm %}
-                <tr>
-                    <th>
-                        {{ element.getLabel() }}
-                    </th>
-                    <td>
-                        <input type="text" class="form-control" name="{{ element.getName() }}" >
-                    </td>
-                </tr>
-            {% endFor %}
+            <tr>
+                <th>
+                    Type menu
+                </th>
+                <td>
+                    {{ menuForm.render("id_type_menu") }}
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Role
+                </th>
+                <td>
+                    {{ menuForm.render("id_role") }}
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Controller
+                </th>
+                <td>
+                    {{ menuForm.render("name") }}
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Label
+                </th>
+                <td>
+                    {{ menuForm.render("label") }}
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Action default
+                </th>
+                <td>
+                    {{ menuForm.render("default") }}
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Logo
+                </th>
+                <td>
+                    {{ menuForm.render("logo") }}
+                </td>
+            </tr>
         </tbody>
         <tfoot>
             <tr>

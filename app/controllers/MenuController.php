@@ -41,6 +41,7 @@ class MenuController extends ControllerBase
                 $menu->status = 1;
                 if ($menu->save()) {
                     $this->flash->success("New menu created");
+                    $this->response->redirect("menu/index");
                 } else {
                     foreach ($menu->getMessages() as $message) {
                         $this->flash->error($message);
@@ -95,6 +96,7 @@ class MenuController extends ControllerBase
                 $this->response->redirect("menu/index");
             }
             $this->view->idMenu = $id;
+            $this->view->menuForm = $menuForm;
         } else {
             $this->response->redirect("menu/index");
         }

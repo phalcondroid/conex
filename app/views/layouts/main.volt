@@ -65,7 +65,7 @@
                     {% for item in mainMenu %}
                         <li>
                             <a href="{{ url(item.name ~ "/" ~ item.default) }}">
-                                {% if item.logo is defined %}
+                                {% if item.logo != "" %}
                                     {{ image(item.logo , "style" : "width : 24px") }}
                                 {% endif %}
                                 {{ item.label }}

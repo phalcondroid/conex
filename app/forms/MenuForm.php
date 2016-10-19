@@ -20,14 +20,26 @@ class MenuForm extends Form
 
         $typeMenu = new Select(
             "id_type_menu",
-            TypeMenu::find()
+            TypeMenu::find(),
+            array(
+                "using" => array(
+                    "id_type_menu",
+                    "type_menu",
+                )
+            )
         );
         $typeMenu->setLabel("Type menu");
         $this->add($typeMenu);
 
         $role = new Select(
             "id_role",
-            Role::find()
+            Role::find(),
+            array(
+                "using" => array(
+                    "id_role",
+                    "profile",
+                )
+            )
         );
         $role->setLabel("Role");
         $this->add($role);
@@ -56,11 +68,6 @@ class MenuForm extends Form
             "logo"
         );
         $logo->setLabel("Logo");
-        $logo->addValidator(
-            new PresenceOf(array(
-                "message" => "Logo"
-            ))
-        );
         $this->add($logo);
 
         $default = new Text(

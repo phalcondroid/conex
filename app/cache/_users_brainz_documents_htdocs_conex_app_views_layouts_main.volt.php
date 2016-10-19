@@ -65,7 +65,7 @@
                     <?php foreach ($mainMenu as $item) { ?>
                         <li>
                             <a href="<?= $this->url->get($item->name . '/' . $item->default) ?>">
-                                <?php if (isset($item->logo)) { ?>
+                                <?php if ($item->logo != '') { ?>
                                     <?= $this->tag->image([$item->logo, 'style' => 'width : 24px']) ?>
                                 <?php } ?>
                                 <?= $item->label ?>

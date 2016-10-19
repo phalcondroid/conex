@@ -1,5 +1,5 @@
 
-<a href="{{ url("menu/index") }}" class="btn btn-danger pull-right">
+<a href="<?= $this->url->get('menu/index') ?>" class="btn btn-danger pull-right">
     <i class="glyphicon glyphicon-backward"></i>
 </a>
 
@@ -7,7 +7,7 @@
 
 <br>
 
-{{ form("menu/edit/" ~ idMenu, "method" : "post") }}
+<?= $this->tag->form(['menu/edit/' . $idMenu, 'method' => 'post']) ?>
 
     <table class="table table-striped">
         <tbody>
@@ -16,7 +16,7 @@
                     Type menu
                 </th>
                 <td>
-                    {{ menuForm.render("id_type_menu") }}
+                    <?= $menuForm->render('id_type_menu') ?>
                 </td>
             </tr>
             <tr>
@@ -24,7 +24,7 @@
                     Role
                 </th>
                 <td>
-                    {{ menuForm.render("id_role") }}
+                    <?= $menuForm->render('id_role') ?>
                 </td>
             </tr>
             <tr>
@@ -32,7 +32,7 @@
                     Controller
                 </th>
                 <td>
-                    {{ menuForm.render("name") }}
+                    <?= $menuForm->render('name') ?>
                 </td>
             </tr>
             <tr>
@@ -40,7 +40,7 @@
                     Label
                 </th>
                 <td>
-                    {{ menuForm.render("label") }}
+                    <?= $menuForm->render('label') ?>
                 </td>
             </tr>
             <tr>
@@ -48,7 +48,7 @@
                     Action default
                 </th>
                 <td>
-                    {{ menuForm.render("default") }}
+                    <?= $menuForm->render('default') ?>
                 </td>
             </tr>
             <tr>
@@ -56,7 +56,7 @@
                     Logo
                 </th>
                 <td>
-                    {{ menuForm.render("logo") }}
+                    <?= $menuForm->render('logo') ?>
                 </td>
             </tr>
         </tbody>
@@ -72,4 +72,4 @@
             </tr>
         </tfoot>
     </table>
-{{ end_Form() }}
+<?= $this->tag->endForm() ?>
