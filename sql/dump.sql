@@ -1,8 +1,8 @@
 -- MySQL dump 10.13  Distrib 5.7.12, for osx10.9 (x86_64)
 --
--- Host: 127.0.0.1    Database: conex
+-- Host: localhost    Database: conex
 -- ------------------------------------------------------
--- Server version	5.7.16
+-- Server version	5.7.14
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -500,7 +500,7 @@ CREATE TABLE `menu` (
 
 LOCK TABLES `menu` WRITE;
 /*!40000 ALTER TABLE `menu` DISABLE KEYS */;
-INSERT INTO `menu` VALUES (1,1,1,'index',NULL,'index',NULL,1,NULL),(2,1,1,'deals',NULL,'index',NULL,1,NULL),(3,1,1,'services',NULL,'index',NULL,1,NULL),(7,1,1,'profile','Mi perfil','index',NULL,1,NULL),(8,1,1,'company','Empresarial','index',NULL,1,NULL),(9,1,1,'reports','Reportes','index',NULL,1,NULL),(10,1,2,'roles','Roles','index',NULL,1,NULL),(15,1,1,'services','Crear evento','index','img/calendar.png',1,NULL),(16,1,1,'services','Crear producto','index','img/barcode.png',1,NULL),(17,1,1,'services','Crear anuncio','index','img/cart.png',1,NULL),(18,1,1,'services','Crear servicio','index','img/truck.png',1,NULL),(19,1,1,'index','Cerrar  sesión','destroy',NULL,1,NULL),(20,1,2,'menu','Menus','index',NULL,1,NULL),(21,1,2,'index','Cerrar sesión','destroy',NULL,1,NULL),(22,2,2,'menuitem','Menú Item','index','',1,NULL),(23,1,2,'typemenu','Type Menu','index','',1,NULL),(24,1,2,'user','User Administration','index','',1,NULL);
+INSERT INTO `menu` VALUES (1,1,1,'index',NULL,'index',NULL,1,NULL),(2,1,1,'deals',NULL,'index',NULL,1,NULL),(3,1,1,'services',NULL,'index',NULL,1,NULL),(7,1,1,'profile','Mi perfil','index',NULL,1,NULL),(8,1,1,'company','Empresarial','index',NULL,1,NULL),(9,1,1,'reports','Reportes','index',NULL,1,NULL),(10,1,2,'roles','Roles','index',NULL,1,NULL),(15,1,1,'services','Crear evento','index','img/calendar.png',1,NULL),(16,1,1,'services','Crear producto','index','img/barcode.png',1,NULL),(17,1,1,'services','Crear anuncio','index','img/cart.png',1,NULL),(18,1,1,'services','Crear servicio','index','img/truck.png',1,NULL),(19,1,1,'system','Cerrar  sesión','destroysession',NULL,1,NULL),(20,1,2,'menu','Menus','index',NULL,1,NULL),(21,1,2,'system','Cerrar sesión','destroysession',NULL,1,NULL),(22,1,2,'menuitem','Menú Item','index',NULL,1,NULL),(23,1,2,'user','User administration','index','',1,NULL),(24,1,10,'user','User administration','index','',1,NULL);
 /*!40000 ALTER TABLE `menu` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -522,7 +522,7 @@ CREATE TABLE `menu_item` (
   PRIMARY KEY (`id_menu_item`),
   KEY `fk_menu_item_menu1_idx` (`id_menu`),
   CONSTRAINT `fk_menu_item_menu1` FOREIGN KEY (`id_menu`) REFERENCES `menu` (`id_menu`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -531,7 +531,7 @@ CREATE TABLE `menu_item` (
 
 LOCK TABLES `menu_item` WRITE;
 /*!40000 ALTER TABLE `menu_item` DISABLE KEYS */;
-INSERT INTO `menu_item` VALUES (1,1,'index',NULL,NULL,1,NULL),(2,2,'index',NULL,NULL,1,NULL),(3,2,'pusher',NULL,NULL,1,NULL),(4,2,'test',NULL,NULL,1,NULL),(5,3,'index',NULL,NULL,1,NULL),(6,3,'createProduct',NULL,NULL,1,NULL),(7,3,'createEvent',NULL,NULL,1,NULL),(8,3,'createAdvertisement',NULL,NULL,1,NULL),(9,3,'createService',NULL,NULL,1,NULL),(10,1,'destroy',NULL,NULL,1,NULL),(11,7,'index',NULL,NULL,1,NULL),(12,7,'createMenu',NULL,NULL,1,NULL),(13,7,'createMenuItem',NULL,NULL,1,NULL),(14,10,'index',NULL,NULL,1,NULL),(15,10,'edit',NULL,NULL,0,NULL),(16,10,'delete',NULL,NULL,1,NULL),(17,10,'new',NULL,NULL,1,NULL),(18,21,'destroy',NULL,NULL,1,NULL),(19,20,'items',NULL,NULL,1,NULL),(20,20,'new',NULL,NULL,1,NULL),(21,20,'edit',NULL,NULL,1,NULL),(22,20,'delete',NULL,NULL,1,NULL),(23,20,'index',NULL,NULL,1,NULL),(24,22,'index',NULL,NULL,1,NULL),(25,22,'available',NULL,NULL,1,NULL),(26,22,'new','jajaja','jojojojo',1,NULL),(28,22,'edit','Edición','no',1,NULL),(30,23,'index','search','',1,NULL),(31,23,'edit','Update','',1,NULL),(32,23,'delete','Delete','',1,NULL),(33,23,'new','new','',1,NULL),(34,24,'index','Search','',1,NULL),(35,24,'edit','Update','',1,NULL),(36,24,'delete','Delete','',1,NULL),(37,24,'new','New user','',1,NULL);
+INSERT INTO `menu_item` VALUES (1,1,'index',NULL,NULL,1,NULL),(2,2,'index',NULL,NULL,1,NULL),(3,2,'pusher',NULL,NULL,1,NULL),(4,2,'test',NULL,NULL,1,NULL),(5,3,'index',NULL,NULL,1,NULL),(6,3,'createProduct',NULL,NULL,1,NULL),(7,3,'createEvent',NULL,NULL,1,NULL),(8,3,'createAdvertisement',NULL,NULL,1,NULL),(9,3,'createService',NULL,NULL,1,NULL),(10,1,'destroysession',NULL,NULL,1,NULL),(11,7,'index',NULL,NULL,1,NULL),(12,7,'createMenu',NULL,NULL,1,NULL),(13,7,'createMenuItem',NULL,NULL,1,NULL),(14,10,'index',NULL,NULL,1,NULL),(15,10,'edit',NULL,NULL,0,NULL),(16,10,'delete',NULL,NULL,1,NULL),(17,10,'new',NULL,NULL,1,NULL),(18,21,'destroysession',NULL,NULL,1,NULL),(19,20,'items',NULL,NULL,1,NULL),(20,20,'new',NULL,NULL,1,NULL),(21,20,'edit',NULL,NULL,1,NULL),(22,20,'delete',NULL,NULL,1,NULL),(23,20,'index',NULL,NULL,1,NULL),(24,22,'index',NULL,NULL,1,NULL),(25,22,'available',NULL,NULL,1,NULL),(26,22,'new','jajaja','jojojojo',1,NULL),(28,22,'edit','Edición','no',1,NULL),(30,23,'index','index','',1,NULL),(31,23,'new','New user','',1,NULL),(32,23,'edit','Update user','',1,NULL),(33,23,'delete','Remove user','',1,NULL),(34,24,'index','View','',1,NULL),(35,24,'edit','Update user','',1,NULL),(36,24,'delete','Remove user','',1,NULL),(37,24,'new','New user','',1,NULL),(38,9,'index','Report List','',1,NULL),(39,9,'rank','Rankings','',1,NULL),(40,9,'sales','Ventas','',1,NULL);
 /*!40000 ALTER TABLE `menu_item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -690,7 +690,7 @@ CREATE TABLE `role` (
   `status` tinyint(2) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id_role`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -699,7 +699,7 @@ CREATE TABLE `role` (
 
 LOCK TABLES `role` WRITE;
 /*!40000 ALTER TABLE `role` DISABLE KEYS */;
-INSERT INTO `role` VALUES (1,'principal','deals/index',1,'2016-10-17 04:25:18'),(2,'admin','roles/index',1,NULL);
+INSERT INTO `role` VALUES (1,'principal','deals/index',1,'2016-10-17 04:25:18'),(2,'admin','roles/index',1,NULL),(10,'User administrator','user/index',1,NULL);
 /*!40000 ALTER TABLE `role` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -811,6 +811,31 @@ LOCK TABLES `size_company` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `student_type`
+--
+
+DROP TABLE IF EXISTS `student_type`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `student_type` (
+  `id_student_type` int(11) NOT NULL AUTO_INCREMENT,
+  `student_type` varchar(45) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_student_type`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `student_type`
+--
+
+LOCK TABLES `student_type` WRITE;
+/*!40000 ALTER TABLE `student_type` DISABLE KEYS */;
+INSERT INTO `student_type` VALUES (1,'ESTUDIANTE','2016-10-17 04:25:18'),(2,'ADMINISTRADOR','2016-10-18 04:40:01');
+/*!40000 ALTER TABLE `student_type` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `type_menu`
 --
 
@@ -823,7 +848,7 @@ CREATE TABLE `type_menu` (
   `status` tinyint(2) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id_type_menu`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -880,11 +905,12 @@ CREATE TABLE `users` (
   `identify` varchar(45) DEFAULT NULL,
   `mobile_phone` varchar(45) DEFAULT NULL,
   `address` varchar(45) DEFAULT NULL,
+  `avatar` varchar(45) DEFAULT NULL,
   `country` varchar(45) DEFAULT NULL,
   `city` varchar(45) DEFAULT NULL,
   `birthday` date DEFAULT NULL,
   `status` tinyint(2) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_users`),
   KEY `fk_users_role1_idx` (`id_role`),
   CONSTRAINT `fk_users_role1` FOREIGN KEY (`id_role`) REFERENCES `role` (`id_role`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -897,7 +923,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (6,1,'jmolinac5116','$2y$10$yww3d/rWbFlI4PAvdL71G.41KAtjNgNomLhDbBP1NScRfEWE7sjV.','JULIAN ARTURO MOLINA CASTIBLANCO','1015435116','6883615-',NULL,NULL,'BOGOTÁ D.C.','1992-08-11',1,'2016-10-18 02:42:39'),(7,2,'admin','$2y$10$XAWLMCTfCx1lIAMVuQSHX.imaEEK/QoL.II3kQzzIggSMk/TT1Z.W','ADMINISTRATOR','','','','','BOGOTÁ D.C','1992-08-11',1,'2016-10-18 04:48:32');
+INSERT INTO `users` VALUES (6,1,'jmolinac5116','$2y$10$yww3d/rWbFlI4PAvdL71G.41KAtjNgNomLhDbBP1NScRfEWE7sjV.','JULIAN ARTURO MOLINA CASTIBLANCO','1015435116','6883615-',NULL,NULL,NULL,'BOGOTÁ D.C.','1992-08-11',1,'2016-10-18 02:42:39'),(7,2,'admin','$2y$10$XAWLMCTfCx1lIAMVuQSHX.imaEEK/QoL.II3kQzzIggSMk/TT1Z.W','ADMINISTRATOR','','','','','','BOGOTÁ D.C','1992-08-11',1,'2016-10-18 04:48:32'),(14,10,'cata','$2y$10$e/IP8Sxxwy6jLF6MeHe69eQb8MI5YK.LUbjM.MEs6IrK.rlHVadZ.','123','123','123','123',NULL,'123','123','2016-10-12',1,'2016-10-21 15:23:19');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -910,4 +936,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-10-18 20:29:35
+-- Dump completed on 2016-11-09 15:43:17
