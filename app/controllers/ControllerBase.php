@@ -73,12 +73,13 @@ class ControllerBase extends Controller
                 )
             ));
 
+
             if ($acl->isAllowed($user->Role->profile, $controller, $action)) {
-                if ($controller == "index") {
+                if ($controller == "index" and $action == "index") {
                     $this->response->redirect($user->Role->default_redirect);
                 }
             } else {
-                $this->response->redirect("index/index");
+                $this->response->redirect($user->Role->default_redirect);
             }
 
         } else {

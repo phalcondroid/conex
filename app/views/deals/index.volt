@@ -8,35 +8,6 @@
 
 {{ content() }}
 
-<div class="" style="width:100%; background:black; height : 70px">
-    <div class="container"style="margin-top: 50px;">
-        <div class="row" style="margin-top: 15px;">
-            <div class="col-md-12">
-                <form class="navbar-form" role="search" style="margin-left : -15px">
-                    <div class="input-group">
-                        <div class="input-group-addon">
-                            <i class="glyphicon glyphicon-search"></i>
-                        </div>
-                        <input type="text" class="form-control"  style="width: 300px" id="exampleInputAmount" placeholder="buscar">
-                    </div>
-                    <div class="input-group">
-                        <div class="input-group-addon">
-                            <select class="" name="">
-                                <option>Productos</option>
-                                <option>Servicios</option>
-                                <option>Anuncios</option>
-                                <option>Eventos</option>
-                            </select>
-                        </div>
-                    </div>
-                    &nbsp;
-                    {{ image("img/search.png", "style" : "width : 18px; margin-top : 10px", "class" : "pull-right") }}
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
 <div class="container" style="">
 
     <div class="row">

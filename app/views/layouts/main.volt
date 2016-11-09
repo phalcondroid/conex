@@ -13,7 +13,7 @@
     }
 </style>
 
-<nav class="navbar navbar-default navbar-fixed-top" style="background : #2eab11; color : #ffffff">
+<nav class="navbar navbar-default navbar-fixed-top" style="background : #0caaab; color : #ffffff">
   <div class="container">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -78,8 +78,33 @@
     </div><!--/.nav-collapse -->
   </div>
 </nav>
+<div class="row" style="background-color:#5c5c5c; margin-top: 50px; padding-left:5px; padding-right:5px;">
+    <div class="col-md-11">
+        <form class="navbar-form" role="search">
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <i class="glyphicon glyphicon-search"></i>
+                </div>
+                <input type="text" class="form-control"  style="width: 300px" id="exampleInputAmount" placeholder="buscar">
+            </div>
+            <div class="input-group">
+                <select class="form-control" name="">
+                    <option>Productos</option>
+                    <option>Servicios</option>
+                    <option>Anuncios</option>
+                    <option>Eventos</option>
+                </select>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-1" style="text-align:center; vertical-align: text-top;">
+        <a href="#" >
+            {{ image("img/search.png", "style" : "width : 18px;") }}
+        </a>
+    </div>
+</div>
 
-<div class="container" style="margin-top: 80px;">
+<div class="container">
 
     {{ flash.output() }}
 

@@ -44,7 +44,6 @@ class ProfileController extends ControllerBase
             );
         }
         $this->view->user = $userContent;
-        $this->view->studentType = StudentType::find();
 
         if ($this->request->isPost()) {
 

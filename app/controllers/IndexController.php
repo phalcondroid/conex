@@ -142,14 +142,4 @@ class IndexController extends ControllerBase
 
         return false;
     }
-
-    /**
-     *
-     */
-    public function destroyAction()
-    {
-        $this->session->set("user", false);
-        $this->session->set("acl", false);
-        $this->session->destroy();
-    }
 }

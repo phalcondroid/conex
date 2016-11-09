@@ -1,6 +1,9 @@
 <style media="screen">
     html {
-        background : url('/emprendedores/img/bg_empresa.jpg');
+        width: 100%;
+        background : url('<?= $this->url->get('img/bg_empresa.jpg') ?>');
+        background-repeat: no-repeat;
+        background-size: 100%;
     }
 </style>
 <!-- Begin page content -->
