@@ -34,21 +34,103 @@ class TypeMenu extends \Phalcon\Mvc\Model
     public $created_at;
 
     /**
+     * Method to set the value of field id_type_menu
+     *
+     * @param integer $id_type_menu
+     * @return $this
+     */
+    public function setIdTypeMenu($id_type_menu)
+    {
+        $this->id_type_menu = $id_type_menu;
+
+        return $this;
+    }
+
+    /**
+     * Method to set the value of field type_menu
+     *
+     * @param string $type_menu
+     * @return $this
+     */
+    public function setTypeMenu($type_menu)
+    {
+        $this->type_menu = $type_menu;
+
+        return $this;
+    }
+
+    /**
+     * Method to set the value of field status
+     *
+     * @param integer $status
+     * @return $this
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Method to set the value of field created_at
+     *
+     * @param string $created_at
+     * @return $this
+     */
+    public function setCreatedAt($created_at)
+    {
+        $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * Returns the value of field id_type_menu
+     *
+     * @return integer
+     */
+    public function getIdTypeMenu()
+    {
+        return $this->id_type_menu;
+    }
+
+    /**
+     * Returns the value of field type_menu
+     *
+     * @return string
+     */
+    public function getTypeMenu()
+    {
+        return $this->type_menu;
+    }
+
+    /**
+     * Returns the value of field status
+     *
+     * @return integer
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Returns the value of field created_at
+     *
+     * @return string
+     */
+    public function getCreatedAt()
+    {
+        return $this->created_at;
+    }
+
+    /**
      * Initialize method for model.
      */
     public function initialize()
     {
         $this->hasMany('id_type_menu', 'Menu', 'id_type_menu', ['alias' => 'Menu']);
-    }
-
-    /**
-     * Returns table name mapped in the model.
-     *
-     * @return string
-     */
-    public function getSource()
-    {
-        return 'type_menu';
     }
 
     /**
@@ -71,6 +153,16 @@ class TypeMenu extends \Phalcon\Mvc\Model
     public static function findFirst($parameters = null)
     {
         return parent::findFirst($parameters);
+    }
+
+    /**
+     * Returns table name mapped in the model.
+     *
+     * @return string
+     */
+    public function getSource()
+    {
+        return 'type_menu';
     }
 
 }

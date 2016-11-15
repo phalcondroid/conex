@@ -16,7 +16,7 @@
                 User
             </th>
             <th>
-                password
+                Name
             </th>
             <th>
                 Identify

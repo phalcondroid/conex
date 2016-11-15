@@ -27,21 +27,80 @@ class ProductType extends \Phalcon\Mvc\Model
     public $created_at;
 
     /**
+     * Method to set the value of field id_product_type
+     *
+     * @param integer $id_product_type
+     * @return $this
+     */
+    public function setIdProductType($id_product_type)
+    {
+        $this->id_product_type = $id_product_type;
+
+        return $this;
+    }
+
+    /**
+     * Method to set the value of field product_type
+     *
+     * @param string $product_type
+     * @return $this
+     */
+    public function setProductType($product_type)
+    {
+        $this->product_type = $product_type;
+
+        return $this;
+    }
+
+    /**
+     * Method to set the value of field created_at
+     *
+     * @param string $created_at
+     * @return $this
+     */
+    public function setCreatedAt($created_at)
+    {
+        $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * Returns the value of field id_product_type
+     *
+     * @return integer
+     */
+    public function getIdProductType()
+    {
+        return $this->id_product_type;
+    }
+
+    /**
+     * Returns the value of field product_type
+     *
+     * @return string
+     */
+    public function getProductType()
+    {
+        return $this->product_type;
+    }
+
+    /**
+     * Returns the value of field created_at
+     *
+     * @return string
+     */
+    public function getCreatedAt()
+    {
+        return $this->created_at;
+    }
+
+    /**
      * Initialize method for model.
      */
     public function initialize()
     {
         $this->hasMany('id_product_type', 'Products', 'id_product_type', ['alias' => 'Products']);
-    }
-
-    /**
-     * Returns table name mapped in the model.
-     *
-     * @return string
-     */
-    public function getSource()
-    {
-        return 'product_type';
     }
 
     /**
@@ -64,6 +123,16 @@ class ProductType extends \Phalcon\Mvc\Model
     public static function findFirst($parameters = null)
     {
         return parent::findFirst($parameters);
+    }
+
+    /**
+     * Returns table name mapped in the model.
+     *
+     * @return string
+     */
+    public function getSource()
+    {
+        return 'product_type';
     }
 
 }

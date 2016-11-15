@@ -27,6 +27,75 @@ class CompanyAssets extends \Phalcon\Mvc\Model
     public $created_at;
 
     /**
+     * Method to set the value of field id_company_assets
+     *
+     * @param integer $id_company_assets
+     * @return $this
+     */
+    public function setIdCompanyAssets($id_company_assets)
+    {
+        $this->id_company_assets = $id_company_assets;
+
+        return $this;
+    }
+
+    /**
+     * Method to set the value of field company_assets
+     *
+     * @param string $company_assets
+     * @return $this
+     */
+    public function setCompanyAssets($company_assets)
+    {
+        $this->company_assets = $company_assets;
+
+        return $this;
+    }
+
+    /**
+     * Method to set the value of field created_at
+     *
+     * @param string $created_at
+     * @return $this
+     */
+    public function setCreatedAt($created_at)
+    {
+        $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * Returns the value of field id_company_assets
+     *
+     * @return integer
+     */
+    public function getIdCompanyAssets()
+    {
+        return $this->id_company_assets;
+    }
+
+    /**
+     * Returns the value of field company_assets
+     *
+     * @return string
+     */
+    public function getCompanyAssets()
+    {
+        return $this->company_assets;
+    }
+
+    /**
+     * Returns the value of field created_at
+     *
+     * @return string
+     */
+    public function getCreatedAt()
+    {
+        return $this->created_at;
+    }
+
+    /**
      * Initialize method for model.
      */
     public function initialize()

@@ -21,33 +21,20 @@ class ProfileController extends ControllerBase
      */
     public function indexAction()
     {
-        $user = Users::findFirst(array(
-            "id_users" => 1
-        ));
-
-        $userContent = array();
-        if ($user) {
-            $userContent = (object) array(
-                "name"     => $user->name,
-                "identify" => $user->identify,
-                "phone"    => $user->mobile_phone,
-                "address"  => $user->address,
-                "birthday" => $user->birthday
-            );
-        } else {
-            $userContent = (object) array(
-                "name"     => "",
-                "identify" => "",
-                "phone"    => "",
-                "address"  => "",
-                "birthday"  => ""
-            );
-        }
-        $this->view->user = $userContent;
+        $user = Users::findFirstByIdUsers(
+            $this->session->get("user")->id_users
+        );
+        $this->view->user = $user;
 
         if ($this->request->isPost()) {
 
-            $user = new Users();
+            $this->uploader->setRequest($this->request);
+            $fileResult = $this->uploader->upload("/public/conex/profile/");
+
+            if (is_string($fileResult)) {
+                $user->avatar = $fileResult;
+            }
+
             $user->id_student_type = 1;
             $user->name = $this->request->getPost("name", array(
                 "striptags",
@@ -65,10 +52,17 @@ class ProfileController extends ControllerBase
                 "striptags",
                 "string"
             ));
-            $user->avatar = "";
             $user->birthday = $this->request->getPost("birthday", array(
                 "striptags",
                 "string"
+            ));
+            $user->email = $this->request->getPost("email", array(
+                "striptags",
+                "email"
+            ));
+            $user->other_email = $this->request->getPost("other_email", array(
+                "striptags",
+                "email"
             ));
 
             if ($user->save()) {
@@ -79,25 +73,5 @@ class ProfileController extends ControllerBase
                 }
             }
         }
-    }
-
-    /**
-     *
-     * @return [type] [description]
-     */
-    public function meAction()
-    {
-
-        //$data['message'] = 'Victory';
-        //$this->pusher->trigger('test_channel', 'my_event', $data);
-    }
-
-    /**
-     * [indexAction description]
-     * @return [type] [description]
-     */
-    public function companyAction()
-    {
-
     }
 }

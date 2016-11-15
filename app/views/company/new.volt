@@ -3,7 +3,7 @@
     <i class="glyphicon glyphicon-backward"></i>
 </a>
 
-{{ form("profile/company", "method" : "post", "multipart" : "formdata") }}
+{{ form("company/save", "method" : "post", "enctype" : "multipart/form-data") }}
     <div class="panel panel-default" style="margin-top : 60px; background-color : #ffffff;">
         <div class="panel-body">
             <table class="table">
@@ -23,13 +23,13 @@
                             <div class="row">
                                 <div class="col-xs-12 col-md-12">
                                     <a href="#" class="thumbnail">
-                                        {{ image('img/inovatio1.png', "style" : "width : 180px; height : 160px;") }}
+                                        {{ image('img/emptyimg.png', "id" : "logobox", "style" : "width : 180px; height : 160px;") }}
                                     </a>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-xs-3 col-md-3">
-                                    <input type="file" name="logo" value="">
+                                    <input type="file" name="logo" id="logo" value="">
                                 </div>
                             </div>
                         </th>
@@ -57,8 +57,36 @@
                         <th>
                             <select class="form-control" name="legalConstitution">
                                 {% for item in legalConstitution %}
-                                    <option value="{{ item.id_legal_contitution }}">
-                                        {{ item.legal_constitution }}
+                                    <option value="{{ item.getIdLegalConstitution() }}">
+                                        {{ item.getLegalConstitution() }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            Covertura
+                        </th>
+                        <th>
+                            <select class="form-control" name="coverage">
+                                {% for item in coverage %}
+                                    <option value="{{ item.getIdCoverage() }}">
+                                        {{ item.getCoverage() }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            Cargo ocupado en la empresa
+                        </th>
+                        <th>
+                            <select class="form-control" name="companyPosition">
+                                {% for item in companyPosition %}
+                                    <option value="{{ item.getIdCompanyPosition() }}">
+                                        {{ item.getPosition() }}
                                     </option>
                                 {% endfor %}
                             </select>
@@ -71,8 +99,8 @@
                         <th>
                             <select class="form-control" name="sizeCompany">
                                 {% for item in sizeCompany %}
-                                    <option value="{{ item.id_size_company }}">
-                                        {{ item.size_company }}
+                                    <option value="{{ item.getIdSizeCompany() }}">
+                                        {{ item.getSizeCompany() }}
                                     </option>
                                 {% endfor %}
                             </select>
@@ -85,8 +113,8 @@
                         <th>
                             <select class="form-control" name="companyAssets">
                                 {% for item in companyAssets %}
-                                    <option value="{{ item.id_company_assets }}">
-                                        {{ item.company_assets }}
+                                    <option value="{{ item.getIdCompanyAssets() }}">
+                                        {{ item.getCompanyAssets() }}
                                     </option>
                                 {% endfor %}
                             </select>
@@ -99,8 +127,8 @@
                         <th>
                             <select class="form-control" name="employeeNumber">
                                 {% for item in employeeNumber %}
-                                    <option value="{{ item.id_employee_number }}">
-                                        {{ item.employee_number }}
+                                    <option value="{{ item.getIdEmployeeNumber() }}">
+                                        {{ item.getEmployeeNumber() }}
                                     </option>
                                 {% endfor %}
                             </select>
@@ -113,8 +141,8 @@
                         <th>
                             <select class="form-control" name="companySector">
                                 {% for item in companySector %}
-                                    <option value="{{ item.id_company_sector }}">
-                                        {{ item.company_sector }}
+                                    <option value="{{ item.getIdCompanySector() }}">
+                                        {{ item.getCompanySector() }}
                                     </option>
                                 {% endfor %}
                             </select>
@@ -126,9 +154,17 @@
                         </th>
                         <th>
                             Si
-                            <input type="radio" name="camera" value="1">
+                            <input type="radio" name="camera" id="reg_yes" value="1">
                             No
-                            <input type="radio" name="camera" value="0">
+                            <input type="radio" name="camera" id="reg_no" value="0">
+                        </th>
+                    </tr>
+                    <tr id="camera_comerce" style="display: none">
+                        <th>
+                            Año de regístro
+                        </th>
+                        <th>
+                            <input type="text" name="register_year" id="register_year" class="form-control" value="">
                         </th>
                     </tr>
                     <tr>
@@ -140,14 +176,6 @@
 
                             </div>
                             <input type="text" name="address" id="address" class="form-control" value="">
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                            Cargo ocupado en la empresa
-                        </th>
-                        <th>
-                            <input type="text" name="position" class="form-control" value="">
                         </th>
                     </tr>
                     <tr>
@@ -171,36 +199,15 @@
                             Correo electrónico
                         </th>
                         <th>
-                            <input type="text" name="email" value="" class="form-control">
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                            Covertura
-                        </th>
-                        <th>
-                            <select name="coverage" class="form-control">
-                                <option value="local">
-                                    Local
-                                </option>
-                                <option value="national">
-                                    Nacional
-                                </option>
-                                <option value="regional">
-                                    Regional
-                                </option>
-                                <option value="international">
-                                    Internacional
-                                </option>
-                            </select>
+                            <input type="email" name="email" value="" class="form-control">
                         </th>
                     </tr>
                     <tr>
                         <th colspan="2" style="text-align : center;">
-                            <a href="{{ url("company/save") }}" class="btn btn-success">
+                            <button type="submit" class="btn btn-success">
                                 <i class="glyphicon glyphicon-floppy-disk"></i>
                                 Guardar
-                            </a>
+                            </button>
                         </th>
                     </tr>
                 </tbody>
@@ -210,6 +217,19 @@
 {{ end_form() }}
 
 <script type="text/javascript">
+
+$(function () {
+    $("#reg_yes").click(function () {
+        $("#camera_comerce").show();
+    });
+
+    $("#reg_no").click(function () {
+        $("#camera_comerce").hide();
+    });
+    $("#register_year").datepicker({
+        dateFormat: "yy-mm-dd"
+    });
+});
 
 var autocomplete, marker;
 

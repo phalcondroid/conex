@@ -9,7 +9,10 @@
                 Nombre empresa
             </th>
             <th>
-                Ver
+
+            </th>
+            <th>
+
             </th>
         </tr>
     </thead>
@@ -20,8 +23,13 @@
                     {{ item.name }}
                 </td>
                 <td>
-                    <a href="{{ url('company/view' ~ item.id_company) }}" class="btn btn-success">
-                        <i class="glyphicon glyphicon-eye"></i>
+                    <a href="{{ url('company/edit/' ~ item.getIdCompany()) }}" class="btn btn-warning pull-right">
+                        <i class="glyphicon glyphicon-pencil"></i>
+                    </a>
+                </td>
+                <td>
+                    <a href="{{ url('company/delete/' ~ item.getIdCompany()) }}" class="btn btn-danger pull-right">
+                        <i class="glyphicon glyphicon-trash"></i>
                     </a>
                 </td>
             </tr>

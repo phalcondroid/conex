@@ -27,21 +27,80 @@ class EmployeeNumber extends \Phalcon\Mvc\Model
     public $created_at;
 
     /**
+     * Method to set the value of field id_employee_number
+     *
+     * @param integer $id_employee_number
+     * @return $this
+     */
+    public function setIdEmployeeNumber($id_employee_number)
+    {
+        $this->id_employee_number = $id_employee_number;
+
+        return $this;
+    }
+
+    /**
+     * Method to set the value of field employee_number
+     *
+     * @param string $employee_number
+     * @return $this
+     */
+    public function setEmployeeNumber($employee_number)
+    {
+        $this->employee_number = $employee_number;
+
+        return $this;
+    }
+
+    /**
+     * Method to set the value of field created_at
+     *
+     * @param string $created_at
+     * @return $this
+     */
+    public function setCreatedAt($created_at)
+    {
+        $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * Returns the value of field id_employee_number
+     *
+     * @return integer
+     */
+    public function getIdEmployeeNumber()
+    {
+        return $this->id_employee_number;
+    }
+
+    /**
+     * Returns the value of field employee_number
+     *
+     * @return string
+     */
+    public function getEmployeeNumber()
+    {
+        return $this->employee_number;
+    }
+
+    /**
+     * Returns the value of field created_at
+     *
+     * @return string
+     */
+    public function getCreatedAt()
+    {
+        return $this->created_at;
+    }
+
+    /**
      * Initialize method for model.
      */
     public function initialize()
     {
         $this->hasMany('id_employee_number', 'Company', 'id_employee_number', ['alias' => 'Company']);
-    }
-
-    /**
-     * Returns table name mapped in the model.
-     *
-     * @return string
-     */
-    public function getSource()
-    {
-        return 'employee_number';
     }
 
     /**
@@ -64,6 +123,16 @@ class EmployeeNumber extends \Phalcon\Mvc\Model
     public static function findFirst($parameters = null)
     {
         return parent::findFirst($parameters);
+    }
+
+    /**
+     * Returns table name mapped in the model.
+     *
+     * @return string
+     */
+    public function getSource()
+    {
+        return 'employee_number';
     }
 
 }

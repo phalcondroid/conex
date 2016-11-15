@@ -64,6 +64,14 @@ $di->setShared("guzzle", function () {
 });
 
 /**
+ *
+ */
+$di->setShared("uploader", function () {
+    $fileUpload = new FileUpload;
+    return $fileUpload;
+});
+
+/**
  * Database connection is created based in the parameters defined in the configuration file
  */
 $di->setShared('db', function () use ($config) {
@@ -108,10 +116,17 @@ $di->set('pusher', function () {
  */
 $di->set('assets', function () {
     $assetsManager = new Phalcon\Assets\Manager();
+
     $assetsManager->collection("config")->addJs("js/jquery.min.js");
     $assetsManager->collection("config")->addJs("js/bootstrap.min.js");
-    $assetsManager->collection("css")->addCss("css/bootstrap.min.css");
+    $assetsManager->collection("config")->addJs("js/jquery-ui.min.js");
     $assetsManager->collection("deal")->addJs("js/pusher.js");
+
+    $assetsManager->collection("css")->addCss("css/bootstrap.min.css");
+    $assetsManager->collection("css")->addCss("css/jquery-ui.min.css");
+    $assetsManager->collection("css")->addCss("css/jquery-ui.theme.min.css");
+    $assetsManager->collection("css")->addCss("css/jquery-ui.structure.min.css");
+
     return $assetsManager;
 }, true);
 

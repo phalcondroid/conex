@@ -34,21 +34,103 @@ class ServiceGallery extends \Phalcon\Mvc\Model
     public $created_at;
 
     /**
+     * Method to set the value of field id_service_gallery
+     *
+     * @param integer $id_service_gallery
+     * @return $this
+     */
+    public function setIdServiceGallery($id_service_gallery)
+    {
+        $this->id_service_gallery = $id_service_gallery;
+
+        return $this;
+    }
+
+    /**
+     * Method to set the value of field id_service
+     *
+     * @param integer $id_service
+     * @return $this
+     */
+    public function setIdService($id_service)
+    {
+        $this->id_service = $id_service;
+
+        return $this;
+    }
+
+    /**
+     * Method to set the value of field image
+     *
+     * @param string $image
+     * @return $this
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Method to set the value of field created_at
+     *
+     * @param string $created_at
+     * @return $this
+     */
+    public function setCreatedAt($created_at)
+    {
+        $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * Returns the value of field id_service_gallery
+     *
+     * @return integer
+     */
+    public function getIdServiceGallery()
+    {
+        return $this->id_service_gallery;
+    }
+
+    /**
+     * Returns the value of field id_service
+     *
+     * @return integer
+     */
+    public function getIdService()
+    {
+        return $this->id_service;
+    }
+
+    /**
+     * Returns the value of field image
+     *
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * Returns the value of field created_at
+     *
+     * @return string
+     */
+    public function getCreatedAt()
+    {
+        return $this->created_at;
+    }
+
+    /**
      * Initialize method for model.
      */
     public function initialize()
     {
         $this->belongsTo('id_service', 'Service', 'id_service', ['alias' => 'Service']);
-    }
-
-    /**
-     * Returns table name mapped in the model.
-     *
-     * @return string
-     */
-    public function getSource()
-    {
-        return 'service_gallery';
     }
 
     /**
@@ -71,6 +153,16 @@ class ServiceGallery extends \Phalcon\Mvc\Model
     public static function findFirst($parameters = null)
     {
         return parent::findFirst($parameters);
+    }
+
+    /**
+     * Returns table name mapped in the model.
+     *
+     * @return string
+     */
+    public function getSource()
+    {
+        return 'service_gallery';
     }
 
 }
