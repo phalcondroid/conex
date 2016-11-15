@@ -24,9 +24,23 @@ class Company extends \Phalcon\Mvc\Model
     /**
      *
      * @var integer
+     * @Column(type="integer", length=11, nullable=true)
+     */
+    public $id_company_client;
+
+    /**
+     *
+     * @var integer
      * @Column(type="integer", length=11, nullable=false)
      */
     public $id_legal_constitution;
+
+    /**
+     *
+     * @var integer
+     * @Column(type="integer", length=11, nullable=false)
+     */
+    public $id_company_position;
 
     /**
      *
@@ -69,6 +83,13 @@ class Company extends \Phalcon\Mvc\Model
      * @Column(type="string", length=45, nullable=true)
      */
     public $name;
+
+    /**
+     *
+     * @var string
+     * @Column(type="string", nullable=true)
+     */
+    public $description;
 
     /**
      *
@@ -157,16 +178,6 @@ class Company extends \Phalcon\Mvc\Model
     }
 
     /**
-     * Returns table name mapped in the model.
-     *
-     * @return string
-     */
-    public function getSource()
-    {
-        return 'company';
-    }
-
-    /**
      * Allows to query a set of records that match the specified conditions
      *
      * @param mixed $parameters
@@ -186,6 +197,16 @@ class Company extends \Phalcon\Mvc\Model
     public static function findFirst($parameters = null)
     {
         return parent::findFirst($parameters);
+    }
+
+    /**
+     * Returns table name mapped in the model.
+     *
+     * @return string
+     */
+    public function getSource()
+    {
+        return 'company';
     }
 
 }

@@ -1,6 +1,6 @@
 <?php
 
-class CompanyAssets extends \Phalcon\Mvc\Model
+class CompanyPosition extends \Phalcon\Mvc\Model
 {
 
     /**
@@ -10,14 +10,28 @@ class CompanyAssets extends \Phalcon\Mvc\Model
      * @Identity
      * @Column(type="integer", length=11, nullable=false)
      */
-    public $id_company_assets;
+    public $id_company_position;
 
     /**
      *
      * @var string
      * @Column(type="string", length=45, nullable=true)
      */
-    public $company_assets;
+    public $position;
+
+    /**
+     *
+     * @var string
+     * @Column(type="string", nullable=true)
+     */
+    public $description;
+
+    /**
+     *
+     * @var integer
+     * @Column(type="integer", length=4, nullable=false)
+     */
+    public $status;
 
     /**
      *
@@ -31,14 +45,14 @@ class CompanyAssets extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-        $this->hasMany('id_company_assets', 'Company', 'id_company_assets', ['alias' => 'Company']);
+        $this->hasMany('id_company_position', 'Company', 'id_company_position', ['alias' => 'Company']);
     }
 
     /**
      * Allows to query a set of records that match the specified conditions
      *
      * @param mixed $parameters
-     * @return CompanyAssets[]
+     * @return CompanyPosition[]
      */
     public static function find($parameters = null)
     {
@@ -49,7 +63,7 @@ class CompanyAssets extends \Phalcon\Mvc\Model
      * Allows to query the first record that match the specified conditions
      *
      * @param mixed $parameters
-     * @return CompanyAssets
+     * @return CompanyPosition
      */
     public static function findFirst($parameters = null)
     {
@@ -63,7 +77,7 @@ class CompanyAssets extends \Phalcon\Mvc\Model
      */
     public function getSource()
     {
-        return 'company_assets';
+        return 'company_position';
     }
 
 }
