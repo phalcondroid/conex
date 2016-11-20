@@ -120,10 +120,14 @@ $di->set('assets', function () {
     $assetsManager->collection("config")->addJs("js/jquery.min.js");
     $assetsManager->collection("config")->addJs("js/bootstrap.min.js");
     $assetsManager->collection("config")->addJs("js/jquery-ui.min.js");
+    $assetsManager->collection("config")->addJs("js/image-upload.min.js");
+    $assetsManager->collection("config")->addJs("js/jquery-te-1.4.0.min.js");
     $assetsManager->collection("deal")->addJs("js/pusher.js");
 
     $assetsManager->collection("css")->addCss("css/bootstrap.min.css");
     $assetsManager->collection("css")->addCss("css/jquery-ui.min.css");
+    $assetsManager->collection("css")->addCss("css/image-upload.min.css");
+    $assetsManager->collection("css")->addCss("css/jquery-te-1.4.0.css");
     $assetsManager->collection("css")->addCss("css/jquery-ui.theme.min.css");
     $assetsManager->collection("css")->addCss("css/jquery-ui.structure.min.css");
 

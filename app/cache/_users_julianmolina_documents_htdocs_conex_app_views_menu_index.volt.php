@@ -61,12 +61,9 @@
                     </a>
                 </td>
                 <td>
-                    <?= $this->tag->form(['menu/delete', 'method' => 'post']) ?>
-                        <?= $this->tag->hiddenField(['', 'value' => $item->id_role, 'name' => 'value']) ?>
-                        <button class="btn btn-danger" type="submit">
-                            <i class="glyphicon glyphicon-trash"></i>
-                        </button>
-                    <?= $this->tag->endForm() ?>
+                    <a class="btn btn-danger" href="<?= $this->url->get('menu/delete/' . $item->id_menu) ?>">
+                        <i class="glyphicon glyphicon-trash"></i>
+                    </a>
                 </td>
             </tr>
         <?php } ?>

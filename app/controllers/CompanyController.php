@@ -102,10 +102,7 @@ class CompanyController extends ControllerBase
                     "string",
                     "striptags"
                 )));
-                $company->setDescription($this->request->getPost("description", array(
-                    "string",
-                    "striptags"
-                )));
+                $company->setDescription($this->request->getPost("description"));
                 $company->setComerceCameraYear($this->request->getPost("register_year", array(
                     "string",
                     "striptags"
@@ -210,10 +207,7 @@ class CompanyController extends ControllerBase
                     "string",
                     "striptags"
                 )));
-                $company->setDescription($this->request->getPost("description", array(
-                    "string",
-                    "striptags"
-                )));
+                $company->setDescription($this->request->getPost("description"));
                 $company->setComerceCameraYear($this->request->getPost("register_year", array(
                     "string",
                     "striptags"

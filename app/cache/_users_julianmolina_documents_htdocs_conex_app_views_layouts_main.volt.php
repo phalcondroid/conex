@@ -45,13 +45,13 @@
                 </a>
             </li>
             <li>
-                <a href="#about">
+                <a>
                     <?= $this->tag->image(['img/alarm.png', 'style' => 'width : 24px']) ?>
                     <span class="badge" style="background:red;" id="aggrementsBadge">0</span>
                 </a>
             </li>
             <li>
-                <a href="#about">
+                <a href="<?= $this->url->get('deals/messages') ?>">
                     <?= $this->tag->image(['img/close-envelope.png', 'style' => 'width : 24px']) ?>
                     <span class="badge" style="background:red;" id="messagesBadge">0</span>
                 </a>

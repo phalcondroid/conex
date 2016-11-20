@@ -34,7 +34,34 @@ class FileUpload
     }
 
     /**
-     * 
+     *
+     */
+    public function multiple($customPath)
+    {
+        if ($this->request->hasFiles() == true) {
+
+            $result = false;
+
+            foreach ($this->request->getUploadedFiles() as $file) {
+                if ($file->getSize() > self::SIZE_LIMIT) {
+
+                } else {
+                    $baseName = $customPath . basename($file->getName());
+                    $path = APP_PATH . $baseName;
+                    if (move_uploaded_file($file->getTempName(), $path)) {
+                        $result[] = str_replace("/public", "", $baseName);
+                    }
+                }
+            }
+
+            return $result;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     *
      */
     public function setRequest($req)
     {

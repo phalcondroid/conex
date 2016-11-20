@@ -27,6 +27,14 @@ class EventType extends \Phalcon\Mvc\Model
     public $created_at;
 
     /**
+     * Initialize method for model.
+     */
+    public function initialize()
+    {
+        $this->hasMany('id_event_type', 'Events', 'id_event_type', ['alias' => 'Events']);
+    }
+
+    /**
      * Method to set the value of field id_event_type
      *
      * @param integer $id_event_type

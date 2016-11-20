@@ -81,7 +81,7 @@
                             Elogan
                         </th>
                         <th>
-                            <textarea class="form-control" name="slogan" rows="8" cols="40"></textarea>
+                            <input class="form-control" name="slogan" type="text">
                         </th>
                     </tr>
                     <tr>
@@ -89,7 +89,7 @@
                             Descripción
                         </th>
                         <th>
-                            <textarea class="form-control" name="description" rows="8" cols="40" ></textarea>
+                            <textarea name="description" id="description" rows="10" cols="40" ></textarea>
                         </th>
                     </tr>
                     <tr>
@@ -105,3 +105,9 @@
         </div>
     </div>
 {{ end_form() }}
+
+<script>
+$(function () {
+    $("#description").jqte();
+});
+</script>

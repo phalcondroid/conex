@@ -1,7 +1,5 @@
 <?php
 
-use Phalcon\Mvc\Model\Validator\Email as Email;
-
 class UserEmail extends \Phalcon\Mvc\Model
 {
 
@@ -155,29 +153,6 @@ class UserEmail extends \Phalcon\Mvc\Model
     public function getCreatedAt()
     {
         return $this->created_at;
-    }
-
-    /**
-     * Validations and business logic
-     *
-     * @return boolean
-     */
-    public function validation()
-    {
-        $this->validate(
-            new Email(
-                [
-                    'field'    => 'email',
-                    'required' => true,
-                ]
-            )
-        );
-
-        if ($this->validationHasFailed() == true) {
-            return false;
-        }
-
-        return true;
     }
 
     /**

@@ -32,6 +32,7 @@ class IndexController extends ControllerBase
 
                 $password_verify = false;
                 if ($exist) {
+
                     if (password_verify($pass, $exist->password)) {
                         $password_verify = true;
                     } else {
@@ -123,21 +124,26 @@ class IndexController extends ControllerBase
      */
     private function getContentLogin($user, $pass)
     {
-        $url = "http://172.16.0.89:9030/LoginService.svc/ObtenerInfoUsuarioj/$user/$pass";
+        try {
 
-        $response = $this->guzzle->get(
-            $url
-        );
+            $url = "http://172.16.0.89:9030/LoginService.svc/ObtenerInfoUsuarioj/$user/$pass";
 
-        if (is_object($response)) {
-            $body = $response->getBody();
-            if (is_object($body)) {
-                $contents = $body->getContents();
-                if (is_string($contents)) {
-                    $contents = json_decode($contents);
-                    return $contents->ObtenerInfoUsuarioJResult;
+            $response = $this->guzzle->get(
+                $url
+            );
+
+            if (is_object($response)) {
+                $body = $response->getBody();
+                if (is_object($body)) {
+                    $contents = $body->getContents();
+                    if (is_string($contents)) {
+                        $contents = json_decode($contents);
+                        return $contents->ObtenerInfoUsuarioJResult;
+                    }
                 }
             }
+        } catch (Exception $e) {
+            return false;
         }
 
         return false;

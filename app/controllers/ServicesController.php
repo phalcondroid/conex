@@ -1,5 +1,8 @@
 <?php
 
+use Phalcon\Mvc\Model\Transaction\Failed as TransactionFailed;
+use Phalcon\Mvc\Model\Transaction\Manager as TransactionManager;
+
 /**
  *
  */
@@ -21,17 +24,25 @@ class ServicesController extends ControllerBase
      */
     public function indexAction()
     {
-        $this->view->products = Products::find();
+
+        $parameters = array(
+            "conditions" => "id_users = ?0",
+            "bind" => array(
+                0 => $this->session->get("user")->id_users
+            )
+        );
+
+        $this->view->products = Products::find($parameters);
         $this->view->cProducts = count($this->view->products);
 
-        $this->view->events   = Events::find();
+        $this->view->events   = Events::find($parameters);
         $this->view->cEvents = count($this->view->events);
 
-        $this->view->advertisement = Advertisement::find();
+        $this->view->advertisement = Advertisement::find($parameters);
         $this->view->cAdvertisement = count($this->view->advertisement);
         $this->view->advertisementCharacter = AdvertisementCharacteristics::find();
 
-        $this->view->services = Service::find();
+        $this->view->services = Service::find($parameters);
         $this->view->cServices = count($this->view->services);
     }
 
@@ -47,7 +58,7 @@ class ServicesController extends ControllerBase
         if ($this->request->isPost()) {
 
             $product = new Products();
-            $product->id_users = 1;
+            $product->id_users = $this->session->get("user")->id_users;
             $product->name = $this->request->getPost("name", array(
                 "string",
                 "striptags"
@@ -84,53 +95,89 @@ class ServicesController extends ControllerBase
     }
 
     /**
+     *
+     */
+    public function deleteProductAction($id)
+    {
+        if (!empty($id)) {
+            $product = Products::findFirstByIdProducts((int) $id);
+
+            if ($product->delete()) {
+                $this->flash->success("Producto eliminado correctamente");
+                $this->response->redirect("services/index");
+            } else {
+                foreach ($product->getMessages() as $message) {
+                    $this->flash->error($message);
+                }
+            }
+            $this->response->redirect("services/index");
+
+        } else {
+            $this->response->redirect("services/index");
+        }
+    }
+
+    /**
      * [indexAction description]
      * @return [type] [description]
      */
     public function createEventAction()
     {
         $this->view->eventType = EventType::find();
+
         if ($this->request->isPost()) {
 
             $event = new Events();
 
-            $event->id_users = 1;
+            $event->id_users = $this->session->get("user")->id_users;
             $event->id_event_type = $this->request->getPost("eventType", array(
                 "int",
                 "striptags"
             ));
+
             $event->name = $this->request->getPost("name", array(
                 "string",
                 "striptags"
             ));
+
             $event->address = $this->request->getPost("address", array(
                 "string",
                 "striptags"
             ));
-            $event->description = $this->request->getPost("description", array(
-                "string",
-                "striptags"
-            ));
+
+            $event->description = $this->request->getPost("description");
+
             $event->slogan = $this->request->getPost("slogan", array(
                 "string",
                 "striptags"
             ));
-            $startDate = $this->request->getPost("startDate", array(
-                "string",
-                "striptags"
-            ));
-            $event->start_date = date("Y-m-d", $startDate);
 
-            $finishDate = $this->request->getPost("finishDate", array(
+            $event->lat = $this->request->getPost("lat", array(
                 "string",
                 "striptags"
             ));
-            $event->finish_date = date("Y-m-d", $finishDate);
+            $event->lng = $this->request->getPost("lng", array(
+                "string",
+                "striptags"
+            ));
+
+            $event->start_date = $this->request->getPost("startDate", array(
+                "string",
+                "striptags"
+            ));
+
+            $event->finish_date = $this->request->getPost("finishDate", array(
+                "string",
+                "striptags"
+            ));
 
             if ($event->save()) {
-                $this->flash->success("Registro completado");
+
                 $data['message'] = 'Victory';
                 $this->pusher->trigger('test_channel', 'notice', $data);
+
+                $this->flash->success("Evento registrado correctamente");
+
             } else {
                 foreach ($event->getMessages() as $message) {
                     $this->flash->error(
@@ -138,6 +185,43 @@ class ServicesController extends ControllerBase
                     );
                 }
             }
+        }
+    }
+
+    /**
+     *
+     */
+    public function deleteEventAction($id)
+    {
+        if (!empty($id)) {
+
+            $eventGallery = EventGallery::find(array(
+                "conditions" => "id_events = ?0",
+                "bind" => array(
+                    0 => (int) $id
+                )
+            ));
+
+            foreach ($eventGallery as $item) {
+                $item->delete();
+            }
+
+            $event = Events::findFirstByIdEvents((int) $id);
+
+            if ($event) {
+                if ($event->delete()) {
+                    $this->flash->success("Evento eliminado correctamente");
+                    $this->response->redirect("services/index");
+                } else {
+                    foreach ($event->getMessages() as $message) {
+                        $this->flash->error($message);
+                    }
+                }
+            }
+            $this->response->redirect("services/index");
+
+        } else {
+            $this->response->redirect("services/index");
         }
     }
 
@@ -151,7 +235,7 @@ class ServicesController extends ControllerBase
 
             $advert = new Advertisement();
 
-            $advert->id_users = 1;
+            $advert->id_users = $this->session->get("user")->id_users;
             $advert->name = $this->request->getPost("name", array(
                 "string",
                 "striptags"
@@ -160,11 +244,15 @@ class ServicesController extends ControllerBase
                 "string",
                 "striptags"
             ));
-            $advert->description = $this->request->getPost("description", array(
+            $advert->description = $this->request->getPost("description");
+
+            $advert->lat = $this->request->getPost("lat", array("string", "striptags"));
+            $advert->lng = $this->request->getPost("lng", array("string", "striptags"));
+
+            $advert->publish_date = $this->request->getPost("publishDate", array(
                 "string",
                 "striptags"
             ));
-            $advert->publish_date = date("Y-m-d");
             $advert->value = $this->request->getPost("value", array(
                 "string",
                 "striptags"
@@ -184,6 +272,26 @@ class ServicesController extends ControllerBase
         }
     }
 
+    public function deleteAdvertisementAction($id)
+    {
+        if (!empty($id)) {
+            $advertisement = Advertisement::findFirstByIdAdvertisement((int) $id);
+
+            if ($advertisement->delete()) {
+                $this->flash->success("Anuncio eliminado correctamente");
+                $this->response->redirect("services/index");
+            } else {
+                foreach ($advertisement->getMessages() as $message) {
+                    $this->flash->error($message);
+                }
+            }
+            $this->response->redirect("services/index");
+
+        } else {
+            $this->response->redirect("services/index");
+        }
+    }
+
     /**
      * [indexAction description]
      * @return [type] [description]
@@ -195,7 +303,7 @@ class ServicesController extends ControllerBase
 
             $service = new Service();
 
-            $service->id_users = 1;
+            $service->id_users = $this->session->get("user")->id_users;
             $service->id_service_type = $this->request->getPost("serviceType", array(
                 "int",
                 "striptags"
@@ -208,11 +316,18 @@ class ServicesController extends ControllerBase
                 "string",
                 "striptags"
             ));
-            $service->description = $this->request->getPost("description", array(
+            $service->description = $this->request->getPost("description");
+            $service->slogan = $this->request->getPost("slogan", array(
                 "string",
                 "striptags"
             ));
-            $service->slogan = $this->request->getPost("slogan", array(
+
+            $service->start_date = $this->request->getPost("startDate", array(
+                "string",
+                "striptags"
+            ));
+
+            $service->finish_date = $this->request->getPost("finishDate", array(
                 "string",
                 "striptags"
             ));
@@ -228,6 +343,26 @@ class ServicesController extends ControllerBase
                     );
                 }
             }
+        }
+    }
+
+    public function deleteServiceAction($id)
+    {
+        if (!empty($id)) {
+            $service = Service::findFirstByIdService((int) $id);
+
+            if ($service->delete()) {
+                $this->flash->success("Service eliminado correctamente");
+                $this->response->redirect("services/index");
+            } else {
+                foreach ($service->getMessages() as $message) {
+                    $this->flash->error($message);
+                }
+            }
+            $this->response->redirect("services/index");
+
+        } else {
+            $this->response->redirect("services/index");
         }
     }
 }

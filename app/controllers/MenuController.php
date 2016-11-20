@@ -105,15 +105,29 @@ class MenuController extends ControllerBase
     /**
      *
      */
-    public function deleteActiom($id = false)
+    public function deleteAction($id = false)
     {
         if ($id) {
-            $menu = Menu::findFirstByIdMenu((int) $id);
-            if ($menu->delete()) {
 
-            } else {
-
+            $menuItems = MenuItem::findByIdMenu((int) $id);
+            foreach ($menuItems as $item) {
+                $item->delete();
             }
+
+            $menu = Menu::findFirstByIdMenu((int) $id);
+
+            if ($menu) {
+                if ($menu->delete()) {
+                    $this->flash->success("Menu eliminado correctamente");
+                } else {
+                    foreach ($menu->getMessages() as $message) {
+                        $this->flash->error($message);
+                    }
+                }
+            }
+
+            $this->response->redirect("menu/index");
+
         } else {
             $this->response->redirect("menu/index");
         }

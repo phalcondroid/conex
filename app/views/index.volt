@@ -9,7 +9,7 @@
         {{ assets.outputCss("css") }}
         {{ assets.outputJs("config") }}
     </head>
-    <body>
+    <body style="">
         {{ flash.output() }}
         {{ content() }}
     </body>

@@ -68,31 +68,50 @@
                     </div>
                 </div>
 
-                <div class="row" style="margin-top : 10px;">
-                    {% for item in products %}
-                        <div class="col-sm-6 col-md-4">
-                            <div class="thumbnail">
-                                {{ image("img/inovatio1.png", "style" : "widht : 400px; height : 350px") }}
-                                <div class="caption">
-                                    <h3>
-                                        {{ item.name }}
-                                    </h3>
-                                    <p class="trunk">
-                                        {{ item.description }}
-                                    </p>
-                                    <p>
-                                        <a href="{{ url("services/editProduct") }}" class="btn btn-warning" role="button">
-                                              <i class="glyphicon glyphicon-pencil"></i>
-                                        </a>
-                                        <a href="{{ url("services/deleteProduct") }}" class="btn btn-danger" role="button">
-                                              <i class="glyphicon glyphicon-trash"></i>
-                                        </a>
-                                    </p>
-                                </div>
+                {% set initial = 3 %}
+                {% set step  = 0 %}
+                {% set index = 0 %}
+
+                {% for item in products %}
+
+                    {% if loop.first %}
+                        <div class="row" style="margin-top : 10px;">
+                    {% endif %}
+
+                    {% if index == step %}
+                        <?php $step += 3; ?>
+                        </div>
+                        <div class="row" style="margin-top : 10px;">
+                    {% endif %}
+
+                    <div class="col-sm-6 col-md-4">
+                        <div class="thumbnail">
+                            {{ image("img/inovatio1.png", "style" : "widht : 400px; height : 350px") }}
+                            <div class="caption">
+                                <h3>
+                                    {{ item.name }}
+                                </h3>
+                                <p class="trunk">
+                                    {{ item.description }}
+                                </p>
+                                <p>
+                                    <a href="{{ url("services/editProduct/" ~ item.id_products) }}" class="btn btn-warning" role="button">
+                                          <i class="glyphicon glyphicon-pencil"></i>
+                                    </a>
+                                    <a href="{{ url("services/deleteProduct/" ~ item.id_products) }}" class="btn btn-danger" role="button">
+                                          <i class="glyphicon glyphicon-trash"></i>
+                                    </a>
+                                </p>
                             </div>
                         </div>
-                    {% endfor %}
-                </div>
+                    </div>
+
+                    {% if loop.last %}
+                        </div>
+                    {% endif %}
+                    <?php $index++; ?>
+
+                {% endfor %}
 
             </div>
             <div role="tabpanel" class="tab-pane" id="profile">
@@ -106,34 +125,53 @@
                     </div>
                 </div>
 
-                <div class="row" style="margin-top : 10px;">
+                {% set initial = 3 %}
+                {% set step  = 0 %}
+                {% set index = 0 %}
 
-                    {% for item in events %}
-                        <div class="col-sm-6 col-md-4">
-                            <div class="thumbnail">
-                                <div style="width : 100%; height : 300px" id="mapEvent1">
+                {% for item in events %}
 
-                                </div>
-                                <div class="caption">
-                                  <h3>
-                                      {{ item.name }}
-                                  </h3>
-                                  <p class="trunk">
-                                    {{ item.description }}
-                                  </p>
-                                  <p >
-                                      <a href="{{ url("services/editEvent") }}" class="btn btn-warning" role="button">
-                                            <i class="glyphicon glyphicon-pencil"></i>
-                                      </a>
-                                      <a href="{{ url("services/deleteEvent") }}" class="btn btn-danger" role="button">
-                                            <i class="glyphicon glyphicon-trash"></i>
-                                      </a>
-                                  </p>
-                                </div>
+                    {% if loop.first %}
+                        <div class="row" style="margin-top : 10px;">
+                    {% endif %}
+
+                    {% if index == step %}
+                        <?php $step += 3; ?>
+                        </div>
+                        <div class="row" style="margin-top : 10px;">
+                    {% endif %}
+
+                    <div class="col-sm-6 col-md-4">
+                        <div class="thumbnail">
+                            <div style="width : 100%; height : 300px" id="mapEvent{{ item.id_events }}">
+
+                            </div>
+
+                            <div class="caption">
+                              <h3>
+                                  {{ item.name }}
+                              </h3>
+                              <p class="trunk">
+                                {{ item.description }}
+                              </p>
+                              <p >
+                                  <a href="{{ url("services/editEvent/" ~ item.id_events) }}" class="btn btn-warning" role="button">
+                                        <i class="glyphicon glyphicon-pencil"></i>
+                                  </a>
+                                  <a href="{{ url("services/deleteEvent/" ~ item.id_events) }}" class="btn btn-danger" role="button">
+                                        <i class="glyphicon glyphicon-trash"></i>
+                                  </a>
+                              </p>
                             </div>
                         </div>
-                    {% endfor %}
-                </div>
+                    </div>
+
+                    {% if loop.last %}
+                        </div>
+                    {% endif %}
+                    <?php $index++; ?>
+
+                {% endfor %}
             </div>
             <div role="tabpanel" class="tab-pane" id="vacancy">
 
@@ -146,76 +184,105 @@
                     </div>
                 </div>
 
-                <div class="row" style="margin-top : 10px;">
-                    {% for item in advertisement %}
-                    <div class="col-sm-6 col-md-4">
-                      <div class="thumbnail">
-                          <div class="caption">
-                            <h3>
-                                {{ item.name }}
-                            </h3>
-                          </div>
-                        <div>
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <th>
-                                            Características
-                                        </th>
-                                        <td>
-                                            <ul>
-                                                {% for character in advertisementCharacter %}
-                                                    <li>{{ character.title }}</li>
-                                                {% endfor %}
-                                            </ul>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            Fecha de publicación
-                                        </th>
-                                        <td>
-                                            <div class='input-group date' id='datetimepicker1'>
-                                                <input type='text' class="form-control" value="{{ item.publish_date }}" />
-                                                <span class="input-group-addon">
-                                                    <span class="glyphicon glyphicon-calendar"></span>
+                {% set initial = 3 %}
+                {% set step  = 0 %}
+                {% set index = 0 %}
+
+                {% for item in advertisement %}
+
+                    {% if loop.first %}
+                        <div class="row" style="margin-top : 10px;">
+                    {% endif %}
+
+                    {% if index == step %}
+                        <?php $step += 3; ?>
+                        </div>
+                        <div class="row" style="margin-top : 10px;">
+                    {% endif %}
+
+                        <div class="col-sm-6 col-md-4">
+                          <div class="thumbnail">
+                              <div class="caption">
+                                <h3>
+                                    {{ item.name }}
+                                </h3>
+                              </div>
+                            <div>
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <th>
+                                                Descripción
+                                            </th>
+                                            <td>
+                                                <ul>
+                                                    {{ item.description }}
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                Dirección
+                                            </th>
+                                            <td>
+                                                <ul>
+                                                    {{ item.address }}
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                Fecha de publicación
+                                            </th>
+                                            <td>
+                                                <div class='input-group date' id='datetimepicker1'>
+                                                    <input type='text' class="form-control" value="{{ item.publish_date }}" />
+                                                    <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                Visitas
+                                            </th>
+                                            <td>
+                                                <span class="label label-warning">
+                                                    {{ item.views }}
                                                 </span>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            Valor
-                                        </th>
-                                        <td>
-                                            <span class="label label-success">4.000.000</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            Plataformas
-                                        </th>
-                                        <td>
-                                           Android, IOS, Web
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="caption">
-                            <p >
-                                <a href="#" class="btn btn-warning" role="button">
-                                    <i class="glyphicon glyphicon-pencil"></i>
-                                </a>
-                                <a href="#" class="btn btn-danger" role="button">
-                                    <i class="glyphicon glyphicon-trash"></i>
-                                </a>
-                            </p>
-                        </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                Valor
+                                            </th>
+                                            <td>
+                                                <span class="label label-success">
+                                                    {{ item.value }}
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="caption">
+                                <p >
+                                    <a href="{{ url("services/editAdvertisement/" ~ item.id_advertisement) }}" class="btn btn-warning" role="button">
+                                          <i class="glyphicon glyphicon-pencil"></i>
+                                    </a>
+                                    <a href="{{ url("services/deleteAdvertisement/" ~ item.id_advertisement) }}" class="btn btn-danger" role="button">
+                                          <i class="glyphicon glyphicon-trash"></i>
+                                    </a>
+                                </p>
+                            </div>
+                          </div>
                       </div>
-                    </div>
-                    {% endfor %}
-                </div>
+                      {% if loop.last %}
+                          </div>
+                      {% endif %}
+                      <?php $index++; ?>
+                {% endfor %}
             </div>
             <div role="tabpanel" class="tab-pane" id="settings">
 
@@ -228,8 +295,21 @@
                     </div>
                 </div>
 
-                <div class="row" style="margin-top : 10px;">
-                    {% for item in services %}
+                {% set step  = 0 %}
+                {% set index = 0 %}
+
+                {% for item in services %}
+
+                    {% if loop.first %}
+                        <div class="row" style="margin-top : 10px;">
+                    {% endif %}
+
+                    {% if index == step %}
+                        <?php $step++; ?>
+                        </div>
+                        <div class="row" style="margin-top : 10px;">
+                    {% endif %}
+
                     <div class="col-sm-12 col-md-12">
                       <div class="thumbnail">
                         <div class="caption">
@@ -241,104 +321,24 @@
                             </p>
                         </div>
                         <div class="">
-
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th colspan="2">
-                                            {{ image("img/truck.png", "style" : "width : 80px") }}
-                                        </th>
-                                        <td colspan="2">
-                                            <p style="text-align : middle;">Go Colombia</p>
-                                        </td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th>
-                                            Paquete
-                                        </th>
-                                        <th>
-                                            Personas
-                                        </th>
-                                        <th>
-                                            Horario
-                                        </th>
-                                        <th>
-                                            Días Hábiles
-                                        </th>
-                                        <th>
-                                            Precio
-                                        </th>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            2 Días
-                                        </td>
-                                        <td>
-                                            5
-                                        </td>
-                                        <td>
-                                            6am - 12pm
-                                        </td>
-                                        <td>
-                                            S - D
-                                        </td>
-                                        <td>
-                                            120 . 000
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            2 Días
-                                        </td>
-                                        <td>
-                                            5
-                                        </td>
-                                        <td>
-                                            6am - 12pm
-                                        </td>
-                                        <td>
-                                            S - D
-                                        </td>
-                                        <td>
-                                            120 . 000
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            2 Días
-                                        </td>
-                                        <td>
-                                            5
-                                        </td>
-                                        <td>
-                                            6am - 12pm
-                                        </td>
-                                        <td>
-                                            S - D
-                                        </td>
-                                        <td>
-                                            120 . 000
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="">
                             <p>
-                                <a href="{{ url("services/editProduct") }}" class="btn btn-warning" role="button">
+                                <a href="{{ url("services/editService/" ~ item.id_service) }}" class="btn btn-warning" role="button">
                                       <i class="glyphicon glyphicon-pencil"></i>
                                 </a>
-                                <a href="{{ url("services/deleteProduct") }}" class="btn btn-danger" role="button">
+                                <a href="{{ url("services/deleteService/" ~ item.id_service) }}" class="btn btn-danger" role="button">
                                       <i class="glyphicon glyphicon-trash"></i>
                                 </a>
                             </p>
                         </div>
                       </div>
                     </div>
-                    {% endfor %}
-                </div>
+
+                    {% if loop.last %}
+                        </div>
+                    {% endif %}
+                    <?php $index++; ?>
+
+                {% endfor %}
             </div>
         </div>
     </div>
@@ -346,27 +346,27 @@
 
 <script>
 
-    function initMap() {
+function initAutocomplete() {
+    {% for item in events %}
 
-        var mapDivE = document.getElementById('mapEvent1');
+        var latlng = {lat: {{ item.lat }}, lng: {{ item.lng }}};
+        var mapDivE = document.getElementById("mapEvent" + {{ item.id_events }});
         var map = new google.maps.Map(mapDivE, {
-            center: {lat: 44.540, lng: -78.546},
-            zoom: 8
+            center: latlng,
+            zoom: 16,
+            componentRestrictions: {country: "co"}
         });
 
-        var mapDivE2 = document.getElementById('mapEvent2');
-        var map2 = new google.maps.Map(mapDivE2, {
-            center: {lat: 44.540, lng: -78.546},
-            zoom: 8
+        var marker = new google.maps.Marker({
+            position: latlng,
+            map: map,
+            title: 'Tu dirección'
         });
 
-        var mapDivE3 = document.getElementById('mapEvent3');
-        var map3 = new google.maps.Map(mapDivE3, {
-            center: {lat: 44.540, lng: -78.546},
-            zoom: 8
-        });
-    }
+    {% endfor %}
+}
 
 </script>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGNsm6WSTUNTdoPh4PSbxjkY8DrQU6zww&callback=initMap"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGNsm6WSTUNTdoPh4PSbxjkY8DrQU6zww&signed_in=true&region=co&libraries=places&callback=initAutocomplete"
+            async defer></script>

@@ -1,5 +1,5 @@
 
-{{ form("services/createEvent") }}
+{{ form("services/createEvent", "method" : "post", "enctype" : "multipart/form-data") }}
     <h2>Nuevo evento</h2>
     <a href="{{ url("services/index") }}" class="btn btn-danger pull-right">
         <i class="glyphicon glyphicon-share-alt"></i>
@@ -9,35 +9,6 @@
         <div class="panel-body">
             <table class="table">
                 <tbody>
-                    <tr>
-                        <th style="width : 40%;">
-                            Imagen
-                        </th>
-                        <th>
-                            <div class="row">
-                                <div class="col-xs-4 col-md-4">
-                                    <a href="#" class="thumbnail">
-                                        {{ image('img/car1.jpg', "style" : "width : 180px; height : 160px;") }}
-                                    </a>
-                                </div>
-                                <div class="col-xs-4 col-md-4">
-                                    <a href="#" class="thumbnail">
-                                        {{ image('img/car2.jpg', "style" : "width : 180px; height : 160px;") }}
-                                    </a>
-                                </div>
-                                <div class="col-xs-4 col-md-4">
-                                    <a href="#" class="thumbnail">
-                                        {{ image('img/car3.jpg', "style" : "width : 180px; height : 160px;") }}
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xs-3 col-md-3">
-                                    <input type="file" name="image" value="">
-                                </div>
-                            </div>
-                        </th>
-                    </tr>
                     <tr>
                         <th>
                             Nombre
@@ -73,7 +44,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <input type="text" name="address" id="direccion" class="form-control">
+                            <input type="hidden" name="lat" id="lat" value="">
+                            <input type="hidden" name="lng" id="lng" value="">
+                            <input type="text" name="address" id="address" class="form-control">
                         </th>
                     </tr>
                     <tr>
@@ -81,7 +54,7 @@
                             Descripción
                         </th>
                         <th>
-                            <textarea class="form-control" name="description" rows="8" cols="40"></textarea>
+                            <textarea class="form-control" name="description" id="description" rows="8" cols="40"></textarea>
                         </th>
                     </tr>
                     <tr>
@@ -110,42 +83,6 @@
                     </tr>
                     <tr>
                         <th colspan="2" style="text-align : center;">
-                            Registro de invitados y horarios
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                            <span>Columnas</span>
-                            &nbsp;
-                            <input type="text" id="columns" value="">
-                        </th>
-                        <th>
-                            <span>Filas</span>
-                            &nbsp;
-                            <input type="text" id="rows" value="">
-                            <button type="button" id="agregar" class="btn btn-primary pull-right">
-                                <i class="glyphicon glyphicon-plus"></i>
-                            </button>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th colspan="2">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th colspan="100">
-                                            Invitados
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody id="tableService">
-
-                                </tbody>
-                            </table>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th colspan="2" style="text-align : center;">
                             <button type="submit" class="btn btn-success">
                                 <i class="glyphicon glyphicon-floppy-disk"></i>
                                 Guardar
@@ -159,44 +96,56 @@
 {{ end_form() }}
 
 <script type="text/javascript">
-    window.onload = function () {
-        $(function () {
-            $("#agregar").click(function () {
 
-                var cols = parseInt($("#columns").val());
-                var rows = parseInt($("#rows").val());
-                var tbodyService = $("#tableService");
+    $(function () {
 
-                for (var i = 0; i < rows; i++) {
-                    var tr = document.createElement("TR");
-                    for (var j = 0; j < cols; j++) {
-
-                        var td = document.createElement("TD");
-                        var input = document.createElement("input");
-                        input.setAttribute("type", "text");
-                        td.appendChild(input);
-                        tr.appendChild(td);
-
-                    }
-                    tbodyService.append(tr);
-                }
-            });
+        $("#startDate").datepicker({
+            dateFormat : "yy-mm-dd"
         });
 
-        $("#startDate").datepicker( "option", "dateFormat", "yy-mm-dd" );
         $("#finishDate").datepicker({
             dateFormat : "yy-mm-dd"
         });
+
+        $("#description").jqte();
+    });
+
+    var autocomplete, marker;
+
+    function initAutocomplete() {
+
+        setMap(4.624335, -74.063644);
+        autocomplete = new google.maps.places.Autocomplete((document.getElementById('address')), {types: ['geocode']});
+        autocomplete.addListener('place_changed', setMapLocation);
+
     }
 
-    function initMap() {
-
+    function setMap(lat, lng) {
+        var latlng = {lat: lat, lng: lng};
         var mapDivE = document.getElementById('map');
         var map = new google.maps.Map(mapDivE, {
-            center: {lat: 44.540, lng: -78.546},
-            zoom: 8
+            center: latlng,
+            zoom: 16,
+            componentRestrictions: {country: "co"}
+        });
+
+        var marker = new google.maps.Marker({
+            position: latlng,
+            map: map,
+            title: 'Tu dirección'
         });
     }
+
+    function setMapLocation() {
+        var place = autocomplete.getPlace();
+        $(function () {
+            $("#lat").val(place.geometry.location.lat());
+            $("#lng").val(place.geometry.location.lng());
+        }.bind(place));
+        setMap(place.geometry.location.lat(), place.geometry.location.lng())
+    }
+
 </script>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGNsm6WSTUNTdoPh4PSbxjkY8DrQU6zww&callback=initMap"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGNsm6WSTUNTdoPh4PSbxjkY8DrQU6zww&signed_in=true&region=co&libraries=places&callback=initAutocomplete"
+            async defer></script>

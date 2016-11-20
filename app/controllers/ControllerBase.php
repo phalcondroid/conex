@@ -25,61 +25,65 @@ class ControllerBase extends Controller
 
             $user = $this->session->get("user");
 
-            $acl = new AclList();
+            try {
+                $acl = new AclList();
 
-            $acl->setDefaultAction(
-                Acl::DENY
-            );
-
-            $acl->addRole(new AclRole($user->Role->profile));
-
-            $acl->addResource(
-                new Resource("index"),
-                "index"
-            );
-            $acl->allow($user->Role->profile, "index",  "index");
-
-            $menus = Menu::findByIdRole($user->Role->id_role);
-
-            foreach ($menus as $menu) {
-                $resource = new Resource($menu->name);
-                $items = MenuItem::find(array(
-                    "conditions" => "id_menu = ?1 and status = 1",
-                    "bind" => array(
-                        1 => $menu->id_menu
-                    )
-                ));
-                $actions = array();
-
-                foreach ($items as $item) {
-                    $actions[] = $item->menu_item;
-                }
-
-                $acl->addResource(
-                    $resource,
-                    $actions
+                $acl->setDefaultAction(
+                    Acl::DENY
                 );
 
-                foreach ($actions as $actionItem) {
-                    $acl->allow($user->Role->profile, $menu->name,  $actionItem);
+                $acl->addRole(new AclRole($user->Role->profile));
+
+                $acl->addResource(
+                    new Resource("index"),
+                    "index"
+                );
+                $acl->allow($user->Role->profile, "index",  "index");
+
+                $menus = Menu::findByIdRole($user->Role->id_role);
+
+                foreach ($menus as $menu) {
+                    $resource = new Resource($menu->name);
+                    $items = MenuItem::find(array(
+                        "conditions" => "id_menu = ?1 and status = 1",
+                        "bind" => array(
+                            1 => $menu->id_menu
+                        )
+                    ));
+                    $actions = array();
+
+                    foreach ($items as $item) {
+                        $actions[] = $item->menu_item;
+                    }
+
+                    $acl->addResource(
+                        $resource,
+                        $actions
+                    );
+
+                    foreach ($actions as $actionItem) {
+                        $acl->allow($user->Role->profile, $menu->name,  $actionItem);
+                    }
                 }
-            }
 
-            $this->view->mainMenu = Menu::find(array(
-                "conditions" => "id_type_menu = ?0 and id_role = ?1",
-                "bind"      => array(
-                    0 => 1,
-                    1 => $user->Role->id_role
-                )
-            ));
+                $this->view->mainMenu = Menu::find(array(
+                    "conditions" => "id_type_menu = ?0 and id_role = ?1",
+                    "bind"      => array(
+                        0 => 1,
+                        1 => $user->Role->id_role
+                    )
+                ));
 
-
-            if ($acl->isAllowed($user->Role->profile, $controller, $action)) {
-                if ($controller == "index" and $action == "index") {
-                    $this->response->redirect($user->Role->default_redirect);
+                if ($acl->isAllowed($user->Role->profile, $controller, $action)) {
+                    if ($controller == "index" and $action == "index") {
+                        $this->dispatchRoute($dispatcher, $user->Role->default_redirect);
+                    }
+                } else {
+                    $acl->deny($user->Role->profile, $controller,  $action);
                 }
-            } else {
-                $this->response->redirect($user->Role->default_redirect);
+
+            } catch (Exception $e) {
+                $this->dispatchRoute($dispatcher, $user->Role->default_redirect);
             }
 
         } else {
@@ -87,5 +91,15 @@ class ControllerBase extends Controller
                 $this->response->redirect("index/index");
             }
         }
+    }
+
+    private function dispatchRoute($dispatcher, $url)
+    {
+        $this->flash->warning("Access deny");
+        $result = explode("/", $url);
+        $dispatcher->forward(array(
+            "controller" => $result[0],
+            "action" => $result[1]
+        ));
     }
 }

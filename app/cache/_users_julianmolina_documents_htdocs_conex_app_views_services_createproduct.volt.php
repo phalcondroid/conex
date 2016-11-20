@@ -1,7 +1,7 @@
 
-<?php echo $this->tag->form(array('services/createProduct', 'method' => 'post')); ?>
+<?= $this->tag->form(['services/createProduct', 'method' => 'post']) ?>
     <h2>Nuevo producto</h2>
-    <a href="<?php echo $this->url->get('services/index'); ?>" class="btn btn-danger pull-right">
+    <a href="<?= $this->url->get('services/index') ?>" class="btn btn-danger pull-right">
         <i class="glyphicon glyphicon-share-alt"></i>
         Volver
     </a>
@@ -17,17 +17,17 @@
                             <div class="row">
                                 <div class="col-xs-4 col-md-4">
                                     <a href="#" class="thumbnail">
-                                        <?php echo $this->tag->image(array('img/inovatio1.png', 'style' => 'width : 180px; height : 160px;')); ?>
+                                        <?= $this->tag->image(['img/inovatio1.png', 'style' => 'width : 180px; height : 160px;']) ?>
                                     </a>
                                 </div>
                                 <div class="col-xs-4 col-md-4">
                                     <a href="#" class="thumbnail">
-                                        <?php echo $this->tag->image(array('img/inovatio1.png', 'style' => 'width : 180px; height : 160px;')); ?>
+                                        <?= $this->tag->image(['img/inovatio1.png', 'style' => 'width : 180px; height : 160px;']) ?>
                                     </a>
                                 </div>
                                 <div class="col-xs-4 col-md-4">
                                     <a href="#" class="thumbnail">
-                                        <?php echo $this->tag->image(array('img/inovatio1.png', 'style' => 'width : 180px; height : 160px;')); ?>
+                                        <?= $this->tag->image(['img/inovatio1.png', 'style' => 'width : 180px; height : 160px;']) ?>
                                     </a>
                                 </div>
                             </div>
@@ -54,8 +54,8 @@
                             <select class="form-control" name="productType">
                                 <option>......</option>
                                 <?php foreach ($productType as $item) { ?>
-                                    <option value="<?php echo $item->id_product_type; ?>">
-                                        <?php echo $item->product_type; ?>
+                                    <option value="<?= $item->id_product_type ?>">
+                                        <?= $item->product_type ?>
                                     </option>
                                 <?php } ?>
                             </select>
@@ -69,8 +69,8 @@
                             <select class="form-control" name="productCapacity">
                                 <option>......</option>
                                 <?php foreach ($productCapacity as $item) { ?>
-                                    <option value="<?php echo $item->id_product_capacity; ?>">
-                                        <?php echo $item->product_capacity; ?>
+                                    <option value="<?= $item->id_product_capacity ?>">
+                                        <?= $item->product_capacity ?>
                                     </option>
                                 <?php } ?>
                             </select>
@@ -81,7 +81,7 @@
                             Elogan
                         </th>
                         <th>
-                            <textarea class="form-control" name="slogan" rows="8" cols="40"></textarea>
+                            <input class="form-control" name="slogan" type="text">
                         </th>
                     </tr>
                     <tr>
@@ -89,7 +89,7 @@
                             Descripción
                         </th>
                         <th>
-                            <textarea class="form-control" name="description" rows="8" cols="40" ></textarea>
+                            <textarea name="description" id="description" rows="10" cols="40" ></textarea>
                         </th>
                     </tr>
                     <tr>
@@ -104,4 +104,10 @@
             </table>
         </div>
     </div>
-<?php echo $this->tag->endForm(); ?>
+<?= $this->tag->endForm() ?>
+
+<script>
+$(function () {
+    $("#description").jqte();
+});
+</script>

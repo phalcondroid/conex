@@ -17,13 +17,6 @@ class Advertisement extends \Phalcon\Mvc\Model
      * @var integer
      * @Column(type="integer", length=11, nullable=false)
      */
-    public $id_advertisement_characteristics;
-
-    /**
-     *
-     * @var integer
-     * @Column(type="integer", length=11, nullable=false)
-     */
     public $id_users;
 
     /**
@@ -32,6 +25,27 @@ class Advertisement extends \Phalcon\Mvc\Model
      * @Column(type="string", length=45, nullable=true)
      */
     public $name;
+
+    /**
+     *
+     * @var string
+     * @Column(type="string", nullable=true)
+     */
+    public $description;
+
+    /**
+     *
+     * @var string
+     * @Column(type="string", length=45, nullable=true)
+     */
+    public $lat;
+
+    /**
+     *
+     * @var string
+     * @Column(type="string", length=45, nullable=true)
+     */
+    public $lng;
 
     /**
      *
@@ -49,10 +63,10 @@ class Advertisement extends \Phalcon\Mvc\Model
 
     /**
      *
-     * @var string
-     * @Column(type="string", length=45, nullable=true)
+     * @var integer
+     * @Column(type="integer", length=11, nullable=true)
      */
-    public $description;
+    public $views;
 
     /**
      *

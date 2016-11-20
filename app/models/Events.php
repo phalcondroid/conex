@@ -7,6 +7,7 @@ class Events extends \Phalcon\Mvc\Model
      *
      * @var integer
      * @Primary
+     * @Identity
      * @Column(type="integer", length=11, nullable=false)
      */
     public $id_events;
@@ -44,21 +45,35 @@ class Events extends \Phalcon\Mvc\Model
      * @var string
      * @Column(type="string", length=45, nullable=true)
      */
-    public $description;
+    public $lat;
 
     /**
      *
      * @var string
      * @Column(type="string", length=45, nullable=true)
      */
-    public $details;
+    public $lng;
+
+    /**
+     *
+     * @var integer
+     * @Column(type="integer", length=11, nullable=true)
+     */
+    public $views;
 
     /**
      *
      * @var string
-     * @Column(type="string", length=45, nullable=true)
+     * @Column(type="string", nullable=true)
      */
     public $slogan;
+
+    /**
+     *
+     * @var string
+     * @Column(type="string", nullable=true)
+     */
+    public $description;
 
     /**
      *
@@ -77,9 +92,9 @@ class Events extends \Phalcon\Mvc\Model
     /**
      *
      * @var string
-     * @Column(type="string", nullable=false)
+     * @Column(type="string", nullable=true)
      */
-    public $created_at;
+    public $create_at;
 
     /**
      * Method to set the value of field id_events

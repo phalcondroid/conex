@@ -13,35 +13,6 @@
             <table class="table">
                 <tbody>
                     <tr>
-                        <th style="width : 40%;">
-                            Imagen
-                        </th>
-                        <th>
-                            <div class="row">
-                                <div class="col-xs-4 col-md-4">
-                                    <a href="#" class="thumbnail">
-                                        {{ image('img/ex1.jpg', "style" : "width : 180px; height : 160px;") }}
-                                    </a>
-                                </div>
-                                <div class="col-xs-4 col-md-4">
-                                    <a href="#" class="thumbnail">
-                                        {{ image('img/ex2.jpg', "style" : "width : 180px; height : 160px;") }}
-                                    </a>
-                                </div>
-                                <div class="col-xs-4 col-md-4">
-                                    <a href="#" class="thumbnail">
-                                        {{ image('img/ex3.jpg', "style" : "width : 180px; height : 160px;") }}
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xs-3 col-md-3">
-                                    <input type="file" name="name" value="">
-                                </div>
-                            </div>
-                        </th>
-                    </tr>
-                    <tr>
                         <th>
                             Tipo de servicio
                         </th>
@@ -61,7 +32,7 @@
                             Nombre
                         </th>
                         <th>
-                            <input type="text" name="name" value="">
+                            <input type="text" name="name" value="" class="form-control">
                         </th>
                     </tr>
                     <tr>
@@ -69,52 +40,15 @@
                             Descripción
                         </th>
                         <th>
-                            <textarea class="form-control" name="description" rows="8" cols="40"></textarea>
+                            <textarea class="form-control" name="description" id="description" rows="8" cols="40"></textarea>
                         </th>
                     </tr>
                     <tr>
                         <th>
-                            Elogan
+                            Slogan
                         </th>
                         <th>
                             <textarea class="form-control" name="slogan" rows="8" cols="40"></textarea>
-                        </th>
-                    </tr>
-
-                    <tr>
-                        <th colspan="2" style="text-align : center;">
-                            Crear servicios
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                            <span>Columnas</span>
-                            &nbsp;
-                            <input type="text" id="columns" value="">
-                        </th>
-                        <th>
-                            <span>Filas</span>
-                            &nbsp;
-                            <input type="text" id="rows" value="">
-                            <button type="button" id="agregar" class="btn btn-primary pull-right">
-                                <i class="glyphicon glyphicon-plus"></i>
-                            </button>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th colspan="2">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th colspan="100">
-                                            Describe cada item de tu paquete de servicios
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody id="tableService">
-
-                                </tbody>
-                            </table>
                         </th>
                     </tr>
                     <tr>
@@ -132,30 +66,16 @@
 </div>
 
 <script type="text/javascript">
-    window.onload = function () {
-        $(function () {
-            $("#agregar").click(function () {
+    $(function () {
+        var img1 = $('#imageupload1');
+        img1.imageupload();
 
-                console.log("kasjksajk");
+        var img2 = $('#imageupload2');
+        img2.imageupload();
 
-                var cols = parseInt($("#columns").val());
-                var rows = parseInt($("#rows").val());
-                var tbodyService = $("#tableService");
+        var img3 = $('#imageupload3');
+        img3.imageupload();
 
-                for (var i = 0; i < rows; i++) {
-                    var tr = document.createElement("TR");
-                    for (var j = 0; j < cols; j++) {
-
-                        var td = document.createElement("TD");
-                        var input = document.createElement("input");
-                        input.setAttribute("type", "text");
-                        td.appendChild(input);
-                        tr.appendChild(td);
-
-                    }
-                    tbodyService.append(tr);
-                }
-            });
-        });
-    }
+        $("#description").jqte();
+    });
 </script>

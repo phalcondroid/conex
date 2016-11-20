@@ -9,7 +9,7 @@
         <?= $this->assets->outputCss('css') ?>
         <?= $this->assets->outputJs('config') ?>
     </head>
-    <body>
+    <body style="">
         <?= $this->flash->output() ?>
         <?= $this->getContent() ?>
     </body>

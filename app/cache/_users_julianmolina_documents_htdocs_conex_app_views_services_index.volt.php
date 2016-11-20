@@ -22,7 +22,7 @@
                     Productos
                     &nbsp;
                     <span class="label label-pill label-success">
-                        <?php echo $cProducts; ?>
+                        <?= $cProducts ?>
                     </span>
                 </a>
             </li>
@@ -31,7 +31,7 @@
                     Eventos
                     &nbsp;
                     <span class="label label-pill label-danger">
-                        <?php echo $cEvents; ?>
+                        <?= $cEvents ?>
                     </span>
                 </a>
             </li>
@@ -40,7 +40,7 @@
                     Anuncios
                     &nbsp;
                     <span class="label label-pill label-warning">
-                        <?php echo $cAdvertisement; ?>
+                        <?= $cAdvertisement ?>
                     </span>
                 </a>
             </li>
@@ -49,7 +49,7 @@
                     Servicios
                     &nbsp;
                     <span class="label label-pill label-primary">
-                        <?php echo $cServices; ?>
+                        <?= $cServices ?>
                     </span>
                 </a>
             </li>
@@ -61,284 +61,284 @@
 
                 <div class="row" style="margin-top : 10px;">
                     <div class="col-md-12">
-                        <a href="<?php echo $this->url->get('services/createProduct'); ?>" class="btn btn-default pull-right">
-                            <?php echo $this->tag->image(array('img/barcode.png', 'style' => 'height : 24px;')); ?>
+                        <a href="<?= $this->url->get('services/createProduct') ?>" class="btn btn-default pull-right">
+                            <?= $this->tag->image(['img/barcode.png', 'style' => 'height : 24px;']) ?>
                             Nuevo producto
                         </a>
                     </div>
                 </div>
 
-                <div class="row" style="margin-top : 10px;">
-                    <?php foreach ($products as $item) { ?>
-                        <div class="col-sm-6 col-md-4">
-                            <div class="thumbnail">
-                                <?php echo $this->tag->image(array('img/inovatio1.png', 'style' => 'widht : 400px; height : 350px')); ?>
-                                <div class="caption">
-                                    <h3>
-                                        <?php echo $item->name; ?>
-                                    </h3>
-                                    <p class="trunk">
-                                        <?php echo $item->description; ?>
-                                    </p>
-                                    <p>
-                                        <a href="<?php echo $this->url->get('services/editProduct'); ?>" class="btn btn-warning" role="button">
-                                              <i class="glyphicon glyphicon-pencil"></i>
-                                        </a>
-                                        <a href="<?php echo $this->url->get('services/deleteProduct'); ?>" class="btn btn-danger" role="button">
-                                              <i class="glyphicon glyphicon-trash"></i>
-                                        </a>
-                                    </p>
-                                </div>
+                <?php $initial = 3; ?>
+                <?php $step = 0; ?>
+                <?php $index = 0; ?>
+
+                <?php $v141648709836531388991iterator = $products; $v141648709836531388991incr = 0; $v141648709836531388991loop = new stdClass(); $v141648709836531388991loop->self = &$v141648709836531388991loop; $v141648709836531388991loop->length = count($v141648709836531388991iterator); $v141648709836531388991loop->index = 1; $v141648709836531388991loop->index0 = 1; $v141648709836531388991loop->revindex = $v141648709836531388991loop->length; $v141648709836531388991loop->revindex0 = $v141648709836531388991loop->length - 1; ?><?php foreach ($v141648709836531388991iterator as $item) { ?><?php $v141648709836531388991loop->first = ($v141648709836531388991incr == 0); $v141648709836531388991loop->index = $v141648709836531388991incr + 1; $v141648709836531388991loop->index0 = $v141648709836531388991incr; $v141648709836531388991loop->revindex = $v141648709836531388991loop->length - $v141648709836531388991incr; $v141648709836531388991loop->revindex0 = $v141648709836531388991loop->length - ($v141648709836531388991incr + 1); $v141648709836531388991loop->last = ($v141648709836531388991incr == ($v141648709836531388991loop->length - 1)); ?>
+
+                    <?php if ($v141648709836531388991loop->first) { ?>
+                        <div class="row" style="margin-top : 10px;">
+                    <?php } ?>
+
+                    <?php if ($index == $step) { ?>
+                        <?php $step += 3; ?>
+                        </div>
+                        <div class="row" style="margin-top : 10px;">
+                    <?php } ?>
+
+                    <div class="col-sm-6 col-md-4">
+                        <div class="thumbnail">
+                            <?= $this->tag->image(['img/inovatio1.png', 'style' => 'widht : 400px; height : 350px']) ?>
+                            <div class="caption">
+                                <h3>
+                                    <?= $item->name ?>
+                                </h3>
+                                <p class="trunk">
+                                    <?= $item->description ?>
+                                </p>
+                                <p>
+                                    <a href="<?= $this->url->get('services/editProduct/' . $item->id_products) ?>" class="btn btn-warning" role="button">
+                                          <i class="glyphicon glyphicon-pencil"></i>
+                                    </a>
+                                    <a href="<?= $this->url->get('services/deleteProduct/' . $item->id_products) ?>" class="btn btn-danger" role="button">
+                                          <i class="glyphicon glyphicon-trash"></i>
+                                    </a>
+                                </p>
                             </div>
                         </div>
+                    </div>
+
+                    <?php if ($v141648709836531388991loop->last) { ?>
+                        </div>
                     <?php } ?>
-                </div>
+                    <?php $index++; ?>
+
+                <?php $v141648709836531388991incr++; } ?>
 
             </div>
             <div role="tabpanel" class="tab-pane" id="profile">
 
                 <div class="row" style="margin-top : 10px;">
                     <div class="col-md-12">
-                        <a href="<?php echo $this->url->get('services/createEvent'); ?>" class="btn btn-default pull-right">
-                            <?php echo $this->tag->image(array('img/calendar.png', 'style' => 'height : 24px;')); ?>
+                        <a href="<?= $this->url->get('services/createEvent') ?>" class="btn btn-default pull-right">
+                            <?= $this->tag->image(['img/calendar.png', 'style' => 'height : 24px;']) ?>
                             Nuevo evento
                         </a>
                     </div>
                 </div>
 
-                <div class="row" style="margin-top : 10px;">
+                <?php $initial = 3; ?>
+                <?php $step = 0; ?>
+                <?php $index = 0; ?>
 
-                    <?php foreach ($events as $item) { ?>
-                        <div class="col-sm-6 col-md-4">
-                            <div class="thumbnail">
-                                <div style="width : 100%; height : 300px" id="mapEvent1">
+                <?php $v141648709836531388991iterator = $events; $v141648709836531388991incr = 0; $v141648709836531388991loop = new stdClass(); $v141648709836531388991loop->self = &$v141648709836531388991loop; $v141648709836531388991loop->length = count($v141648709836531388991iterator); $v141648709836531388991loop->index = 1; $v141648709836531388991loop->index0 = 1; $v141648709836531388991loop->revindex = $v141648709836531388991loop->length; $v141648709836531388991loop->revindex0 = $v141648709836531388991loop->length - 1; ?><?php foreach ($v141648709836531388991iterator as $item) { ?><?php $v141648709836531388991loop->first = ($v141648709836531388991incr == 0); $v141648709836531388991loop->index = $v141648709836531388991incr + 1; $v141648709836531388991loop->index0 = $v141648709836531388991incr; $v141648709836531388991loop->revindex = $v141648709836531388991loop->length - $v141648709836531388991incr; $v141648709836531388991loop->revindex0 = $v141648709836531388991loop->length - ($v141648709836531388991incr + 1); $v141648709836531388991loop->last = ($v141648709836531388991incr == ($v141648709836531388991loop->length - 1)); ?>
 
-                                </div>
-                                <div class="caption">
-                                  <h3>
-                                      <?php echo $item->name; ?>
-                                  </h3>
-                                  <p class="trunk">
-                                    <?php echo $item->description; ?>
-                                  </p>
-                                  <p >
-                                      <a href="<?php echo $this->url->get('services/editEvent'); ?>" class="btn btn-warning" role="button">
-                                            <i class="glyphicon glyphicon-pencil"></i>
-                                      </a>
-                                      <a href="<?php echo $this->url->get('services/deleteEvent'); ?>" class="btn btn-danger" role="button">
-                                            <i class="glyphicon glyphicon-trash"></i>
-                                      </a>
-                                  </p>
-                                </div>
+                    <?php if ($v141648709836531388991loop->first) { ?>
+                        <div class="row" style="margin-top : 10px;">
+                    <?php } ?>
+
+                    <?php if ($index == $step) { ?>
+                        <?php $step += 3; ?>
+                        </div>
+                        <div class="row" style="margin-top : 10px;">
+                    <?php } ?>
+
+                    <div class="col-sm-6 col-md-4">
+                        <div class="thumbnail">
+                            <div style="width : 100%; height : 300px" id="mapEvent<?= $item->id_events ?>">
+
+                            </div>
+
+                            <div class="caption">
+                              <h3>
+                                  <?= $item->name ?>
+                              </h3>
+                              <p class="trunk">
+                                <?= $item->description ?>
+                              </p>
+                              <p >
+                                  <a href="<?= $this->url->get('services/editEvent/' . $item->id_events) ?>" class="btn btn-warning" role="button">
+                                        <i class="glyphicon glyphicon-pencil"></i>
+                                  </a>
+                                  <a href="<?= $this->url->get('services/deleteEvent/' . $item->id_events) ?>" class="btn btn-danger" role="button">
+                                        <i class="glyphicon glyphicon-trash"></i>
+                                  </a>
+                              </p>
                             </div>
                         </div>
+                    </div>
+
+                    <?php if ($v141648709836531388991loop->last) { ?>
+                        </div>
                     <?php } ?>
-                </div>
+                    <?php $index++; ?>
+
+                <?php $v141648709836531388991incr++; } ?>
             </div>
             <div role="tabpanel" class="tab-pane" id="vacancy">
 
                 <div class="row" style="margin-top : 10px;">
                     <div class="col-md-12">
-                        <a href="<?php echo $this->url->get('services/createAdvertisement'); ?>" class="btn btn-default pull-right">
-                            <?php echo $this->tag->image(array('img/cart.png', 'style' => 'height : 24px;')); ?>
+                        <a href="<?= $this->url->get('services/createAdvertisement') ?>" class="btn btn-default pull-right">
+                            <?= $this->tag->image(['img/cart.png', 'style' => 'height : 24px;']) ?>
                             Crear anuncio
                         </a>
                     </div>
                 </div>
 
-                <div class="row" style="margin-top : 10px;">
-                    <?php foreach ($advertisement as $item) { ?>
-                    <div class="col-sm-6 col-md-4">
-                      <div class="thumbnail">
-                          <div class="caption">
-                            <h3>
-                                <?php echo $item->name; ?>
-                            </h3>
-                          </div>
-                        <div>
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <th>
-                                            Características
-                                        </th>
-                                        <td>
-                                            <ul>
-                                                <?php foreach ($advertisementCharacter as $character) { ?>
-                                                    <li><?php echo $character->title; ?></li>
-                                                <?php } ?>
-                                            </ul>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            Fecha de publicación
-                                        </th>
-                                        <td>
-                                            <div class='input-group date' id='datetimepicker1'>
-                                                <input type='text' class="form-control" value="<?php echo $item->publish_date; ?>" />
-                                                <span class="input-group-addon">
-                                                    <span class="glyphicon glyphicon-calendar"></span>
-                                                </span>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            Valor
-                                        </th>
-                                        <td>
-                                            <span class="label label-success">4.000.000</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            Plataformas
-                                        </th>
-                                        <td>
-                                           Android, IOS, Web
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="caption">
-                            <p >
-                                <a href="#" class="btn btn-warning" role="button">
-                                    <i class="glyphicon glyphicon-pencil"></i>
-                                </a>
-                                <a href="#" class="btn btn-danger" role="button">
-                                    <i class="glyphicon glyphicon-trash"></i>
-                                </a>
-                            </p>
-                        </div>
-                      </div>
-                    </div>
+                <?php $initial = 3; ?>
+                <?php $step = 0; ?>
+                <?php $index = 0; ?>
+
+                <?php $v141648709836531388991iterator = $advertisement; $v141648709836531388991incr = 0; $v141648709836531388991loop = new stdClass(); $v141648709836531388991loop->self = &$v141648709836531388991loop; $v141648709836531388991loop->length = count($v141648709836531388991iterator); $v141648709836531388991loop->index = 1; $v141648709836531388991loop->index0 = 1; $v141648709836531388991loop->revindex = $v141648709836531388991loop->length; $v141648709836531388991loop->revindex0 = $v141648709836531388991loop->length - 1; ?><?php foreach ($v141648709836531388991iterator as $item) { ?><?php $v141648709836531388991loop->first = ($v141648709836531388991incr == 0); $v141648709836531388991loop->index = $v141648709836531388991incr + 1; $v141648709836531388991loop->index0 = $v141648709836531388991incr; $v141648709836531388991loop->revindex = $v141648709836531388991loop->length - $v141648709836531388991incr; $v141648709836531388991loop->revindex0 = $v141648709836531388991loop->length - ($v141648709836531388991incr + 1); $v141648709836531388991loop->last = ($v141648709836531388991incr == ($v141648709836531388991loop->length - 1)); ?>
+
+                    <?php if ($v141648709836531388991loop->first) { ?>
+                        <div class="row" style="margin-top : 10px;">
                     <?php } ?>
-                </div>
+
+                    <?php if ($index == $step) { ?>
+                        <?php $step += 3; ?>
+                        </div>
+                        <div class="row" style="margin-top : 10px;">
+                    <?php } ?>
+
+                        <div class="col-sm-6 col-md-4">
+                          <div class="thumbnail">
+                              <div class="caption">
+                                <h3>
+                                    <?= $item->name ?>
+                                </h3>
+                              </div>
+                            <div>
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <th>
+                                                Descripción
+                                            </th>
+                                            <td>
+                                                <ul>
+                                                    <?= $item->description ?>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                Dirección
+                                            </th>
+                                            <td>
+                                                <ul>
+                                                    <?= $item->address ?>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                Fecha de publicación
+                                            </th>
+                                            <td>
+                                                <div class='input-group date' id='datetimepicker1'>
+                                                    <input type='text' class="form-control" value="<?= $item->publish_date ?>" />
+                                                    <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                Visitas
+                                            </th>
+                                            <td>
+                                                <span class="label label-warning">
+                                                    <?= $item->views ?>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                Valor
+                                            </th>
+                                            <td>
+                                                <span class="label label-success">
+                                                    <?= $item->value ?>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="caption">
+                                <p >
+                                    <a href="<?= $this->url->get('services/editAdvertisement/' . $item->id_advertisement) ?>" class="btn btn-warning" role="button">
+                                          <i class="glyphicon glyphicon-pencil"></i>
+                                    </a>
+                                    <a href="<?= $this->url->get('services/deleteAdvertisement/' . $item->id_advertisement) ?>" class="btn btn-danger" role="button">
+                                          <i class="glyphicon glyphicon-trash"></i>
+                                    </a>
+                                </p>
+                            </div>
+                          </div>
+                      </div>
+                      <?php if ($v141648709836531388991loop->last) { ?>
+                          </div>
+                      <?php } ?>
+                      <?php $index++; ?>
+                <?php $v141648709836531388991incr++; } ?>
             </div>
             <div role="tabpanel" class="tab-pane" id="settings">
 
                 <div class="row" style="margin-top : 10px;">
                     <div class="col-md-12">
-                        <a href="<?php echo $this->url->get('services/createService'); ?>" class="btn btn-default pull-right">
-                            <?php echo $this->tag->image(array('img/truck.png', 'style' => 'height : 24px;')); ?>
+                        <a href="<?= $this->url->get('services/createService') ?>" class="btn btn-default pull-right">
+                            <?= $this->tag->image(['img/truck.png', 'style' => 'height : 24px;']) ?>
                             Nuevo servicio
                         </a>
                     </div>
                 </div>
 
-                <div class="row" style="margin-top : 10px;">
-                    <?php foreach ($services as $item) { ?>
+                <?php $step = 0; ?>
+                <?php $index = 0; ?>
+
+                <?php $v141648709836531388991iterator = $services; $v141648709836531388991incr = 0; $v141648709836531388991loop = new stdClass(); $v141648709836531388991loop->self = &$v141648709836531388991loop; $v141648709836531388991loop->length = count($v141648709836531388991iterator); $v141648709836531388991loop->index = 1; $v141648709836531388991loop->index0 = 1; $v141648709836531388991loop->revindex = $v141648709836531388991loop->length; $v141648709836531388991loop->revindex0 = $v141648709836531388991loop->length - 1; ?><?php foreach ($v141648709836531388991iterator as $item) { ?><?php $v141648709836531388991loop->first = ($v141648709836531388991incr == 0); $v141648709836531388991loop->index = $v141648709836531388991incr + 1; $v141648709836531388991loop->index0 = $v141648709836531388991incr; $v141648709836531388991loop->revindex = $v141648709836531388991loop->length - $v141648709836531388991incr; $v141648709836531388991loop->revindex0 = $v141648709836531388991loop->length - ($v141648709836531388991incr + 1); $v141648709836531388991loop->last = ($v141648709836531388991incr == ($v141648709836531388991loop->length - 1)); ?>
+
+                    <?php if ($v141648709836531388991loop->first) { ?>
+                        <div class="row" style="margin-top : 10px;">
+                    <?php } ?>
+
+                    <?php if ($index == $step) { ?>
+                        <?php $step++; ?>
+                        </div>
+                        <div class="row" style="margin-top : 10px;">
+                    <?php } ?>
+
                     <div class="col-sm-12 col-md-12">
                       <div class="thumbnail">
                         <div class="caption">
                             <h3>
-                                <?php echo $item->name; ?>
+                                <?= $item->name ?>
                             </h3>
                             <p class="trunk">
-                                <?php echo $item->description; ?>
+                                <?= $item->description ?>
                             </p>
                         </div>
                         <div class="">
-
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th colspan="2">
-                                            <?php echo $this->tag->image(array('img/truck.png', 'style' => 'width : 80px')); ?>
-                                        </th>
-                                        <td colspan="2">
-                                            <p style="text-align : middle;">Go Colombia</p>
-                                        </td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th>
-                                            Paquete
-                                        </th>
-                                        <th>
-                                            Personas
-                                        </th>
-                                        <th>
-                                            Horario
-                                        </th>
-                                        <th>
-                                            Días Hábiles
-                                        </th>
-                                        <th>
-                                            Precio
-                                        </th>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            2 Días
-                                        </td>
-                                        <td>
-                                            5
-                                        </td>
-                                        <td>
-                                            6am - 12pm
-                                        </td>
-                                        <td>
-                                            S - D
-                                        </td>
-                                        <td>
-                                            120 . 000
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            2 Días
-                                        </td>
-                                        <td>
-                                            5
-                                        </td>
-                                        <td>
-                                            6am - 12pm
-                                        </td>
-                                        <td>
-                                            S - D
-                                        </td>
-                                        <td>
-                                            120 . 000
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            2 Días
-                                        </td>
-                                        <td>
-                                            5
-                                        </td>
-                                        <td>
-                                            6am - 12pm
-                                        </td>
-                                        <td>
-                                            S - D
-                                        </td>
-                                        <td>
-                                            120 . 000
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="">
                             <p>
-                                <a href="<?php echo $this->url->get('services/editProduct'); ?>" class="btn btn-warning" role="button">
+                                <a href="<?= $this->url->get('services/editService/' . $item->id_service) ?>" class="btn btn-warning" role="button">
                                       <i class="glyphicon glyphicon-pencil"></i>
                                 </a>
-                                <a href="<?php echo $this->url->get('services/deleteProduct'); ?>" class="btn btn-danger" role="button">
+                                <a href="<?= $this->url->get('services/deleteService/' . $item->id_service) ?>" class="btn btn-danger" role="button">
                                       <i class="glyphicon glyphicon-trash"></i>
                                 </a>
                             </p>
                         </div>
                       </div>
                     </div>
+
+                    <?php if ($v141648709836531388991loop->last) { ?>
+                        </div>
                     <?php } ?>
-                </div>
+                    <?php $index++; ?>
+
+                <?php $v141648709836531388991incr++; } ?>
             </div>
         </div>
     </div>
@@ -346,27 +346,27 @@
 
 <script>
 
-    function initMap() {
+function initAutocomplete() {
+    <?php $v141648709836531388991iterator = $events; $v141648709836531388991incr = 0; $v141648709836531388991loop = new stdClass(); $v141648709836531388991loop->self = &$v141648709836531388991loop; $v141648709836531388991loop->length = count($v141648709836531388991iterator); $v141648709836531388991loop->index = 1; $v141648709836531388991loop->index0 = 1; $v141648709836531388991loop->revindex = $v141648709836531388991loop->length; $v141648709836531388991loop->revindex0 = $v141648709836531388991loop->length - 1; ?><?php foreach ($v141648709836531388991iterator as $item) { ?><?php $v141648709836531388991loop->first = ($v141648709836531388991incr == 0); $v141648709836531388991loop->index = $v141648709836531388991incr + 1; $v141648709836531388991loop->index0 = $v141648709836531388991incr; $v141648709836531388991loop->revindex = $v141648709836531388991loop->length - $v141648709836531388991incr; $v141648709836531388991loop->revindex0 = $v141648709836531388991loop->length - ($v141648709836531388991incr + 1); $v141648709836531388991loop->last = ($v141648709836531388991incr == ($v141648709836531388991loop->length - 1)); ?>
 
-        var mapDivE = document.getElementById('mapEvent1');
+        var latlng = {lat: <?= $item->lat ?>, lng: <?= $item->lng ?>};
+        var mapDivE = document.getElementById("mapEvent" + <?= $item->id_events ?>);
         var map = new google.maps.Map(mapDivE, {
-            center: {lat: 44.540, lng: -78.546},
-            zoom: 8
+            center: latlng,
+            zoom: 16,
+            componentRestrictions: {country: "co"}
         });
 
-        var mapDivE2 = document.getElementById('mapEvent2');
-        var map2 = new google.maps.Map(mapDivE2, {
-            center: {lat: 44.540, lng: -78.546},
-            zoom: 8
+        var marker = new google.maps.Marker({
+            position: latlng,
+            map: map,
+            title: 'Tu dirección'
         });
 
-        var mapDivE3 = document.getElementById('mapEvent3');
-        var map3 = new google.maps.Map(mapDivE3, {
-            center: {lat: 44.540, lng: -78.546},
-            zoom: 8
-        });
-    }
+    <?php $v141648709836531388991incr++; } ?>
+}
 
 </script>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGNsm6WSTUNTdoPh4PSbxjkY8DrQU6zww&callback=initMap"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGNsm6WSTUNTdoPh4PSbxjkY8DrQU6zww&signed_in=true&region=co&libraries=places&callback=initAutocomplete"
+            async defer></script>

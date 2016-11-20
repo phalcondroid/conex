@@ -6,8 +6,6 @@
     }
 </style>
 
-{{ content() }}
-
 <div class="container" style="">
 
     <div class="row">
@@ -16,14 +14,14 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-12">
 
-            <div class="row">
+            {% for item in events %}
 
-                {% for item in events %}
+                <div class="row">
 
                 <div class="col-md-12">
-                    <div class="panel panel-primary">
+                    <div class="panel panel-default">
                         <div class="panel-heading">
                             <h3 style="margin-top : 3px;">
                                 {{ item.name }}
@@ -35,7 +33,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <p style="text-align : justify">
-                                        {{ item.description }}
+
                                     </p>
                                 </div>
                             </div>
@@ -70,38 +68,10 @@
                                             </tr>
                                             <tr>
                                                 <th>
-                                                    Invitados
+                                                    Descripción
                                                 </th>
                                                 <td>
-                                                    <ul>
-                                                        <li>Andrés Gutierrez</li>
-                                                        <li>Andrés barreto</li>
-                                                        <li>Alex torrenegra</li>
-                                                    </ul>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th>
-                                                    Organizador
-                                                </th>
-                                                <td>
-                                                    Universidad EAN
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th>
-                                                    Página web
-                                                </th>
-                                                <td>
-                                                    www.eanconex.com
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th>
-                                                    Contácto
-                                                </th>
-                                                <td>
-                                                    3012735668
+                                                    {{ item.description }}
                                                 </td>
                                             </tr>
                                             <tr>
@@ -116,16 +86,35 @@
                                     </table>
                                 </div>
                             </div>
-
                             <div class="row">
                                 <div class="col-md-12" style="text-align : right">
 
-                                    <button type="button" data-toggle="modal" data-target="#myModal3" class="btnModal btn btn-default" style="float:left;">
+                                    <button type="button" data-toggle="modal" data-target="#myModalEvent{{ item.id_events }}" class="btnModal btn btn-default" style="float:left;" >
                                         {{ image("img/agreement.png", "style" : " width : 48px")}}
                                     </button>
 
+                                    <div class="modal fade" id="myModalEvent{{ item.id_events }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                      <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            <h4 class="modal-title" id="myModalLabel">Contactar &nbsp; &nbsp;</h4>
+                                          </div>
+                                          <div class="modal-body">
+                                            <textarea name="name" id="msjEvent{{ item.id_events }}" rows="8" cols="40" style="width : 100%;">Escribe un mensaje</textarea>
+                                          </div>
+                                          <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal" >Cancelar</button>
+                                            <button type="button" class="btn btn-success" data-dismiss="modal" onclick="aggrement({{ item.id_events }}, 'event', 'msjEvent{{ item.id_events }}')">Confirmar</button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+
                                     {{ image("img/binoculars.png", "style" : "width : 18px")}}
-                                    <span class="badge">214</span>
+                                    <span class="badge">{{ item.views }}</span>
 
                                     &nbsp;&nbsp;
 
@@ -134,26 +123,23 @@
                                         <span class="badge">10</span>
                                     </button>
 
-                                    &nbsp;&nbsp;
-
-                                    {{ image("img/favorite.png", "style" : "width : 18px")}}
-                                    <span class="badge">5</span>
-
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
             {% endfor %}
 
-            <div class="row">
+            {% for item in products %}
+
+                <div class="row">
+
                 <div class="col-md-12">
-                    <div class="panel panel-success">
+                    <div class="panel panel-default">
                         <div class="panel-heading">
                             <h3 style="margin-top : 3px;">
-                                Almohadas creativas
+                                {{ item.name }}
                             </h3>
                             {{ image("img/barcode.png", "style" : "float:right; margin-top : -35px; width : 32px") }}
                         </div>
@@ -162,531 +148,261 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <p style="text-align : justify">
-                                        Continuamos buscando esos nuevos productos innovadores quizás algo desconocidos para el público general. Aunque cada vez cuesta más trabajo continuar innovando, lo cierto es que nos seguimos sorprendiendo de las originales ideas de estos inventores y emprendedores. La sección de hoy, como podréis observar, es muy variada en cuanto a productos y utilidades.
+
                                     </p>
                                 </div>
                             </div>
 
                             <div class="row">
-                                <div class="col-md-8">
-                                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                                        <!-- Indicators -->
-                                        <ol class="carousel-indicators">
-                                            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                                            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                                            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                                        </ol>
 
-                                        <!-- Wrapper for slides -->
-                                        <div class="carousel-inner" role="listbox">
-                                            <div class="item active">
-                                                {{ image("img/inovatio1.png") }}
-                                                <div class="carousel-caption">
-                                                Almohada Noel
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                {{ image("img/inovatio2.jpg") }}
-                                                <div class="carousel-caption">
-                                                Corchos reutilizables
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                {{ image("img/inovatio3.jpg") }}
-                                                <div class="carousel-caption">
-                                                Tostada pad
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <!-- Controls -->
-                                        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-                                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                                            <span class="sr-only">Previous</span>
-                                        </a>
-                                        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-                                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                                            <span class="sr-only">Next</span>
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-4">
+                                <div class="col-md-12">
                                     <table class="table">
-                                        <thead>
-                                            <th>
-                                                {{ image("img/logo2.png", "style" : "width : 80px") }}
-                                            </th>
-                                            <td>
-                                                <p style="text-align : middle;">Universidad EAN</p>
-                                            </td>
-                                        </thead>
                                         <tbody>
                                             <tr>
                                                 <th>
-                                                    Inventario
+                                                    Slogan
                                                 </th>
                                                 <td>
-                                                    Por demanda
+                                                    {{ item.slogan }}
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <th>
-                                                    Colores
+                                                    Descripción
                                                 </th>
                                                 <td>
-                                                    <ul>
-                                                        <li>Azul</li>
-                                                        <li>Rojo</li>
-                                                        <li>Negro</li>
-                                                    </ul>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th>
-                                                    Página web
-                                                </th>
-                                                <td>
-                                                    www.eanconex.com
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th>
-                                                    Contácto
-                                                </th>
-                                                <td>
-                                                    3012735668
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th>
-                                                    Dirección
-                                                </th>
-                                                <td>
-                                                    Calle 79 # 11 - 45
+                                                    {{ item.description }}
                                                 </td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
-
                             <div class="row">
                                 <div class="col-md-12" style="text-align : right">
 
-                                    <button type="button" data-toggle="modal" data-target="#myModal3" class="btnModal btn btn-default" style="float:left;">
+                                    <button type="button" data-toggle="modal" data-target="#myModalProd{{ item.id_products }}" class="btnModal btn btn-default" style="float:left;" >
                                         {{ image("img/agreement.png", "style" : " width : 48px")}}
                                     </button>
 
+                                    <div class="modal fade" id="myModalProd{{ item.id_products }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                      <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            <h4 class="modal-title" id="myModalLabel">Contactar &nbsp; &nbsp;</h4>
+                                          </div>
+                                          <div class="modal-body">
+                                            <textarea name="name" id="msjProd{{ item.id_products }}" rows="8" cols="40" style="width : 100%;">Escribe un mensaje</textarea>
+                                          </div>
+                                          <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal" >Cancelar</button>
+                                            <button type="button" class="btn btn-success" data-dismiss="modal" onclick="aggrement({{ item.id_products }}, 'prod', 'msjProd{{ item.id_products }}')">Confirmar</button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+
                                     {{ image("img/binoculars.png", "style" : "width : 18px")}}
-                                    <span class="badge">214</span>
+                                    <span class="badge">{{ item.views }}</span>
 
                                     &nbsp;&nbsp;
 
-                                    <button type="button" class="btnModal" data-toggle="modal" data-target="#myModal2">
+                                    <button type="button" class="btnModal" data-toggle="modal" data-target="#myModal">
                                         {{ image("img/speech-bubble.png", "style" : "width : 18px")}}
                                         <span class="badge">10</span>
                                     </button>
 
-                                    &nbsp;&nbsp;
-
-                                    {{ image("img/favorite.png", "style" : "width : 18px")}}
-                                    <span class="badge">5</span>
-
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
+        {% endfor %}
+
+        {% for item in advertisement %}
 
             <div class="row">
-                <div class="col-md-12">
-                    <div class="panel panel-default">
 
-                        <div class="panel-heading">
-                            <h3 style="margin-top : 3px;">
-                                Servicio de mensajería GPS
-                            </h3>
-                            {{ image("img/cart.png", "style" : "float:right; margin-top : -35px; width : 32px") }}
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 style="margin-top : 3px;">
+                            {{ item.name }}
+                        </h3>
+                        {{ image("img/barcode.png", "style" : "float:right; margin-top : -35px; width : 32px") }}
+                    </div>
+                    <div class="panel-body">
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p style="text-align : justify">
+
+                                </p>
+                            </div>
                         </div>
 
-                        <div class="panel-body">
+                        <div class="row">
 
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <p style="text-align : justify">
-                                        Nuestra sólida experiencia nos permite ofrecer soluciones de Tecnologías de Información a
-                                        empresas de diversos sectores e industrias, en las áreas de:
-                                        Integración de profesionales especializados en Tecnologías de Información y Procesos
-                                        de Negocio (Staffing).
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <table class="table">
-                                        <thead>
+                            <div class="col-md-12">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
                                             <th>
-                                                {{ image("http://biclamensajeria.co/img/Logo_Bicla.png") }}
+                                                Publicación
                                             </th>
                                             <td>
-
+                                                {{ item.publish_date }}
                                             </td>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <th>
-                                                    Fecha de publicación
-                                                </th>
-                                                <td>
-                                                    <div class='input-group date' id='datetimepicker1'>
-                                                        <input type='text' class="form-control" />
-                                                        <span class="input-group-addon">
-                                                            <span class="glyphicon glyphicon-calendar"></span>
-                                                        </span>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th>
-                                                    Aplicación GPS
-                                                </th>
-                                                <td>
-                                                    Android y IOS
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th>
-                                                    Valor de servicio mínimo
-                                                </th>
-                                                <td>
-                                                    <ul>
-                                                        <li>5000 &nbsp;$</li>
-                                                        <li>10000 $</li>
-                                                        <li>15000 $</li>
-                                                    </ul>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th>
-                                                    Mensajería en tiempo
-                                                </th>
-                                                <td>
-                                                    Real
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th>
-                                                    Paquetes
-                                                </th>
-                                                <td>
-                                                    15 kg
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th>
-                                                    Documentos
-                                                </th>
-                                                <td>
-                                                    2 kg
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                                <div class="col-md-4">
-                                    <div id="map2" style="width : 230px; height : 420px">
-
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-12" style="text-align : right">
-
-                                    <button type="button" data-toggle="modal" data-target="#myModal3" class="btnModal btn btn-default" style="float:left;">
-                                        {{ image("img/agreement.png", "style" : " width : 48px")}}
-                                    </button>
-
-                                    {{ image("img/binoculars.png", "style" : "width : 18px")}}
-                                    <span class="badge">214</span>
-
-                                    &nbsp;&nbsp;
-
-                                    {{ image("img/speech-bubble.png", "style" : "width : 18px")}}
-                                    <span class="badge">10</span>
-
-                                    &nbsp;&nbsp;
-
-                                    {{ image("img/favorite.png", "style" : "width : 18px")}}
-                                    <span class="badge">5</span>
-
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="panel panel-warning">
-
-                        <div class="panel-heading">
-                            <h3 style="margin-top : 3px;">
-                                Paquete turistico - Go Colombia
-                            </h3>
-                            {{ image("img/truck.png", "style" : "float:right; margin-top : -35px; width : 32px") }}
-                        </div>
-
-                        <div class="panel-body">
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <p style="text-align : justify">
-                                        Continuamos buscando esos nuevos productos innovadores quizás algo desconocidos para el público general. Aunque cada vez cuesta más trabajo continuar innovando, lo cierto es que nos seguimos sorprendiendo de las originales ideas de estos inventores y emprendedores. La sección de hoy, como podréis observar, es muy variada en cuanto a productos y utilidades.
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                                        <!-- Indicators -->
-                                        <ol class="carousel-indicators">
-                                            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                                            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                                            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                                        </ol>
-
-                                        <!-- Wrapper for slides -->
-                                        <div class="carousel-inner" role="listbox">
-                                            <div class="item active">
-                                                {{ image("img/ex1.jpg") }}
-                                                <div class="carousel-caption">
-                                                Almohada Noel
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                {{ image("img/ex2.jpg") }}
-                                                <div class="carousel-caption">
-                                                Corchos reutilizables
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                {{ image("img/ex2.jpg") }}
-                                                <div class="carousel-caption">
-                                                Tostada pad
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <!-- Controls -->
-                                        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-                                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                                            <span class="sr-only">Previous</span>
-                                        </a>
-                                        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-                                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                                            <span class="sr-only">Next</span>
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-8">
-                                    <table class="table">
-                                        <thead>
-                                            <th colspan="2">
-                                                {{ image("img/truck.png", "style" : "width : 80px") }}
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                Descripción
                                             </th>
-                                            <td colspan="2">
-                                                <p style="text-align : middle;">Go Colombia</p>
+                                            <td>
+                                                {{ item.description }}
                                             </td>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <th>
-                                                    Paquete
-                                                </th>
-                                                <th>
-                                                    Personas
-                                                </th>
-                                                <th>
-                                                    Horario
-                                                </th>
-                                                <th>
-                                                    Días Hábiles
-                                                </th>
-                                                <th>
-                                                    Precio
-                                                </th>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    2 Días
-                                                </td>
-                                                <td>
-                                                    5
-                                                </td>
-                                                <td>
-                                                    6am - 12pm
-                                                </td>
-                                                <td>
-                                                    S - D
-                                                </td>
-                                                <td>
-                                                    120 . 000
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    2 Días
-                                                </td>
-                                                <td>
-                                                    5
-                                                </td>
-                                                <td>
-                                                    6am - 12pm
-                                                </td>
-                                                <td>
-                                                    S - D
-                                                </td>
-                                                <td>
-                                                    120 . 000
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    2 Días
-                                                </td>
-                                                <td>
-                                                    5
-                                                </td>
-                                                <td>
-                                                    6am - 12pm
-                                                </td>
-                                                <td>
-                                                    S - D
-                                                </td>
-                                                <td>
-                                                    120 . 000
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12" style="text-align : right">
 
-                            <div class="row">
-                                <div class="col-md-12" style="text-align : right">
+                                <button type="button" data-toggle="modal" data-target="#myModalAdv{{ item.id_advertisement }}" class="btnModal btn btn-default" style="float:left;" >
+                                    {{ image("img/agreement.png", "style" : " width : 48px")}}
+                                </button>
 
-                                    <button type="button" data-toggle="modal" data-target="#myModal3" class="btnModal btn btn-default" style="float:left;">
-                                        {{ image("img/agreement.png", "style" : " width : 48px")}}
-                                    </button>
+                                <div class="modal fade" id="myModalAdv{{ item.id_advertisement }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                  <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        <h4 class="modal-title" id="myModalLabel">Contactar &nbsp; &nbsp;</h4>
+                                      </div>
+                                      <div class="modal-body">
+                                        <textarea name="name" id="msjAdv{{ item.id_advertisement }}" rows="8" cols="40" style="width : 100%;">Escribe un mensaje</textarea>
+                                      </div>
+                                      <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                        <button type="button" class="btn btn-success" data-dismiss="modal" onclick="aggrement({{ item.id_advertisement }}, 'adv', 'msjAdv{{ item.id_advertisement }}')">Confirmar</button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
 
-                                    {{ image("img/binoculars.png", "style" : "width : 18px")}}
-                                    <span class="badge">214</span>
+                                {{ image("img/binoculars.png", "style" : "width : 18px")}}
+                                <span class="badge">{{ item.views }}</span>
 
-                                    &nbsp;&nbsp;
+                                &nbsp;&nbsp;
 
+                                <button type="button" class="btnModal" data-toggle="modal" data-target="#myModal">
                                     {{ image("img/speech-bubble.png", "style" : "width : 18px")}}
                                     <span class="badge">10</span>
+                                </button>
 
-                                    &nbsp;&nbsp;
-
-                                    {{ image("img/favorite.png", "style" : "width : 18px")}}
-                                    <span class="badge">5</span>
-
-                                </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
-        <div class="col-md-3">
+    {% endfor %}
 
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <a class="twitter-timeline" href="https://twitter.com/phalcondroid">Tweets by phalcondroid</a>
+    {% for item in services %}
+
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 style="margin-top : 3px;">
+                            {{ item.name }}
+                        </h3>
+                        {{ image("img/barcode.png", "style" : "float:right; margin-top : -35px; width : 32px") }}
+                    </div>
+                    <div class="panel-body">
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p style="text-align : justify">
+
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-12">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <th>
+                                                Descripción
+                                            </th>
+                                            <td>
+                                                {{ item.description }}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12" style="text-align : right">
+
+                                <button type="button" data-toggle="modal" data-target="#myModalServ{{ item.id_service }}" class="btnModal btn btn-default" style="float:left;" >
+                                    {{ image("img/agreement.png", "style" : " width : 48px")}}
+                                </button>
+
+                                <div class="modal fade" id="myModalServ{{ item.id_service }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                  <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        <h4 class="modal-title" id="myModalLabel">Contactar &nbsp; &nbsp;</h4>
+                                      </div>
+                                      <div class="modal-body">
+                                        <textarea name="name" id="msjServ{{ item.id_service }}" rows="8" cols="40" style="width : 100%;">Escribe un mensaje</textarea>
+                                      </div>
+                                      <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                        <button type="button" class="btn btn-success" data-dismiss="modal" onclick="aggrement({{ item.id_service }}, 'adv', 'msjServ{{ item.id_service }}')">Confirmar</button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                {{ image("img/binoculars.png", "style" : "width : 18px")}}
+                                <span class="badge">{{ item.views }}</span>
+
+                                &nbsp;&nbsp;
+
+                                <button type="button" class="btnModal" data-toggle="modal" data-target="#myModal">
+                                    {{ image("img/speech-bubble.png", "style" : "width : 18px")}}
+                                    <span class="badge">10</span>
+                                </button>
+
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
+    {% endfor %}
     </div>
-</div>
-
-<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-        <h4 class="modal-title" id="myModalLabel">Confirmar acuerdo comercial</h4>
-      </div>
-      <div class="modal-body">
-        <textarea name="name" rows="8" cols="40" style="width : 100%;">Escribe un mensaje</textarea>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-success" id="btnAggrement">Confirmar</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-        <h4 class="modal-title" id="myModalLabel">Confirmar asistencia</h4>
-      </div>
-      <div class="modal-body">
-        <textarea name="name" rows="8" cols="40" style="width : 100%;">Escribe un mensaje</textarea>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-success">Confirmar</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Confirmar acuerdo comercial</h4>
-      </div>
-      <div class="modal-body">
-        <textarea name="name" rows="8" cols="40" style="width : 100%;">Escribe un mensaje</textarea>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-success">Confirmar Acuerdo</button>
-      </div>
-    </div>
-  </div>
 </div>
 
 {{ assets.outputJs("deal") }}
+
 <script>
 
     Pusher.logToConsole = true;
@@ -721,17 +437,19 @@
         });
     });
 
-    window.load = function () {
-        $(function () {
-            $('#datetimepicker1').datetimepicker();
-
-            $("#btnAggrement").click(function() {
-                $.ajax({
-                    "url" : "{{ url("deal/pusher") }}",
-                });
-            });
+    function aggrement(id, type, message) {
+        $.ajax({
+            "url" : "{{ url("deals/aggrement") }}",
+            "type": "post",
+            "data" : {
+                "id" : id,
+                "type" : type,
+                "message" : $("#" + message).val()
+            }
+        }).done(function (response) {
+            console.log(response);
         });
-    };
+    }
 
     function initMap() {
 
@@ -740,14 +458,9 @@
             center: {lat: 44.540, lng: -78.546},
             zoom: 8
         });
-
-        var mapDiv2 = document.getElementById('map2');
-        var map2 = new google.maps.Map(mapDiv2, {
-            center: {lat: 44.540, lng: -78.546},
-            zoom: 8
-        });
     }
 
 </script>
 
-<script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGNsm6WSTUNTdoPh4PSbxjkY8DrQU6zww&signed_in=true&region=co&libraries=places&callback=initMap"
+            async defer></script>

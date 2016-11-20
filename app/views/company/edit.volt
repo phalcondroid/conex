@@ -46,7 +46,7 @@
                             Descripción
                         </th>
                         <th>
-                            <textarea name="description" class="form-control" rows="8" cols="40" style="width : 100%;">{{ company.getDescription() }}</textarea>
+                            <textarea name="description" id="description" class="form-control" rows="8" cols="40" style="width : 100%;">{{ company.getDescription() }}</textarea>
                         </th>
                     </tr>
                     <tr>
@@ -273,6 +273,8 @@ $(function () {
     $("#register_year").datepicker({
         dateFormat: "yy-mm-dd"
     });
+
+    $("#description").jqte();
 });
 
 var autocomplete, marker;

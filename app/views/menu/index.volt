@@ -61,12 +61,9 @@
                     </a>
                 </td>
                 <td>
-                    {{ form("menu/delete", "method" : "post") }}
-                        {{ hidden_field("", "value" : item.id_role,  "name" : "value") }}
-                        <button class="btn btn-danger" type="submit">
-                            <i class="glyphicon glyphicon-trash"></i>
-                        </button>
-                    {{ end_form() }}
+                    <a class="btn btn-danger" href="{{ url("menu/delete/" ~ item.id_menu) }}">
+                        <i class="glyphicon glyphicon-trash"></i>
+                    </a>
                 </td>
             </tr>
         {% endfor %}

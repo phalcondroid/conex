@@ -107,11 +107,9 @@
 {{ end_Form() }}
 
 <script type="text/javascript">
-    window.onload = function () {
-        $(function () {
-            $("#birthday").datepicker({
-                format: 'yyyy-mm-dd'
-            });
+    $(function () {
+        $("#birthday").datepicker({
+            dateFormat : "yy-mm-dd"
         });
-    }
+    })
 </script>
