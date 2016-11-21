@@ -131,6 +131,17 @@ $di->set('assets', function () {
     $assetsManager->collection("css")->addCss("css/jquery-ui.theme.min.css");
     $assetsManager->collection("css")->addCss("css/jquery-ui.structure.min.css");
 
+    $assetsManager->collection("font")->addCss("font-awesome/css/font-awesome.min.css");
+
+    $assetsManager->collection("landing-css")->addCss("css/animate.min.css");
+    $assetsManager->collection("landing-css")->addCss("css/style.css");
+
+    $assetsManager->collection("landing")->addJs("js/classie.js");
+    $assetsManager->collection("landing")->addJs("js/wow.min.js");
+    $assetsManager->collection("landing")->addJs("js/inspinia.js");
+    $assetsManager->collection("landing")->addJs("js/pace.min.js");
+    $assetsManager->collection("landing")->addJs("js/cbpAnimatedHeader.js");
+
     return $assetsManager;
 }, true);
 

@@ -1,77 +1,39 @@
-<style media="screen">
-    html {
-        width: 100%;
-        background : url('{{ url("img/bg_empresa.jpg") }}');
-        background-repeat: no-repeat;
-        background-size: 100%;
-    }
-</style>
-<!-- Begin page content -->
-<div class="container">
+
+<div class="loginColumns animated fadeInDown">
     <div class="row">
+
         <div class="col-md-6">
+            <h2 class="font-bold">Bienvenido <br>emprendedor</h2>
+
+            <p>
+                Nuestra plataforma está lista para ti
+            </p>
+
         </div>
         <div class="col-md-6">
-            <div class="panel panel-default" style="margin-top : 150px; background-color : #e6e6e6;">
-                <div class="panel-body">
-                    <div class="" style="background-color : #444444; margin : -16px;">
-                        {{ image("http://ean.edu.co/images/layout/logo.svg", "style" : "width : 70px; margin : 20px;") }}
+            <div class="ibox-content">
+                <form class="m-t" role="form" action="{{ url('index/index') }}" method="post">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="usuario" required="" name="user">
                     </div>
-                    <form class="form-horizontal" style="margin-top : 45px; " action="{{ url('index/index') }}" method="post">
-                        <div class="form-group" style="margin-left : 15px; margin-rigth:15px;">
-                            <div class="col-sm-12">
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="glyphicon glyphicon-user"></i>
-                                    </div>
-                                    <input type="text" class="form-control" name="user" id="exampleInputAmount" placeholder="Usuario">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group" style="margin-left : 15px; margin-rigth:25px;">
-                            <div class="col-sm-12">
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="glyphicon glyphicon-lock"></i>
-                                    </div>
-                                    <input type="password" class="form-control" name="pass" id="exampleInputAmount" placeholder="Contraseña">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-12" style="margin-left : 25px; margin-right: 25px;">
-                                <div class="checkbox">
-                                    <label>
-                                      <input type="checkbox"> Remember me
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group" style="margin-left : 15px; margin-right:15px;">
-                            <div class="col-sm-12">
-                                <button type="submit" class="btn btn-success" id="login">
-                                    <i class="glyphicon glyphicon-floppy-disk"></i>
-                                    Ingresar
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="contraseña" required="" name="pass">
+                    </div>
+                    <button type="submit" class="btn btn-primary block full-width m-b">Ingresar</button>
+
+                    <a href="#">
+                        <small>Olvidaste tu contraseña?</small>
+                    </a>
+
+                    <p class="text-muted text-center">
+                        <small>No tienes cuenta?</small>
+                    </p>
+                    <a class="btn btn-sm btn-white btn-block" href="register.html">Solicita acceso eanista</a>
+                </form>
+                <p class="m-t">
+                    <small>Ean software developers &copy; 2017</small>
+                </p>
             </div>
         </div>
     </div>
 </div>
-
-<footer class="footer">
-  <div class="container">
-    <p class="text-muted">
-        Universidad EAN 2016, Julián Arturo Molina Castiblanco
-    </p>
-  </div>
-</footer>
-
-<script type="text/javascript">
-    window.onload = function () {
-
-    }
-</script>
