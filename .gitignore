@@ -1,2 +1,3 @@
 app/library/*
 app/cache/*
+app/config/config.php
