@@ -1,34 +1,22 @@
-<style media="screen">
-    .btnModal {
-        background:none;
-        box-shadow:none;
-        border:none;
-    }
-</style>
-
-<div class="container" style="">
-
-    <div class="row">
-        <div class="col-md-12">
-            &nbsp;
-        </div>
+<div class="row">
+    <div class="col-md-12">
+        &nbsp;
     </div>
-    <div class="row">
-        <div class="col-md-12">
+</div>
+<div class="row">
+    <div class="col-md-9">
 
-            <?php foreach ($events as $item) { ?>
-
-                <div class="row">
-
+        <?php foreach ($events as $item) { ?>
+            <div class="row">
                 <div class="col-md-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
                             <h3 style="margin-top : 3px;">
                                 <?= $item->name ?>
                             </h3>
                             <?= $this->tag->image(['img/calendar.png', 'style' => 'float:right; margin-top : -35px; width : 32px']) ?>
                         </div>
-                        <div class="panel-body">
+                        <div class="ibox-content">
 
                             <div class="row">
                                 <div class="col-md-12">
@@ -86,11 +74,13 @@
                                     </table>
                                 </div>
                             </div>
+                        </div>
+                        <div class="ibox-footer">
                             <div class="row">
                                 <div class="col-md-12" style="text-align : right">
 
                                     <button type="button" data-toggle="modal" data-target="#myModalEvent<?= $item->id_events ?>" class="btnModal btn btn-default" style="float:left;" >
-                                        <?= $this->tag->image(['img/agreement.png', 'style' => ' width : 48px']) ?>
+                                        <?= $this->tag->image(['img/agreement.png', 'style' => ' width : 30px']) ?>
                                     </button>
 
                                     <div class="modal fade" id="myModalEvent<?= $item->id_events ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -129,113 +119,109 @@
                     </div>
                 </div>
             </div>
-            <?php } ?>
-
-            <?php foreach ($products as $item) { ?>
-
-                <div class="row">
-
-                <div class="col-md-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 style="margin-top : 3px;">
-                                <?= $item->name ?>
-                            </h3>
-                            <?= $this->tag->image(['img/barcode.png', 'style' => 'float:right; margin-top : -35px; width : 32px']) ?>
-                        </div>
-                        <div class="panel-body">
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <p style="text-align : justify">
-
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="row">
-
-                                <div class="col-md-12">
-                                    <table class="table">
-                                        <tbody>
-                                            <tr>
-                                                <th>
-                                                    Slogan
-                                                </th>
-                                                <td>
-                                                    <?= $item->slogan ?>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th>
-                                                    Descripción
-                                                </th>
-                                                <td>
-                                                    <?= $item->description ?>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12" style="text-align : right">
-
-                                    <button type="button" data-toggle="modal" data-target="#myModalProd<?= $item->id_products ?>" class="btnModal btn btn-default" style="float:left;" >
-                                        <?= $this->tag->image(['img/agreement.png', 'style' => ' width : 48px']) ?>
-                                    </button>
-
-                                    <div class="modal fade" id="myModalProd<?= $item->id_products ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                      <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                          <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                            <h4 class="modal-title" id="myModalLabel">Contactar &nbsp; &nbsp;</h4>
-                                          </div>
-                                          <div class="modal-body">
-                                            <textarea name="name" id="msjProd<?= $item->id_products ?>" rows="8" cols="40" style="width : 100%;">Escribe un mensaje</textarea>
-                                          </div>
-                                          <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal" >Cancelar</button>
-                                            <button type="button" class="btn btn-success" data-dismiss="modal" onclick="aggrement(<?= $item->id_products ?>, 'prod', 'msjProd<?= $item->id_products ?>')">Confirmar</button>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-
-                                    <?= $this->tag->image(['img/binoculars.png', 'style' => 'width : 18px']) ?>
-                                    <span class="badge"><?= $item->views ?></span>
-
-                                    &nbsp;&nbsp;
-
-                                    <button type="button" class="btnModal" data-toggle="modal" data-target="#myModal">
-                                        <?= $this->tag->image(['img/speech-bubble.png', 'style' => 'width : 18px']) ?>
-                                        <span class="badge">10</span>
-                                    </button>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         <?php } ?>
 
-        <?php foreach ($advertisement as $item) { ?>
-
+        <?php foreach ($products as $item) { ?>
             <div class="row">
-
-            <div class="col-md-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
+                <div class="col-md-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
                         <h3 style="margin-top : 3px;">
                             <?= $item->name ?>
                         </h3>
                         <?= $this->tag->image(['img/barcode.png', 'style' => 'float:right; margin-top : -35px; width : 32px']) ?>
                     </div>
-                    <div class="panel-body">
+                    <div class="ibox-content">
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p style="text-align : justify">
+
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-12">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <th>
+                                                Slogan
+                                            </th>
+                                            <td>
+                                                <?= $item->slogan ?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                Descripción
+                                            </th>
+                                            <td>
+                                                <?= $item->description ?>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12" style="text-align : right">
+
+                                <button type="button" data-toggle="modal" data-target="#myModalProd<?= $item->id_products ?>" class="btnModal btn btn-default" style="float:left;" >
+                                    <?= $this->tag->image(['img/agreement.png', 'style' => ' width : 48px']) ?>
+                                </button>
+
+                                <div class="modal fade" id="myModalProd<?= $item->id_products ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                  <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        <h4 class="modal-title" id="myModalLabel">Contactar &nbsp; &nbsp;</h4>
+                                      </div>
+                                      <div class="modal-body">
+                                        <textarea name="name" id="msjProd<?= $item->id_products ?>" rows="8" cols="40" style="width : 100%;">Escribe un mensaje</textarea>
+                                      </div>
+                                      <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal" >Cancelar</button>
+                                        <button type="button" class="btn btn-success" data-dismiss="modal" onclick="aggrement(<?= $item->id_products ?>, 'prod', 'msjProd<?= $item->id_products ?>')">Confirmar</button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <?= $this->tag->image(['img/binoculars.png', 'style' => 'width : 18px']) ?>
+                                <span class="badge"><?= $item->views ?></span>
+
+                                &nbsp;&nbsp;
+
+                                <button type="button" class="btnModal" data-toggle="modal" data-target="#myModal">
+                                    <?= $this->tag->image(['img/speech-bubble.png', 'style' => 'width : 18px']) ?>
+                                    <span class="badge">10</span>
+                                </button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        <?php } ?>
+
+        <?php foreach ($advertisement as $item) { ?>
+            <div class="row">
+                <div class="col-md-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h3 style="margin-top : 3px;">
+                            <?= $item->name ?>
+                        </h3>
+                        <?= $this->tag->image(['img/barcode.png', 'style' => 'float:right; margin-top : -35px; width : 32px']) ?>
+                    </div>
+                    <div class="ibox-content">
 
                         <div class="row">
                             <div class="col-md-12">
@@ -312,95 +298,106 @@
                     </div>
                 </div>
             </div>
-        </div>
-    <?php } ?>
+            </div>
+        <?php } ?>
 
-    <?php foreach ($services as $item) { ?>
-
-        <div class="row">
-
-            <div class="col-md-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 style="margin-top : 3px;">
-                            <?= $item->name ?>
-                        </h3>
-                        <?= $this->tag->image(['img/barcode.png', 'style' => 'float:right; margin-top : -35px; width : 32px']) ?>
-                    </div>
-                    <div class="panel-body">
-
-                        <div class="row">
-                            <div class="col-md-12">
-                                <p style="text-align : justify">
-
-                                </p>
-                            </div>
+        <?php foreach ($services as $item) { ?>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h3 style="margin-top : 3px;">
+                                <?= $item->name ?>
+                            </h3>
+                            <?= $this->tag->image(['img/barcode.png', 'style' => 'float:right; margin-top : -35px; width : 32px']) ?>
                         </div>
+                        <div class="ibox-content">
 
-                        <div class="row">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p style="text-align : justify">
 
-                            <div class="col-md-12">
-                                <table class="table">
-                                    <tbody>
-                                        <tr>
-                                            <th>
-                                                Descripción
-                                            </th>
-                                            <td>
-                                                <?= $item->description ?>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12" style="text-align : right">
 
-                                <button type="button" data-toggle="modal" data-target="#myModalServ<?= $item->id_service ?>" class="btnModal btn btn-default" style="float:left;" >
-                                    <?= $this->tag->image(['img/agreement.png', 'style' => ' width : 48px']) ?>
-                                </button>
+                            <div class="row">
 
-                                <div class="modal fade" id="myModalServ<?= $item->id_service ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                  <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                      <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                        <h4 class="modal-title" id="myModalLabel">Contactar &nbsp; &nbsp;</h4>
-                                      </div>
-                                      <div class="modal-body">
-                                        <textarea name="name" id="msjServ<?= $item->id_service ?>" rows="8" cols="40" style="width : 100%;">Escribe un mensaje</textarea>
-                                      </div>
-                                      <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                                        <button type="button" class="btn btn-success" data-dismiss="modal" onclick="aggrement(<?= $item->id_service ?>, 'adv', 'msjServ<?= $item->id_service ?>')">Confirmar</button>
+                                <div class="col-md-12">
+                                    <table class="table">
+                                        <tbody>
+                                            <tr>
+                                                <th>
+                                                    Descripción
+                                                </th>
+                                                <td>
+                                                    <?= $item->description ?>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12" style="text-align : right">
+
+                                    <button type="button" data-toggle="modal" data-target="#myModalServ<?= $item->id_service ?>" class="btnModal btn btn-default" style="float:left;" >
+                                        <?= $this->tag->image(['img/agreement.png', 'style' => ' width : 48px']) ?>
+                                    </button>
+
+                                    <div class="modal fade" id="myModalServ<?= $item->id_service ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                      <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            <h4 class="modal-title" id="myModalLabel">Contactar &nbsp; &nbsp;</h4>
+                                          </div>
+                                          <div class="modal-body">
+                                            <textarea name="name" id="msjServ<?= $item->id_service ?>" rows="8" cols="40" style="width : 100%;">Escribe un mensaje</textarea>
+                                          </div>
+                                          <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                            <button type="button" class="btn btn-success" data-dismiss="modal" onclick="aggrement(<?= $item->id_service ?>, 'adv', 'msjServ<?= $item->id_service ?>')">Confirmar</button>
+                                          </div>
+                                        </div>
                                       </div>
                                     </div>
-                                  </div>
+
+                                    <?= $this->tag->image(['img/binoculars.png', 'style' => 'width : 18px']) ?>
+                                    <span class="badge"><?= $item->views ?></span>
+
+                                    &nbsp;&nbsp;
+
+                                    <button type="button" class="btnModal" data-toggle="modal" data-target="#myModal">
+                                        <?= $this->tag->image(['img/speech-bubble.png', 'style' => 'width : 18px']) ?>
+                                        <span class="badge">10</span>
+                                    </button>
+
                                 </div>
-
-                                <?= $this->tag->image(['img/binoculars.png', 'style' => 'width : 18px']) ?>
-                                <span class="badge"><?= $item->views ?></span>
-
-                                &nbsp;&nbsp;
-
-                                <button type="button" class="btnModal" data-toggle="modal" data-target="#myModal">
-                                    <?= $this->tag->image(['img/speech-bubble.png', 'style' => 'width : 18px']) ?>
-                                    <span class="badge">10</span>
-                                </button>
-
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        <?php } ?>
+    </div>
+    <div class="col-md-3">
+        <div class="chat-users" style="margin-left:2%; margin-top:1%; height:100%; background-color:white;">
+            <div class="users-list" id="deal_list">
+                <?php foreach ($aggrements as $item) { ?>
+                    <div class="chat-user">
+                        <img class="chat-avatar" src="<?= $this->url->get($item->Users->avatar) ?>" alt="" >
+                        <div class="chat-user-name">
+                            <a href="#" class="truncate"><?= $item->message ?></a>
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
         </div>
-    <?php } ?>
     </div>
 </div>
-
 <?= $this->assets->outputJs('deal') ?>
 
 <script>
@@ -417,6 +414,7 @@
             $("#aggrementsBadge").html(
                 parseInt($("#aggrementsBadge").html()) + 1
             );
+
         });
     });
 
@@ -426,6 +424,16 @@
             $("#noticeBadge").html(
                 parseInt($("#noticeBadge").html()) + 1
             );
+            $.ajax({
+                "url" : "<?= $this->url->get('deals/getJsonDeals') ?>",
+                "type" : "post",
+                "data" : {
+
+                }
+            }).done(function (response) {
+                console.log(response);
+            });
+
         });
     });
 

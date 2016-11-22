@@ -8,6 +8,10 @@ class IndexController extends ControllerBase
      */
     public function indexAction()
     {
+        $this->view->companies = Company::find(array(
+            "limit" => 3
+        ));
+
         if ($this->request->isPost()) {
 
             $username = $this->request->getPost("user", array(

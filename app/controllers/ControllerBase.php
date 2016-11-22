@@ -23,6 +23,26 @@ class ControllerBase extends Controller
 
         if ($this->session->get("user")) {
 
+            $this->view->countMessages = Deal::count(array(
+                "conditions" => "id_users = ?0",
+                "bind" => array(
+                    0 => (int) $this->session->get("user")->id_users
+                )
+            ));
+            $this->view->messages      = Deal::find(array(
+                "conditions" => "id_users = ?0",
+                "bind" => array(
+                    0 => (int) $this->session->get("user")->id_users
+                ),
+                "limit" => 10,
+                "order" => "id_deal desc"
+            ));
+
+            $this->view->lastDeals = Deal::find(array(
+                "limit" => 10,
+                "order" => "id_deal desc"
+            ));
+
             $user = $this->session->get("user");
 
             try {
