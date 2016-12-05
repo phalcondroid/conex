@@ -6,6 +6,9 @@ use Phalcon\Acl\Resource;
 use Phalcon\Mvc\Controller;
 use Phalcon\Acl\Adapter\Memory as AclList;
 
+/**
+ *
+ */
 class ControllerBase extends Controller
 {
 

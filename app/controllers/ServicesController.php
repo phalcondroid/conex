@@ -52,7 +52,7 @@ class ServicesController extends ControllerBase
      */
     public function createProductAction()
     {
-        $this->view->productType     = productType::find();
+        $this->view->productType     = ProductType::find();
         $this->view->productCapacity = ProductCapacity::find();
 
         if ($this->request->isPost()) {
