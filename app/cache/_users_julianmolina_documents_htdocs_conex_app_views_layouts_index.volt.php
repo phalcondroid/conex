@@ -13,7 +13,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="#" style="text-align:center">
-                        <img style="text-align:center; margin: 0 auto;" src="<?= $this->url->get('img/logo') ?>" style="width:30px" />
+                        <img style="text-align:center; margin: 0 auto;" src="<?= $this->url->get('img/logo.svg') ?>" style="width:30px" />
                     </a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">

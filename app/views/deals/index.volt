@@ -10,11 +10,11 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="ibox float-e-margins">
-                        <div class="ibox-title">
-                            <h3 style="margin-top : 3px;">
+                        <div class="ibox-title" style="background-color: #7F1347;">
+                            <h3 style="margin-top : 3px; color: white;">
                                 {{ item.name }}
                             </h3>
-                            {{ image("img/calendar.png", "style" : "float:right; margin-top : -35px; width : 32px") }}
+                            {{ image("img/event.png", "style" : "float:right; margin-top : -35px; width : 32px") }}
                         </div>
                         <div class="ibox-content">
 
@@ -125,8 +125,8 @@
             <div class="row">
                 <div class="col-md-12">
                 <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <h3 style="margin-top : 3px;">
+                    <div class="ibox-title" style="background-color:#CCD00A;">
+                        <h3 style="margin-top : 3px;color: white;">
                             {{ item.name }}
                         </h3>
                         {{ image("img/barcode.png", "style" : "float:right; margin-top : -35px; width : 32px") }}
@@ -215,11 +215,11 @@
             <div class="row">
                 <div class="col-md-12">
                 <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <h3 style="margin-top : 3px;">
+                    <div class="ibox-title" style="background-color:#024241;">
+                        <h3 style="margin-top : 3px; color: white;">
                             {{ item.name }}
                         </h3>
-                        {{ image("img/barcode.png", "style" : "float:right; margin-top : -35px; width : 32px") }}
+                        {{ image("img/anuncio.png","style" : "float:right; margin-top : -35px; width : 32px") }}
                     </div>
                     <div class="ibox-content">
 
@@ -305,11 +305,11 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="ibox float-e-margins">
-                        <div class="ibox-title">
-                            <h3 style="margin-top : 3px;">
+                        <div class="ibox-title" style="background-color:#FFA913">
+                            <h3 style="margin-top : 3px; color: white;">
                                 {{ item.name }}
                             </h3>
-                            {{ image("img/barcode.png", "style" : "float:right; margin-top : -35px; width : 32px") }}
+                            {{ image("img/service.png", "style" : "float:right; margin-top : -35px; width : 32px") }}
                         </div>
                         <div class="ibox-content">
 

@@ -33,7 +33,7 @@ class CompanyController extends ControllerBase
         $companyAssets   = CompanyAssets::find();
         $employeeNumber  = EmployeeNumber::find();
         $companySector   = CompanySector::find();
-        $companyPosition = companyPosition::find();
+        $companyPosition = CompanyPosition::find();
         $sizeCompany     = SizeCompany::find();
         $legalConstitution = LegalConstitution::find();
         $coverage        = Coverage::find();
@@ -149,7 +149,7 @@ class CompanyController extends ControllerBase
             $companyAssets   = CompanyAssets::find();
             $employeeNumber  = EmployeeNumber::find();
             $companySector   = CompanySector::find();
-            $companyPosition = companyPosition::find();
+            $companyPosition = CompanyPosition::find();
             $sizeCompany     = SizeCompany::find();
             $legalConstitution = LegalConstitution::find();
             $coverage        = Coverage::find();

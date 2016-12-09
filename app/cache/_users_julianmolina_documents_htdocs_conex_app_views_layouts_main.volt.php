@@ -12,7 +12,7 @@
                             <i class="fa fa-reorder"></i>
                         </button>
                         <a href="<?= $this->url->get('deals/index') ?>" class="navbar-brand">
-                            <img style="text-align:center; margin: 0 auto; width:40px; margin-top:-20%;" src="<?= $this->url->get('img/logo') ?>"  />
+                            <img style="text-align:center; margin: 0 auto; width:40px; margin-top:-20%;" src="<?= $this->url->get('img/logo.svg') ?>"  />
                         </a>
                     </div>
                     <div class="navbar-collapse collapse" id="navbar">
@@ -118,7 +118,7 @@
             <div class="">
                 <?= $this->getContent() ?>
             </div>
-            <div class="footer">
+            <div class="footer" style="margin-top : 100px;">
                 <div class="pull-right">
                     10GB of <strong>250GB</strong> Free.
                 </div>
@@ -129,5 +129,3 @@
         </div>
     </div>
 </body>
-
-
