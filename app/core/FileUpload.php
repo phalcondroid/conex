@@ -19,7 +19,7 @@ class FileUpload
                 if ($file->getSize() > self::SIZE_LIMIT) {
                     return self::SIZE_ERROR;
                 } else {
-                    $baseName = $customPath . basename($file->getName());
+                    $baseName = $customPath . basename(uniqid() . $file->getName());
                     $path = APP_PATH . $baseName;
                     if (move_uploaded_file($file->getTempName(), $path)) {
                         return str_replace("/public", "", $baseName);
@@ -46,7 +46,7 @@ class FileUpload
                 if ($file->getSize() > self::SIZE_LIMIT) {
 
                 } else {
-                    $baseName = $customPath . basename($file->getName());
+                    $baseName = $customPath . basename(uniqid() . $file->getName());
                     $path = APP_PATH . $baseName;
                     if (move_uploaded_file($file->getTempName(), $path)) {
                         $result[] = str_replace("/public", "", $baseName);

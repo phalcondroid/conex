@@ -1,9 +1,9 @@
 
-<?= $this->tag->form(['services/createService', 'method' => 'post', 'enctype' => 'multipart/form-data']) ?>
+{{ form("services/edit/" ~ service.id_service, "method" : "post", "enctype" : "multipart/form-data") }}
 
-    <h2>Nuevo servicio</h2>
+    <h2>Editar servicio</h2>
 
-    <a href="<?= $this->url->get('services/index') ?>" class="btn btn-danger pull-right">
+    <a href="{{ url("services/index") }}" class="btn btn-danger pull-right">
         <i class="glyphicon glyphicon-share-alt"></i>
         Volver
     </a>
@@ -20,7 +20,7 @@
                             <div class="row">
                                 <div class="col-xs-12 col-md-12">
                                     <a href="#" class="thumbnail">
-                                        <?= $this->tag->image(['img/emptyimg.png', 'style' => 'width : 180px; height : 160px;']) ?>
+                                        {{ image(service.logo, "style" : "width : 180px; height : 160px;") }}
                                     </a>
                                 </div>
                             </div>
@@ -38,11 +38,15 @@
                         <th>
                             <select class="form-control" name="serviceType">
                                 <option>......</option>
-                                <?php foreach ($serviceType as $item) { ?>
-                                    <option value="<?= $item->id_service_type ?>">
-                                        <?= $item->service_type ?>
+                                {% for item in serviceType %}
+                                    {% set selected = "" %}
+                                    {% if item.id_service_type == service.id_service_type %}
+                                        {% set selected = "selected" %}
+                                    {% endif %}
+                                    <option {{ selected }} value="{{ item.id_service_type }}">
+                                        {{ item.service_type }}
                                     </option>
-                                <?php } ?>
+                                {% endfor %}
                             </select>
                         </th>
                     </tr>
@@ -51,11 +55,15 @@
                         <th>
                              <select class="form-control" name="company">
                                 <option>......</option>
-                                <?php foreach ($companies as $item) { ?>
-                                    <option value="<?= $item->id_company ?>">
-                                        <?= $item->name ?>
+                                {% for item in companies %}
+                                    {% set selected = "" %}
+                                    {% if item.id_company == service.id_company %}
+                                        {% set selected = "selected" %}
+                                    {% endif %}
+                                    <option {{selected}} value="{{ item.id_company }}">
+                                        {{ item.name }}
                                     </option>
-                                <?php } ?>
+                                {% endfor %}
                             </select>
                         </th>
                     </tr>
@@ -64,7 +72,7 @@
                             Nombre
                         </th>
                         <th>
-                            <input type="text" name="name" value="" class="form-control">
+                            <input type="text" name="name" value="{{ service.name }}" class="form-control">
                         </th>
                     </tr>
                     <tr>
@@ -72,22 +80,16 @@
                             Descripción
                         </th>
                         <th>
-                            <textarea class="form-control" name="description" id="description" rows="8" cols="40"></textarea>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                            Slogan
-                        </th>
-                        <th>
-                            <textarea class="form-control" name="slogan" rows="8" cols="40"></textarea>
+                            <textarea class="form-control" name="description" id="description" rows="8" cols="40">
+                            {{ service.description }}
+                            </textarea>
                         </th>
                     </tr>
                     <tr>
                         <th colspan="2" style="text-align : center;">
                             <button type="submit" class="btn btn-success">
                                 <i class="glyphicon glyphicon-floppy-disk"></i>
-                                Guardar
+                                Actualizar
                             </button>
                         </th>
                     </tr>
@@ -101,12 +103,6 @@
     $(function () {
         var img1 = $('#imageupload1');
         img1.imageupload();
-
-        var img2 = $('#imageupload2');
-        img2.imageupload();
-
-        var img3 = $('#imageupload3');
-        img3.imageupload();
 
         $("#description").jqte();
     });

@@ -125,4 +125,27 @@ class ControllerBase extends Controller
             "action" => $result[1]
         ));
     }
+
+    /**
+     *
+     * @
+     * @
+     */
+    public function fileUpload($request, $path, $redirectPath)
+    {
+        $this->uploader->setRequest($request);
+        $fileResult = $this->uploader->upload($path);
+
+        if ($fileResult == FileUpload::SIZE_ERROR) {
+            $this->flash->error("Logo muy grande, debe pesar menos o igual a 2mb");
+            $this->response->redirect($redirectPath);
+        } elseif ($fileResult == FileUpload::FILE_UPLOAD_ERROR) {
+            $this->flash->error("Error al subir archivo");
+            $this->response->redirect($redirectPath);
+        } elseif (is_string($fileResult)) {
+            return $fileResult;
+        } else {
+            return false;
+        }
+    }
 }

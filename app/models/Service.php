@@ -36,6 +36,13 @@ class Service extends \Phalcon\Mvc\Model
     /**
      *
      * @var string
+     * @Column(type="string", length=200, nullable=true)
+     */
+    public $logo;
+
+    /**
+     *
+     * @var string
      * @Column(type="string", nullable=true)
      */
     public $description;

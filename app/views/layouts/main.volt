@@ -118,14 +118,7 @@
             <div class="">
                 {{ content() }}
             </div>
-            <div class="footer" style="margin-top : 100px;">
-                <div class="pull-right">
-                    10GB of <strong>250GB</strong> Free.
-                </div>
-                <div>
-                    <strong>Copyright</strong> Example Company &copy; 2014-2017
-                </div>
-            </div>
+            
         </div>
     </div>
 </body>

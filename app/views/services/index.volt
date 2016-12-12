@@ -322,10 +322,10 @@
                         </div>
                         <div class="">
                             <p>
-                                <a href="{{ url("services/editService/" ~ item.id_service) }}" class="btn btn-warning" role="button">
+                                <a href="{{ url("services/edit/" ~ item.id_service) }}" class="btn btn-warning" role="button">
                                       <i class="glyphicon glyphicon-pencil"></i>
                                 </a>
-                                <a href="{{ url("services/deleteService/" ~ item.id_service) }}" class="btn btn-danger" role="button">
+                                <a href="{{ url("services/delete/" ~ item.id_service) }}" class="btn btn-danger" role="button">
                                       <i class="glyphicon glyphicon-trash"></i>
                                 </a>
                             </p>

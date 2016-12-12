@@ -49,6 +49,13 @@ class Products extends \Phalcon\Mvc\Model
 
     /**
      *
+     * @var string
+     * @Column(type="string", nullable=true)
+     */
+    public $logo;
+
+    /**
+     *
      * @var integer
      * @Column(type="integer", length=11, nullable=true)
      */

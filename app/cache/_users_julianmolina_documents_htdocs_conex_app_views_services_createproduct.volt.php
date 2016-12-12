@@ -1,10 +1,13 @@
 
-<?= $this->tag->form(['services/createProduct', 'method' => 'post']) ?>
+<?= $this->tag->form(['services/createProduct', 'method' => 'post', 'enctype' => 'multipart/form-data']) ?>
+
     <h2>Nuevo producto</h2>
+
     <a href="<?= $this->url->get('services/index') ?>" class="btn btn-danger pull-right">
         <i class="glyphicon glyphicon-share-alt"></i>
         Volver
     </a>
+    
     <div class="panel panel-default" style="margin-top : 60px; background-color : #ffffff;">
         <div class="panel-body">
             <table class="table">

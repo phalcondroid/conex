@@ -54,8 +54,21 @@ class ServicesController extends ControllerBase
     {
         $this->view->productType     = ProductType::find();
         $this->view->productCapacity = ProductCapacity::find();
+        $this->view->companies       = Company::find(array(
+            "conditions" => "id_users = ?0",
+            "bind" => array(
+                0 => $this->session->get("user")->id_users
+            )
+        ));
 
         if ($this->request->isPost()) {
+
+            $this->uploader->setRequest($this->request);
+            $fileResult = $this->uploader->upload("/public/conex/profile/");
+
+            if (is_string($fileResult)) {
+                $user->avatar = $fileResult;
+            }
 
             $product = new Products();
             $product->id_users = $this->session->get("user")->id_users;
@@ -79,6 +92,7 @@ class ServicesController extends ControllerBase
                 "string",
                 "striptags"
             ));
+            $product->logo = $fileResult;
 
             if ($product->save()) {
                 $this->flash->success("Registro completado");
@@ -299,15 +313,35 @@ class ServicesController extends ControllerBase
     public function createServiceAction()
     {
         $this->view->serviceType = ServiceType::find();
+        $this->view->companies   = Company::find(array(
+            "conditions" => "id_users = ?0",
+            "bind" => array(
+                0 => $this->session->get("user")->id_users
+            )
+        ));
+
         if ($this->request->isPost()) {
 
             $service = new Service();
+
+            $this->uploader->setRequest($this->request);
+            $fileResult = $this->uploader->upload("/public/conex/services/");
+
+            if (is_string($fileResult)) {
+                $service->logo = $fileResult;
+            }
 
             $service->id_users = $this->session->get("user")->id_users;
             $service->id_service_type = $this->request->getPost("serviceType", array(
                 "int",
                 "striptags"
             ));
+
+            $services->id_company = $this->request->getPost("company", array(
+                "int",
+                "striptags"
+            ));
+
             $service->name = $this->request->getPost("name", array(
                 "string",
                 "striptags"
@@ -346,7 +380,89 @@ class ServicesController extends ControllerBase
         }
     }
 
-    public function deleteServiceAction($id)
+    /**
+     *
+     */
+    public function editAction($id)
+    {
+
+        if (!empty($id)) {
+            $this->view->serviceType = ServiceType::find();
+            $this->view->companies   = Company::find(array(
+                "conditions" => "id_users = ?0",
+                "bind" => array(
+                    0 => $this->session->get("user")->id_users
+                )
+            ));
+            $service = Service::findFirst(array(
+                "conditions" => "id_service = ?0",
+                "bind" => array(
+                    0 => (int) $id
+                )
+            ));
+            $this->view->service = $service;
+        } else {
+            $this->response->redirect("services/index");
+        }
+
+        if ($this->request->isPost()) {
+
+            $this->uploader->setRequest($this->request);
+            $fileResult = $this->uploader->upload("/public/conex/services/");
+
+            if (is_string($fileResult)) {
+                $service->logo = $fileResult;
+            }
+
+            $service->id_service_type = $this->request->getPost("serviceType", array(
+                "int",
+                "striptags"
+            ));
+
+            $services->id_company = $this->request->getPost("company", array(
+                "int",
+                "striptags"
+            ));
+
+            $service->name = $this->request->getPost("name", array(
+                "string",
+                "striptags"
+            ));
+            $service->address = $this->request->getPost("address", array(
+                "string",
+                "striptags"
+            ));
+            $service->description = $this->request->getPost("description");
+            $service->slogan = $this->request->getPost("slogan", array(
+                "string",
+                "striptags"
+            ));
+
+            $service->start_date = $this->request->getPost("startDate", array(
+                "string",
+                "striptags"
+            ));
+
+            $service->finish_date = $this->request->getPost("finishDate", array(
+                "string",
+                "striptags"
+            ));
+
+            if ($service->save()) {
+                $this->flash->success("Actualizado completamente");
+            } else {
+                foreach ($service->getMessages() as $message) {
+                    $this->flash->error(
+                        $message
+                    );
+                }
+            }
+
+            $this->response->redirect("services/index");
+        }
+    }
+
+    public function deleteAction($id)
     {
         if (!empty($id)) {
             $service = Service::findFirstByIdService((int) $id);

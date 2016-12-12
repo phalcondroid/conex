@@ -322,10 +322,10 @@
                         </div>
                         <div class="">
                             <p>
-                                <a href="<?= $this->url->get('services/editService/' . $item->id_service) ?>" class="btn btn-warning" role="button">
+                                <a href="<?= $this->url->get('services/edit/' . $item->id_service) ?>" class="btn btn-warning" role="button">
                                       <i class="glyphicon glyphicon-pencil"></i>
                                 </a>
-                                <a href="<?= $this->url->get('services/deleteService/' . $item->id_service) ?>" class="btn btn-danger" role="button">
+                                <a href="<?= $this->url->get('services/delete/' . $item->id_service) ?>" class="btn btn-danger" role="button">
                                       <i class="glyphicon glyphicon-trash"></i>
                                 </a>
                             </p>

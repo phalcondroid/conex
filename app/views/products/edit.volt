@@ -1,13 +1,11 @@
 
-{{ form("services/createProduct", "method" : "post", "enctype" : "multipart/form-data") }}
 
+{{ form("products/edit/" ~ idProduct, "method" : "post", "enctype" : "multipart/form-data") }}
     <h2>Nuevo producto</h2>
-
     <a href="{{ url("services/index") }}" class="btn btn-danger pull-right">
         <i class="glyphicon glyphicon-share-alt"></i>
         Volver
     </a>
-    
     <div class="panel panel-default" style="margin-top : 60px; background-color : #ffffff;">
         <div class="panel-body">
             <table class="table">

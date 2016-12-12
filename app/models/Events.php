@@ -28,6 +28,13 @@ class Events extends \Phalcon\Mvc\Model
 
     /**
      *
+     * @var integer
+     * @Column(type="integer", length=11, nullable=true)
+     */
+    public $id_company;
+
+    /**
+     *
      * @var string
      * @Column(type="string", length=45, nullable=true)
      */
@@ -60,6 +67,13 @@ class Events extends \Phalcon\Mvc\Model
      * @Column(type="integer", length=11, nullable=true)
      */
     public $views;
+
+    /**
+     *
+     * @var string
+     * @Column(type="string", length=200, nullable=true)
+     */
+    public $logo;
 
     /**
      *
