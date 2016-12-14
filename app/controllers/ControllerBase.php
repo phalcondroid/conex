@@ -140,7 +140,6 @@ class ControllerBase extends Controller
             $this->flash->error("Logo muy grande, debe pesar menos o igual a 2mb");
             $this->response->redirect($redirectPath);
         } elseif ($fileResult == FileUpload::FILE_UPLOAD_ERROR) {
-            $this->flash->error("Error al subir archivo");
             $this->response->redirect($redirectPath);
         } elseif (is_string($fileResult)) {
             return $fileResult;

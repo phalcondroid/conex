@@ -1,7 +1,7 @@
 
 
 {{ form("products/edit/" ~ idProduct, "method" : "post", "enctype" : "multipart/form-data") }}
-    <h2>Nuevo producto</h2>
+    <h2>Edición de producto</h2>
     <a href="{{ url("services/index") }}" class="btn btn-danger pull-right">
         <i class="glyphicon glyphicon-share-alt"></i>
         Volver
@@ -18,17 +18,7 @@
                             <div class="row">
                                 <div class="col-xs-4 col-md-4">
                                     <a href="#" class="thumbnail">
-                                        {{ image('img/inovatio1.png', "style" : "width : 180px; height : 160px;") }}
-                                    </a>
-                                </div>
-                                <div class="col-xs-4 col-md-4">
-                                    <a href="#" class="thumbnail">
-                                        {{ image('img/inovatio1.png', "style" : "width : 180px; height : 160px;") }}
-                                    </a>
-                                </div>
-                                <div class="col-xs-4 col-md-4">
-                                    <a href="#" class="thumbnail">
-                                        {{ image('img/inovatio1.png', "style" : "width : 180px; height : 160px;") }}
+                                        {{ image(product.logo, "style" : "width : 180px; height : 160px;") }}
                                     </a>
                                 </div>
                             </div>
@@ -44,7 +34,24 @@
                             Nombre
                         </th>
                         <th>
-                            <input type="text" name="name" class="form-control">
+                            <input type="text" name="name" class="form-control" value="{{product.name}}">
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>Empresa</th>
+                        <th>
+                             <select class="form-control" name="company">
+                                <option>......</option>
+                                {% for item in companies %}
+                                    {% set selected = "" %}
+                                    {% if item.id_company == product.id_company %}
+                                        {% set selected = "selected" %}
+                                    {% endif %}
+                                    <option {{selected}} value="{{ item.id_company }}">
+                                        {{ item.name }}
+                                    </option>
+                                {% endfor %}
+                            </select>
                         </th>
                     </tr>
                     <tr>
@@ -55,7 +62,11 @@
                             <select class="form-control" name="productType">
                                 <option>......</option>
                                 {% for item in productType %}
-                                    <option value="{{ item.id_product_type }}">
+                                    {% set selected = "" %}
+                                    {% if item.id_product_type == product.id_product_type %}
+                                        {% set selected = "selected" %}
+                                    {% endif %}
+                                    <option {{selected}} value="{{ item.id_product_type }}">
                                         {{ item.product_type }}
                                     </option>
                                 {% endfor %}
@@ -70,7 +81,11 @@
                             <select class="form-control" name="productCapacity">
                                 <option>......</option>
                                 {% for item in productCapacity %}
-                                    <option value="{{ item.id_product_capacity }}">
+                                    {% set selected = "" %}
+                                    {% if item.id_product_capacity == product.id_product_capacity %}
+                                        {% set selected = "selected" %}
+                                    {% endif %}
+                                    <option {{selected}} value="{{ item.id_product_capacity }}">
                                         {{ item.product_capacity }}
                                     </option>
                                 {% endfor %}
@@ -79,25 +94,17 @@
                     </tr>
                     <tr>
                         <th>
-                            Elogan
-                        </th>
-                        <th>
-                            <input class="form-control" name="slogan" type="text">
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
                             Descripción
                         </th>
                         <th>
-                            <textarea name="description" id="description" rows="10" cols="40" ></textarea>
+                            <textarea name="description" id="description" rows="10" cols="40" >{{product.description}}</textarea>
                         </th>
                     </tr>
                     <tr>
                         <th colspan="2" style="text-align : center;">
                             <button type="submit" class="btn btn-success">
                                 <i class="glyphicon glyphicon-floppy-disk"></i>
-                                Guardar
+                                Actualización
                             </button>
                         </th>
                     </tr>

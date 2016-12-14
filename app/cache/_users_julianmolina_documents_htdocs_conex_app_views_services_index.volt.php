@@ -86,7 +86,7 @@
 
                     <div class="col-sm-6 col-md-4">
                         <div class="thumbnail">
-                            <?= $this->tag->image(['img/inovatio1.png', 'style' => 'widht : 400px; height : 350px']) ?>
+                            <?= $this->tag->image([$item->logo, 'style' => 'widht : 400px; height : 350px']) ?>
                             <div class="caption">
                                 <h3>
                                     <?= $item->name ?>
@@ -95,7 +95,7 @@
                                     <?= $item->description ?>
                                 </p>
                                 <p>
-                                    <a href="<?= $this->url->get('services/editProduct/' . $item->id_products) ?>" class="btn btn-warning" role="button">
+                                    <a href="<?= $this->url->get('products/edit/' . $item->id_products) ?>" class="btn btn-warning" role="button">
                                           <i class="glyphicon glyphicon-pencil"></i>
                                     </a>
                                     <a href="<?= $this->url->get('services/deleteProduct/' . $item->id_products) ?>" class="btn btn-danger" role="button">
@@ -155,7 +155,7 @@
                                 <?= $item->description ?>
                               </p>
                               <p >
-                                  <a href="<?= $this->url->get('services/editEvent/' . $item->id_events) ?>" class="btn btn-warning" role="button">
+                                  <a href="<?= $this->url->get('events/edit/' . $item->id_events) ?>" class="btn btn-warning" role="button">
                                         <i class="glyphicon glyphicon-pencil"></i>
                                   </a>
                                   <a href="<?= $this->url->get('services/deleteEvent/' . $item->id_events) ?>" class="btn btn-danger" role="button">
@@ -268,7 +268,7 @@
                             </div>
                             <div class="caption">
                                 <p >
-                                    <a href="<?= $this->url->get('services/editAdvertisement/' . $item->id_advertisement) ?>" class="btn btn-warning" role="button">
+                                    <a href="<?= $this->url->get('advertisement/edit/' . $item->id_advertisement) ?>" class="btn btn-warning" role="button">
                                           <i class="glyphicon glyphicon-pencil"></i>
                                     </a>
                                     <a href="<?= $this->url->get('services/deleteAdvertisement/' . $item->id_advertisement) ?>" class="btn btn-danger" role="button">

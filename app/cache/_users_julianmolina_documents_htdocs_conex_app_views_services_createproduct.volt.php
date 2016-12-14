@@ -7,7 +7,7 @@
         <i class="glyphicon glyphicon-share-alt"></i>
         Volver
     </a>
-    
+
     <div class="panel panel-default" style="margin-top : 60px; background-color : #ffffff;">
         <div class="panel-body">
             <table class="table">
@@ -20,17 +20,7 @@
                             <div class="row">
                                 <div class="col-xs-4 col-md-4">
                                     <a href="#" class="thumbnail">
-                                        <?= $this->tag->image(['img/inovatio1.png', 'style' => 'width : 180px; height : 160px;']) ?>
-                                    </a>
-                                </div>
-                                <div class="col-xs-4 col-md-4">
-                                    <a href="#" class="thumbnail">
-                                        <?= $this->tag->image(['img/inovatio1.png', 'style' => 'width : 180px; height : 160px;']) ?>
-                                    </a>
-                                </div>
-                                <div class="col-xs-4 col-md-4">
-                                    <a href="#" class="thumbnail">
-                                        <?= $this->tag->image(['img/inovatio1.png', 'style' => 'width : 180px; height : 160px;']) ?>
+                                        <?= $this->tag->image(['img/emptyimg.png', 'style' => 'width : 180px; height : 160px;']) ?>
                                     </a>
                                 </div>
                             </div>
@@ -77,14 +67,6 @@
                                     </option>
                                 <?php } ?>
                             </select>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                            Elogan
-                        </th>
-                        <th>
-                            <input class="form-control" name="slogan" type="text">
                         </th>
                     </tr>
                     <tr>

@@ -66,11 +66,12 @@ class ServicesController extends ControllerBase
             $this->uploader->setRequest($this->request);
             $fileResult = $this->uploader->upload("/public/conex/profile/");
 
+            $product = new Products();
+
             if (is_string($fileResult)) {
-                $user->avatar = $fileResult;
+                $product->logo = $fileResult;
             }
 
-            $product = new Products();
             $product->id_users = $this->session->get("user")->id_users;
             $product->name = $this->request->getPost("name", array(
                 "string",
@@ -143,7 +144,11 @@ class ServicesController extends ControllerBase
 
             $event = new Events();
 
-            $event->id_users = $this->session->get("user")->id_users;
+            $event->id_users   = $this->session->get("user")->id_users;
+            $event->id_company = $this->request->getPost("company", array(
+                "int",
+                "striptags"
+            ));
             $event->id_event_type = $this->request->getPost("eventType", array(
                 "int",
                 "striptags"
