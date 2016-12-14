@@ -1,6 +1,6 @@
 <?php
 
-class MenuItemController extends ControllerBase
+class MenuitemController extends ControllerBase
 {
     public function initialize()
     {

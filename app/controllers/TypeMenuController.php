@@ -1,6 +1,6 @@
 <?php
 
-class TypeMenuController extends ControllerBase
+class TypemenuController extends ControllerBase
 {
     /**
      *
