@@ -136,6 +136,12 @@
     }
 
     function setMap(lat, lng) {
+        if (lat == "") {
+            lat = 4.624335;
+        }
+        if (lng == "") {
+            lng = -74.063644;
+        }
         var latlng = {lat: lat, lng: lng};
         var mapDivE = document.getElementById('map');
         var map = new google.maps.Map(mapDivE, {

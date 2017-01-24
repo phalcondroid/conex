@@ -1,5 +1,7 @@
 <?php
 
+use \Phalcon\Mvc\Model\Relation;
+
 class Users extends \Phalcon\Mvc\Model
 {
 
@@ -444,13 +446,63 @@ class Users extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-        $this->hasMany('id_users', 'Advertisement', 'id_users', ['alias' => 'Advertisement']);
-        $this->hasMany('id_users', 'Company', 'id_users', ['alias' => 'Company']);
-        $this->hasMany('id_users', 'Products', 'id_users', ['alias' => 'Products']);
-        $this->hasMany('id_users', 'Service', 'id_users', ['alias' => 'Service']);
-        $this->hasMany('id_users', 'UserEmail', 'id_users', ['alias' => 'UserEmail']);
-        $this->belongsTo('id_role', 'Role', 'id_role', ['alias' => 'Role']);
-        $this->belongsTo('id_student_type', 'StudentType', 'id_student_type', ['alias' => 'StudentType']);
+        $this->hasMany(
+            'id_users',
+            'Advertisement',
+            'id_users',
+            array(
+                'alias' => 'Advertisement',
+                "foreignKey" => array(
+                    "action" => Relation::ACTION_CASCADE,
+                )
+            )
+        );
+        $this->hasMany(
+            'id_users',
+            'Company',
+            'id_users',
+            array(
+                'alias' => 'Company',
+                "foreignKey" => array(
+                    "action" => Relation::ACTION_CASCADE,
+                )
+            )
+        );
+        $this->hasMany('id_users', 'Products', 'id_users', [
+            'alias' => 'Products',
+            "foreignKey" => array(
+                "action" => Relation::ACTION_CASCADE,
+            )
+        ]);
+        $this->hasMany('id_users', 'Service', 'id_users', [
+            'alias' => 'Service',
+            "foreignKey" => array(
+                "action" => Relation::ACTION_CASCADE,
+            )
+        ]);
+        $this->hasMany('id_users', 'UserEmail', 'id_users', [
+            'alias' => 'UserEmail',
+            "foreignKey" => array(
+                "action" => Relation::ACTION_CASCADE,
+            )
+        ]);
+        $this->belongsTo(
+            'id_role',
+            'Role',
+            'id_role',
+            array(
+                'alias' => 'Role',
+                "foreignKey" => array(
+                    "action" => Relation::ACTION_CASCADE,
+                )
+            )
+        );
+        $this->belongsTo('id_student_type', 'StudentType', 'id_student_type', [
+            'alias' => 'StudentType',
+            "foreignKey" => array(
+                "action" => Relation::ACTION_CASCADE,
+            )
+        ]);
     }
 
     /**

@@ -1,5 +1,7 @@
 <?php
 
+use \Phalcon\Mvc\Model\Relation;
+
 class StudentType extends \Phalcon\Mvc\Model
 {
 
@@ -115,6 +117,17 @@ class StudentType extends \Phalcon\Mvc\Model
     public static function findFirst($parameters = null)
     {
         return parent::findFirst($parameters);
+    }
+
+    /**
+     *
+     */
+    public function beforeDelete() {
+        $behavior = new \Phalcon\Mvc\Model\Behavior\SoftDelete(array(
+            'field' => 'status',
+            'value' => '0'
+        ));
+        $this->addBehavior($behavior);
     }
 
     /**

@@ -1,5 +1,7 @@
 <?php
 
+use \Phalcon\Mvc\Model\Relation;
+
 class CompanyClient extends \Phalcon\Mvc\Model
 {
 
@@ -186,12 +188,33 @@ class CompanyClient extends \Phalcon\Mvc\Model
     }
 
     /**
+     *
+     */
+    public function beforeDelete() {
+        $behavior = new \Phalcon\Mvc\Model\Behavior\SoftDelete(array(
+            'field' => 'status',
+            'value' => '0'
+        ));
+        $this->addBehavior($behavior);
+    }
+
+    /**
      * Initialize method for model.
      */
     public function initialize()
     {
-        $this->hasMany('id_company_client', 'Company', 'id_company_client', ['alias' => 'Company']);
-        $this->belongsTo('id_company_sector', 'CompanySector', 'id_company_sector', ['alias' => 'CompanySector']);
+        $this->hasMany('id_company_client', 'Company', 'id_company_client', [
+            'alias' => 'Company',
+            "foreignKey" => array(
+                "action" => Relation::ACTION_CASCADE,
+            )
+        ]);
+        $this->belongsTo('id_company_sector', 'CompanySector', 'id_company_sector', [
+            'alias' => 'CompanySector',
+            "foreignKey" => array(
+                "action" => Relation::ACTION_CASCADE,
+            )
+        ]);
     }
 
     /**

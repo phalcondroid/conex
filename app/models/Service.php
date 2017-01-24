@@ -1,5 +1,7 @@
 <?php
 
+use \Phalcon\Mvc\Model\Relation;
+
 class Service extends \Phalcon\Mvc\Model
 {
 
@@ -25,6 +27,13 @@ class Service extends \Phalcon\Mvc\Model
      * @Column(type="integer", length=11, nullable=false)
      */
     public $id_users;
+
+    /**
+     *
+     * @var integer
+     * @Column(type="integer", length=11, nullable=false)
+     */
+    public $id_company;
 
     /**
      *
@@ -234,9 +243,24 @@ class Service extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-        $this->hasMany('id_service', 'ServiceGallery', 'id_service', ['alias' => 'ServiceGallery']);
-        $this->belongsTo('id_service_type', 'ServiceType', 'id_service_type', ['alias' => 'ServiceType']);
-        $this->belongsTo('id_users', 'Users', 'id_users', ['alias' => 'Users']);
+        $this->hasMany('id_service', 'ServiceGallery', 'id_service', [
+            'alias' => 'ServiceGallery',
+            "foreignKey" => array(
+                "action" => Relation::ACTION_CASCADE,
+            )
+        ]);
+        $this->belongsTo('id_service_type', 'ServiceType', 'id_service_type', [
+            'alias' => 'ServiceType',
+            "foreignKey" => array(
+                "action" => Relation::ACTION_CASCADE,
+            )
+        ]);
+        $this->belongsTo('id_users', 'Users', 'id_users', [
+            'alias' => 'Users',
+            "foreignKey" => array(
+                "action" => Relation::ACTION_CASCADE,
+            )
+        ]);
     }
 
     /**

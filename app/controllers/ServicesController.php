@@ -26,7 +26,7 @@ class ServicesController extends ControllerBase
     {
 
         $parameters = array(
-            "conditions" => "id_users = ?0",
+            "conditions" => "id_users = ?0 and status = 1",
             "bind" => array(
                 0 => $this->session->get("user")->id_users
             )
@@ -52,10 +52,10 @@ class ServicesController extends ControllerBase
      */
     public function createProductAction()
     {
-        $this->view->productType     = ProductType::find();
-        $this->view->productCapacity = ProductCapacity::find();
+        $this->view->productType     = ProductType::find("status = 1");
+        $this->view->productCapacity = ProductCapacity::find("status = 1");
         $this->view->companies       = Company::find(array(
-            "conditions" => "id_users = ?0",
+            "conditions" => "id_users = ?0 and status = 1",
             "bind" => array(
                 0 => $this->session->get("user")->id_users
             )
@@ -93,7 +93,8 @@ class ServicesController extends ControllerBase
                 "string",
                 "striptags"
             ));
-            $product->logo = $fileResult;
+            $product->logo   = $fileResult;
+            $product->status = 1;
 
             if ($product->save()) {
                 $this->flash->success("Registro completado");
@@ -138,7 +139,13 @@ class ServicesController extends ControllerBase
      */
     public function createEventAction()
     {
-        $this->view->eventType = EventType::find();
+        $this->view->eventType = EventType::find("status = 1");
+        $this->view->companies       = Company::find(array(
+            "conditions" => "id_users = ?0 and status = 1",
+            "bind" => array(
+                0 => $this->session->get("user")->id_users
+            )
+        ));
 
         if ($this->request->isPost()) {
 
@@ -189,6 +196,7 @@ class ServicesController extends ControllerBase
                 "string",
                 "striptags"
             ));
+            $event->status = 1;
 
             if ($event->save()) {
 
@@ -250,9 +258,16 @@ class ServicesController extends ControllerBase
      */
     public function createAdvertisementAction()
     {
+        $this->view->companies       = Company::find(array(
+            "conditions" => "id_users = ?0 and status = 1",
+            "bind" => array(
+                0 => $this->session->get("user")->id_users
+            )
+        ));
+        
         if ($this->request->isPost()) {
 
-            $advert = new Advertisement();
+            $advert = new Advertisement("status = 1");
 
             $advert->id_users = $this->session->get("user")->id_users;
             $advert->name = $this->request->getPost("name", array(
@@ -276,6 +291,7 @@ class ServicesController extends ControllerBase
                 "string",
                 "striptags"
             ));
+            $advert->status = 1;
 
             if ($advert->save()) {
                 $this->flash->success("Registro completado");
@@ -317,9 +333,9 @@ class ServicesController extends ControllerBase
      */
     public function createServiceAction()
     {
-        $this->view->serviceType = ServiceType::find();
+        $this->view->serviceType = ServiceType::find("status = 1");
         $this->view->companies   = Company::find(array(
-            "conditions" => "id_users = ?0",
+            "conditions" => "id_users = ?0 and status = 1",
             "bind" => array(
                 0 => $this->session->get("user")->id_users
             )
@@ -371,6 +387,8 @@ class ServicesController extends ControllerBase
                 "striptags"
             ));
 
+            $service->status = 1;
+
             if ($service->save()) {
                 $this->flash->success("Registro completado");
                 $data['message'] = 'Victory';
@@ -392,7 +410,7 @@ class ServicesController extends ControllerBase
     {
 
         if (!empty($id)) {
-            $this->view->serviceType = ServiceType::find();
+            $this->view->serviceType = ServiceType::find("status = 1");
             $this->view->companies   = Company::find(array(
                 "conditions" => "id_users = ?0",
                 "bind" => array(
@@ -400,7 +418,7 @@ class ServicesController extends ControllerBase
                 )
             ));
             $service = Service::findFirst(array(
-                "conditions" => "id_service = ?0",
+                "conditions" => "id_service = ?0 and status = 1",
                 "bind" => array(
                     0 => (int) $id
                 )

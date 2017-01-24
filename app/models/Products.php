@@ -1,5 +1,7 @@
 <?php
 
+use \Phalcon\Mvc\Model\Relation;
+
 class Products extends \Phalcon\Mvc\Model
 {
 
@@ -260,14 +262,45 @@ class Products extends \Phalcon\Mvc\Model
     }
 
     /**
+     *
+     */
+    public function beforeDelete() {
+        $behavior = new \Phalcon\Mvc\Model\Behavior\SoftDelete(array(
+            'field' => 'status',
+            'value' => '0'
+        ));
+        $this->addBehavior($behavior);
+    }
+
+    /**
      * Initialize method for model.
      */
     public function initialize()
     {
-        $this->hasMany('id_products', 'ProductsGallery', 'products_id_products', ['alias' => 'ProductsGallery']);
-        $this->belongsTo('id_product_capacity', 'ProductCapacity', 'id_product_capacity', ['alias' => 'ProductCapacity']);
-        $this->belongsTo('id_product_type', 'ProductType', 'id_product_type', ['alias' => 'ProductType']);
-        $this->belongsTo('id_users', 'Users', 'id_users', ['alias' => 'Users']);
+        $this->hasMany('id_products', 'ProductsGallery', 'products_id_products', [
+            'alias' => 'ProductsGallery',
+            "foreignKey" => array(
+                "action" => Relation::ACTION_CASCADE,
+            )
+        ]);
+        $this->belongsTo('id_product_capacity', 'ProductCapacity', 'id_product_capacity', [
+            'alias' => 'ProductCapacity',
+            "foreignKey" => array(
+                "action" => Relation::ACTION_CASCADE,
+            )
+        ]);
+        $this->belongsTo('id_product_type', 'ProductType', 'id_product_type', [
+            'alias' => 'ProductType',
+            "foreignKey" => array(
+                "action" => Relation::ACTION_CASCADE,
+            )
+        ]);
+        $this->belongsTo('id_users', 'Users', 'id_users', [
+            'alias' => 'Users',
+            "foreignKey" => array(
+                "action" => Relation::ACTION_CASCADE,
+            )
+        ]);
     }
 
     /**

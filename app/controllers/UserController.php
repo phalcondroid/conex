@@ -15,7 +15,7 @@ class UserController extends ControllerBase
      */
     public function indexAction()
     {
-        $user = Users::find();
+        $user = Users::find("status = 1");
         $this->view->users = $user;
     }
 

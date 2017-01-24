@@ -1,5 +1,7 @@
 <?php
 
+use \Phalcon\Mvc\Model\Relation;
+
 class EventGuest extends \Phalcon\Mvc\Model
 {
 
@@ -156,11 +158,27 @@ class EventGuest extends \Phalcon\Mvc\Model
     }
 
     /**
+     *
+     */
+    public function beforeDelete() {
+        $behavior = new \Phalcon\Mvc\Model\Behavior\SoftDelete(array(
+            'field' => 'status',
+            'value' => '0'
+        ));
+        $this->addBehavior($behavior);
+    }
+
+    /**
      * Initialize method for model.
      */
     public function initialize()
     {
-        $this->hasMany('id_event_guest', 'EventTopic', 'id_event_guest', ['alias' => 'EventTopic']);
+        $this->hasMany('id_event_guest', 'EventTopic', 'id_event_guest', [
+            'alias' => 'EventTopic',
+            "foreignKey" => array(
+                "action" => Relation::ACTION_CASCADE,
+            )
+        ]);
     }
 
     /**

@@ -20,6 +20,19 @@
                         </th>
                     </tr>
                     <tr>
+                        <th>Empresa</th>
+                        <th>
+                             <select class="form-control" name="company">
+                                <option>......</option>
+                                <?php foreach ($companies as $item) { ?>
+                                    <option value="<?= $item->id_company ?>">
+                                        <?= $item->name ?>
+                                    </option>
+                                <?php } ?>
+                            </select>
+                        </th>
+                    </tr>
+                    <tr>
                         <th>
                             Dirección
                         </th>

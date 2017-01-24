@@ -1,5 +1,7 @@
 <?php
 
+use \Phalcon\Mvc\Model\Relation;
+
 class Permissions extends \Phalcon\Mvc\Model
 {
 
@@ -186,12 +188,33 @@ class Permissions extends \Phalcon\Mvc\Model
     }
 
     /**
+     *
+     */
+    public function beforeDelete() {
+        $behavior = new \Phalcon\Mvc\Model\Behavior\SoftDelete(array(
+            'field' => 'status',
+            'value' => '0'
+        ));
+        $this->addBehavior($behavior);
+    }
+
+    /**
      * Initialize method for model.
      */
     public function initialize()
     {
-        $this->belongsTo('id_action_type', 'ActionType', 'id_action_type', ['alias' => 'ActionType']);
-        $this->belongsTo('id_menu', 'Menu', 'id_menu', ['alias' => 'Menu']);
+        $this->belongsTo('id_action_type', 'ActionType', 'id_action_type', [
+            'alias' => 'ActionType',
+            "foreignKey" => array(
+                "action" => Relation::ACTION_CASCADE,
+            )
+        ]);
+        $this->belongsTo('id_menu', 'Menu', 'id_menu', [
+            'alias' => 'Menu',
+            "foreignKey" => array(
+                "action" => Relation::ACTION_CASCADE,
+            )
+        ]);
     }
 
     /**

@@ -11,7 +11,6 @@ use Phalcon\Acl\Adapter\Memory as AclList;
  */
 class ControllerBase extends Controller
 {
-
     /**
      *
      * @param [type] $dispatcher [description]

@@ -1,5 +1,7 @@
 <?php
 
+use \Phalcon\Mvc\Model\Relation;
+
 class ProductType extends \Phalcon\Mvc\Model
 {
 
@@ -96,11 +98,27 @@ class ProductType extends \Phalcon\Mvc\Model
     }
 
     /**
+     *
+     */
+    public function beforeDelete() {
+        $behavior = new \Phalcon\Mvc\Model\Behavior\SoftDelete(array(
+            'field' => 'status',
+            'value' => '0'
+        ));
+        $this->addBehavior($behavior);
+    }
+
+    /**
      * Initialize method for model.
      */
     public function initialize()
     {
-        $this->hasMany('id_product_type', 'Products', 'id_product_type', ['alias' => 'Products']);
+        $this->hasMany('id_product_type', 'Products', 'id_product_type', [
+            'alias' => 'Products',
+            "foreignKey" => array(
+                "action" => Relation::ACTION_CASCADE,
+            )
+        ]);
     }
 
     /**

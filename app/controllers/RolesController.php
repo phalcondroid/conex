@@ -12,7 +12,7 @@ class RolesController extends ControllerBase
      */
     public function indexAction()
     {
-        $this->view->roles = Role::find();
+        $this->view->roles = Role::find("status = 1");
     }
 
     public function newAction()

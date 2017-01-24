@@ -1,5 +1,7 @@
 <?php
 
+use \Phalcon\Mvc\Model\Relation;
+
 class ActionType extends \Phalcon\Mvc\Model
 {
 
@@ -126,12 +128,33 @@ class ActionType extends \Phalcon\Mvc\Model
     }
 
     /**
+     *
+     */
+    public function beforeDelete() {
+        $behavior = new \Phalcon\Mvc\Model\Behavior\SoftDelete(array(
+            'field' => 'status',
+            'value' => '0'
+        ));
+        $this->addBehavior($behavior);
+    }
+
+    /**
      * Initialize method for model.
      */
     public function initialize()
     {
-        $this->hasMany('id_action_type', 'Action', 'id_action_type', ['alias' => 'Action']);
-        $this->hasMany('id_action_type', 'Permissions', 'id_action_type', ['alias' => 'Permissions']);
+        $this->hasMany('id_action_type', 'Action', 'id_action_type', [
+            'alias' => 'Action',
+            "foreignKey" => array(
+                "action" => Relation::ACTION_CASCADE,
+            )
+        ]);
+        $this->hasMany('id_action_type', 'Permissions', 'id_action_type', [
+            'alias' => 'Permissions',
+            "foreignKey" => array(
+                "action" => Relation::ACTION_CASCADE,
+            )
+        ]);
     }
 
     /**

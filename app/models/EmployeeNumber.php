@@ -1,5 +1,7 @@
 <?php
 
+use \Phalcon\Mvc\Model\Relation;
+
 class EmployeeNumber extends \Phalcon\Mvc\Model
 {
 
@@ -96,11 +98,27 @@ class EmployeeNumber extends \Phalcon\Mvc\Model
     }
 
     /**
+     *
+     */
+    public function beforeDelete() {
+        $behavior = new \Phalcon\Mvc\Model\Behavior\SoftDelete(array(
+            'field' => 'status',
+            'value' => '0'
+        ));
+        $this->addBehavior($behavior);
+    }
+
+    /**
      * Initialize method for model.
      */
     public function initialize()
     {
-        $this->hasMany('id_employee_number', 'Company', 'id_employee_number', ['alias' => 'Company']);
+        $this->hasMany('id_employee_number', 'Company', 'id_employee_number', [
+            'alias' => 'Company',
+            "foreignKey" => array(
+                "action" => Relation::ACTION_CASCADE,
+            )
+        ]);
     }
 
     /**

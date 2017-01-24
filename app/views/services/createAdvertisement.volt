@@ -20,6 +20,19 @@
                         </th>
                     </tr>
                     <tr>
+                        <th>Empresa</th>
+                        <th>
+                             <select class="form-control" name="company">
+                                <option>......</option>
+                                {% for item in companies %}
+                                    <option value="{{ item.id_company }}">
+                                        {{ item.name }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </th>
+                    </tr>
+                    <tr>
                         <th>
                             Dirección
                         </th>

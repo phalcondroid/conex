@@ -15,7 +15,7 @@ class MenuController extends ControllerBase
      */
     public function indexAction()
     {
-        $menus = Menu::find();
+        $menus = Menu::find("status = 1");
         $this->view->menus = $menus;
     }
 

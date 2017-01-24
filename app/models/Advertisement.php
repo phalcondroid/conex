@@ -1,5 +1,7 @@
 <?php
 
+use \Phalcon\Mvc\Model\Relation;
+
 class Advertisement extends \Phalcon\Mvc\Model
 {
 
@@ -297,12 +299,33 @@ class Advertisement extends \Phalcon\Mvc\Model
     }
 
     /**
+     *
+     */
+    public function beforeDelete() {
+        $behavior = new \Phalcon\Mvc\Model\Behavior\SoftDelete(array(
+            'field' => 'status',
+            'value' => '0'
+        ));
+        $this->addBehavior($behavior);
+    }
+
+    /**
      * Initialize method for model.
      */
     public function initialize()
     {
-        $this->belongsTo('id_advertisement_characteristics', 'AdvertisementCharacteristics', 'id_advertisement_characteristics', ['alias' => 'AdvertisementCharacteristics']);
-        $this->belongsTo('id_users', 'Users', 'id_users', ['alias' => 'Users']);
+        $this->belongsTo('id_advertisement_characteristics', 'AdvertisementCharacteristics', 'id_advertisement_characteristics', [
+            'alias' => 'AdvertisementCharacteristics',
+            "foreignKey" => array(
+                "action" => Relation::ACTION_CASCADE,
+            )
+        ]);
+        $this->belongsTo('id_users', 'Users', 'id_users', [
+            'alias' => 'Users',
+            "foreignKey" => array(
+                "action" => Relation::ACTION_CASCADE,
+            )
+        ]);
     }
 
     /**

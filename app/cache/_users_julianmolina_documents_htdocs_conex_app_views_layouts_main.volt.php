@@ -32,6 +32,13 @@
                             </li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
+
+                            <li class="dropdown">
+                                <a href="<?= $this->url->get('deals/index') ?>">
+                                    Inicio
+                                </a>
+                            </li>
+
                             <li class="dropdown">
                                 <a class="dropdown-toggle count-info" data-toggle="dropdown" href="<?= $this->url->get('deals/index') ?>">
                                     <i class="fa fa-bell"></i>
@@ -118,7 +125,7 @@
             <div class="">
                 <?= $this->getContent() ?>
             </div>
-            
+
         </div>
     </div>
 </body>

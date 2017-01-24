@@ -114,6 +114,13 @@ function initAutocomplete() {
 
 function setMap(lat, lng) {
 
+    if (lat == "") {
+        lat = 4.624335;
+    }
+    if (lng == "") {
+        lng = -74.063644;
+    }
+
     $(function () {
         $("#lat").val(lat);
         $("#lng").val(lng);

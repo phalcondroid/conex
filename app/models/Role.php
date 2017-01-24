@@ -1,5 +1,8 @@
 <?php
 
+use Phalcon\Mvc\Model\Relation;
+use \Phalcon\Mvc\Model\Behavior\SoftDelete;
+
 class Role extends \Phalcon\Mvc\Model
 {
 
@@ -156,12 +159,43 @@ class Role extends \Phalcon\Mvc\Model
     }
 
     /**
+     *
+     */
+    public function beforeDelete() {
+        $behavior = new \Phalcon\Mvc\Model\Behavior\SoftDelete(array(
+            'field' => 'status',
+            'value' => '0'
+        ));
+        $this->addBehavior($behavior);
+    }
+
+    /**
      * Initialize method for model.
      */
     public function initialize()
     {
-        $this->hasMany('id_role', 'Menu', 'id_role', ['alias' => 'Menu']);
-        $this->hasMany('id_role', 'Users', 'id_role', ['alias' => 'Users']);
+        $this->hasMany(
+            'id_role',
+            'Menu',
+            'id_role',
+            array(
+                'alias' => 'Menu',
+                "foreignKey" => array(
+                    "action" => Relation::ACTION_CASCADE,
+                )
+            )
+        );
+        $this->hasMany(
+            'id_role',
+            'Users',
+            'id_role',
+            array(
+                'alias' => 'Users',
+                "foreignKey" => array(
+                    "action" => Relation::ACTION_CASCADE,
+                )
+            )
+        );
     }
 
     /**

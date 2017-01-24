@@ -32,6 +32,13 @@
                             </li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
+
+                            <li class="dropdown">
+                                <a href="{{ url("deals/index") }}">
+                                    Inicio
+                                </a>
+                            </li>
+
                             <li class="dropdown">
                                 <a class="dropdown-toggle count-info" data-toggle="dropdown" href="{{ url("deals/index") }}">
                                     <i class="fa fa-bell"></i>
@@ -118,7 +125,7 @@
             <div class="">
                 {{ content() }}
             </div>
-            
+
         </div>
     </div>
 </body>

@@ -1,5 +1,7 @@
 <?php
 
+use \Phalcon\Mvc\Model\Relation;
+
 class Menu extends \Phalcon\Mvc\Model
 {
 
@@ -276,15 +278,51 @@ class Menu extends \Phalcon\Mvc\Model
     }
 
     /**
+     *
+     */
+    public function beforeDelete() {
+        $behavior = new \Phalcon\Mvc\Model\Behavior\SoftDelete(array(
+            'field' => 'status',
+            'value' => '0'
+        ));
+        $this->addBehavior($behavior);
+    }
+
+    /**
      * Initialize method for model.
      */
     public function initialize()
     {
-        $this->hasMany('id_menu', 'MenuItem', 'id_menu', ['alias' => 'MenuItem']);
-        $this->hasMany('id_menu', 'Permissions', 'id_menu', ['alias' => 'Permissions']);
-        $this->belongsTo('id_controller', 'Controller', 'id_controller', ['alias' => 'Controller']);
-        $this->belongsTo('id_role', 'Role', 'id_role', ['alias' => 'Role']);
-        $this->belongsTo('id_type_menu', 'TypeMenu', 'id_type_menu', ['alias' => 'TypeMenu']);
+        $this->hasMany('id_menu', 'MenuItem', 'id_menu', [
+            'alias' => 'MenuItem',
+            "foreignKey" => array(
+                "action" => Relation::ACTION_CASCADE,
+            )
+        ]);
+        $this->hasMany('id_menu', 'Permissions', 'id_menu', [
+            'alias' => 'Permissions',
+            "foreignKey" => array(
+                "action" => Relation::ACTION_CASCADE,
+            )
+        ]);
+        $this->belongsTo('id_controller', 'Controller', 'id_controller', [
+            'alias' => 'Controller',
+            "foreignKey" => array(
+                "action" => Relation::ACTION_CASCADE,
+            )
+        ]);
+        $this->belongsTo('id_role', 'Role', 'id_role', [
+            'alias' => 'Role',
+            "foreignKey" => array(
+                "action" => Relation::ACTION_CASCADE,
+            )
+        ]);
+        $this->belongsTo('id_type_menu', 'TypeMenu', 'id_type_menu', [
+            'alias' => 'TypeMenu',
+            "foreignKey" => array(
+                "action" => Relation::ACTION_CASCADE,
+            )
+        ]);
     }
 
     /**

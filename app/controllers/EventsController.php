@@ -22,13 +22,13 @@ class EventsController extends ControllerBase
 				)
 			));
             $this->view->companies = Company::find(array(
-                "conditions" => "id_users = ?0",
+                "conditions" => "id_users = ?0 and status = 1",
                 "bind" => array(
                     0 => $this->session->get("user")->id_users
                 )
             ));
 			$this->view->idEvents  = $id;
-			$this->view->event     = $event; 
+			$this->view->event     = $event;
 			$this->view->eventType = EventType::find();
 		} else {
 			$this->response->redirect("services/index");

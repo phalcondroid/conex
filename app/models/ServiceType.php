@@ -1,5 +1,7 @@
 <?php
 
+use \Phalcon\Mvc\Model\Relation;
+
 class ServiceType extends \Phalcon\Mvc\Model
 {
 
@@ -96,11 +98,27 @@ class ServiceType extends \Phalcon\Mvc\Model
     }
 
     /**
+     *
+     */
+    public function beforeDelete() {
+        $behavior = new \Phalcon\Mvc\Model\Behavior\SoftDelete(array(
+            'field' => 'status',
+            'value' => '0'
+        ));
+        $this->addBehavior($behavior);
+    }
+
+    /**
      * Initialize method for model.
      */
     public function initialize()
     {
-        $this->hasMany('id_service_type', 'Service', 'id_service_type', ['alias' => 'Service']);
+        $this->hasMany('id_service_type', 'Service', 'id_service_type', [
+            'alias' => 'Service',
+            "foreignKey" => array(
+                "action" => Relation::ACTION_CASCADE,
+            )
+        ]);
     }
 
     /**

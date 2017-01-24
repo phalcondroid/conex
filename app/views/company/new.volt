@@ -139,11 +139,15 @@
                             Sector al que pertenece
                         </th>
                         <th>
-                            <select class="form-control" name="companySector">
-                                {% for item in companySector %}
-                                    <option value="{{ item.getIdCompanySector() }}">
-                                        {{ item.getCompanySector() }}
-                                    </option>
+                            <select class="form-control" name="ciiu">
+                                {% for item in ciiuType %}
+                                     <optgroup label="{{ item.ciiu_type }}">
+                                         {% for itemCiiu in item.Ciiu %}
+                                             <option value="{{ itemCiiu.id_ciiu }}">
+                                                 {{ itemCiiu.ciiu }}
+                                             </option>
+                                         {% endfor %}
+                                     </optgroup>
                                 {% endfor %}
                             </select>
                         </th>

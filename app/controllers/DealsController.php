@@ -19,10 +19,10 @@ class DealsController extends ControllerBase
     {
 
         $parameters = array(
-            #"conditions" => "id_users <> ?0",
-            #"bind" => array(
-            #    0 => $this->session->get("user")->id_users
-            #)
+            "conditions" => "status = ?0",
+            "bind" => array(
+                0 => 1
+            ),
             "limit" => 10
         );
 

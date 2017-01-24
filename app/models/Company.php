@@ -1,5 +1,7 @@
 <?php
 
+use \Phalcon\Mvc\Model\Relation;
+
 class Company extends \Phalcon\Mvc\Model
 {
 
@@ -74,6 +76,13 @@ class Company extends \Phalcon\Mvc\Model
      * @Column(type="integer", length=11, nullable=false)
      */
     public $id_coverage;
+
+    /**
+     *
+     * @var integer
+     * @Column(type="integer", length=11, nullable=false)
+     */
+    public $id_ciiu;
 
     /**
      *
@@ -283,6 +292,19 @@ class Company extends \Phalcon\Mvc\Model
     }
 
     /**
+     * Method to set the value of field id_coverage
+     *
+     * @param integer $id_coverage
+     * @return $this
+     */
+    public function setIdCiiu($ciiu)
+    {
+        $this->id_ciiu = $ciiu;
+
+        return $this;
+    }
+
+    /**
      * Method to set the value of field name
      *
      * @param string $name
@@ -413,6 +435,14 @@ class Company extends \Phalcon\Mvc\Model
     }
 
     /**
+     *
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+    }
+
+    /**
      * Returns the value of field id_company
      *
      * @return integer
@@ -510,6 +540,16 @@ class Company extends \Phalcon\Mvc\Model
     public function getIdCoverage()
     {
         return $this->id_coverage;
+    }
+
+    /**
+     * Returns the value of field id_coverage
+     *
+     * @return integer
+     */
+    public function getIdCiiu()
+    {
+        return $this->id_ciiu;
     }
 
     /**
@@ -636,17 +676,77 @@ class Company extends \Phalcon\Mvc\Model
     }
 
     /**
+     *
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     *
+     */
+    public function beforeDelete() {
+        $behavior = new \Phalcon\Mvc\Model\Behavior\SoftDelete(array(
+            'field' => 'status',
+            'value' => '0'
+        ));
+        $this->addBehavior($behavior);
+    }
+
+    /**
      * Initialize method for model.
      */
     public function initialize()
     {
-        $this->belongsTo('id_company_assets', 'CompanyAssets', 'id_company_assets', ['alias' => 'CompanyAssets']);
-        $this->belongsTo('id_company_sector', 'CompanySector', 'id_company_sector', ['alias' => 'CompanySector']);
-        $this->belongsTo('id_coverage', 'Coverage', 'id_coverage', ['alias' => 'Coverage']);
-        $this->belongsTo('id_employee_number', 'EmployeeNumber', 'id_employee_number', ['alias' => 'EmployeeNumber']);
-        $this->belongsTo('id_legal_constitution', 'LegalConstitution', 'id_legal_constitution', ['alias' => 'LegalConstitution']);
-        $this->belongsTo('id_size_company', 'SizeCompany', 'id_size_company', ['alias' => 'SizeCompany']);
-        $this->belongsTo('id_users', 'Users', 'id_users', ['alias' => 'Users']);
+        $this->belongsTo('id_company_assets', 'CompanyAssets', 'id_company_assets', [
+            'alias' => 'CompanyAssets',
+            "foreignKey" => array(
+                "action" => Relation::ACTION_CASCADE,
+            )
+        ]);
+        $this->belongsTo('id_company_sector', 'CompanySector', 'id_company_sector', [
+            'alias' => 'CompanySector',
+            "foreignKey" => array(
+                "action" => Relation::ACTION_CASCADE,
+            )
+        ]);
+        $this->belongsTo('id_ciiu', 'Ciiu', 'id_ciiu', [
+            'alias' => 'Ciiu',
+            "foreignKey" => array(
+                "action" => Relation::ACTION_CASCADE,
+            )
+        ]);
+        $this->belongsTo('id_coverage', 'Coverage', 'id_coverage', [
+            'alias' => 'Coverage',
+            "foreignKey" => array(
+                "action" => Relation::ACTION_CASCADE,
+            )
+        ]);
+        $this->belongsTo('id_employee_number', 'EmployeeNumber', 'id_employee_number', [
+            'alias' => 'EmployeeNumber',
+            "foreignKey" => array(
+                "action" => Relation::ACTION_CASCADE,
+            )
+        ]);
+        $this->belongsTo('id_legal_constitution', 'LegalConstitution', 'id_legal_constitution', [
+            'alias' => 'LegalConstitution',
+            "foreignKey" => array(
+                "action" => Relation::ACTION_CASCADE,
+            )
+        ]);
+        $this->belongsTo('id_size_company', 'SizeCompany', 'id_size_company', [
+            'alias' => 'SizeCompany',
+            "foreignKey" => array(
+                "action" => Relation::ACTION_CASCADE,
+            )
+        ]);
+        $this->belongsTo('id_users', 'Users', 'id_users', [
+            'alias' => 'Users',
+            "foreignKey" => array(
+                "action" => Relation::ACTION_CASCADE,
+            )
+        ]);
     }
 
     /**

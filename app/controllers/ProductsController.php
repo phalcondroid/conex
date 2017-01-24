@@ -18,23 +18,23 @@ class ProductsController extends ControllerBase
 
 	public function editAction($id)
 	{
-		$this->view->productType     = ProductType::find();
-        $this->view->productCapacity = ProductCapacity::find();
+		$this->view->productType     = ProductType::find("status = 1");
+        $this->view->productCapacity = ProductCapacity::find("status = 1");
 
 		if (!empty($id)) {
 			$product = Products::findFirstByIdProducts((int) $id);
 			$this->view->companies = Company::find(array(
-	            "conditions" => "id_users = ?0",
+	            "conditions" => "id_users = ?0 and status = 1",
 	            "bind" => array(
 	                0 => $this->session->get("user")->id_users
 	            )
 	        ));
 			$this->view->product   = $product;
-			$this->view->idProduct = $id; 
+			$this->view->idProduct = $id;
 		}
 
 		if ($this->request->isPost()) {
-			
+
 			if ($product) {
 
 				$this->uploader->setRequest($this->request);

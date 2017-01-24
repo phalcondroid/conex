@@ -6,6 +6,8 @@
 class CompanyController extends ControllerBase
 {
 
+    private $status;
+
     /**
      * [initialize description]
      * @return [type] [description]
@@ -13,6 +15,7 @@ class CompanyController extends ControllerBase
     public function initialize()
     {
         $this->view->setLayout("main");
+        $this->status = "status = 1";
     }
 
     /**
@@ -21,7 +24,12 @@ class CompanyController extends ControllerBase
      */
     public function indexAction()
     {
-        $companies = Company::findByIdUsers($this->session->get("user")->id_users);
+        $companies = Company::find(array(
+            "conditions" => "id_users = ?0 and status = 1",
+            "bind" => array(
+                0 => $this->session->get("user")->id_users
+            )
+        ));
         $this->view->companies = $companies;
     }
 
@@ -30,20 +38,22 @@ class CompanyController extends ControllerBase
      */
     public function newAction()
     {
-        $companyAssets   = CompanyAssets::find();
-        $employeeNumber  = EmployeeNumber::find();
-        $companySector   = CompanySector::find();
-        $companyPosition = CompanyPosition::find();
-        $sizeCompany     = SizeCompany::find();
-        $legalConstitution = LegalConstitution::find();
-        $coverage        = Coverage::find();
+        $ciiu              = CiiuType::find($this->status);
+        $companyAssets     = CompanyAssets::find($this->status);
+        $employeeNumber    = EmployeeNumber::find($this->status);
+        $companySector     = CompanySector::find($this->status);
+        $companyPosition   = CompanyPosition::find($this->status);
+        $sizeCompany       = SizeCompany::find($this->status);
+        $legalConstitution = LegalConstitution::find($this->status);
+        $coverage          = Coverage::find($this->status);
 
-        $this->view->coverage = $coverage;
-        $this->view->companyAssets   = $companyAssets;
-        $this->view->employeeNumber  = $employeeNumber;
-        $this->view->companySector   = $companySector;
-        $this->view->sizeCompany     = $sizeCompany;
-        $this->view->companyPosition = $companyPosition;
+        $this->view->ciiuType          = $ciiu;
+        $this->view->coverage          = $coverage;
+        $this->view->companyAssets     = $companyAssets;
+        $this->view->employeeNumber    = $employeeNumber;
+        $this->view->companySector     = $companySector;
+        $this->view->sizeCompany       = $sizeCompany;
+        $this->view->companyPosition   = $companyPosition;
         $this->view->legalConstitution = $legalConstitution;
     }
 
@@ -98,6 +108,10 @@ class CompanyController extends ControllerBase
                     "int",
                     "striptags"
                 )));
+                $company->setIdCiiu($this->request->getPost("ciiu", array(
+                    "int",
+                    "striptags"
+                )));
                 $company->setName($this->request->getPost("name", array(
                     "string",
                     "striptags"
@@ -123,6 +137,7 @@ class CompanyController extends ControllerBase
                     "email",
                     "striptags"
                 )));
+                $company->setStatus(1);
 
                 if ($company->save()) {
                     $this->flash->success("Nueva empresa registrada con satisfactoriamente");
@@ -146,15 +161,17 @@ class CompanyController extends ControllerBase
     {
         if (!empty($id)) {
 
-            $companyAssets   = CompanyAssets::find();
-            $employeeNumber  = EmployeeNumber::find();
-            $companySector   = CompanySector::find();
-            $companyPosition = CompanyPosition::find();
-            $sizeCompany     = SizeCompany::find();
-            $legalConstitution = LegalConstitution::find();
-            $coverage        = Coverage::find();
+            $ciiu            = CiiuType::find($this->status);
+            $companyAssets   = CompanyAssets::find($this->status);
+            $employeeNumber  = EmployeeNumber::find($this->status);
+            $companySector   = CompanySector::find($this->status);
+            $companyPosition = CompanyPosition::find($this->status);
+            $sizeCompany     = SizeCompany::find($this->status);
+            $legalConstitution = LegalConstitution::find($this->status);
+            $coverage        = Coverage::find($this->status);
 
-            $this->view->coverage = $coverage;
+            $this->view->ciiuType        = $ciiu;
+            $this->view->coverage        = $coverage;
             $this->view->companyAssets   = $companyAssets;
             $this->view->employeeNumber  = $employeeNumber;
             $this->view->companySector   = $companySector;
@@ -200,6 +217,10 @@ class CompanyController extends ControllerBase
                     "striptags"
                 )));
                 $company->setIdCoverage($this->request->getPost("coverage", array(
+                    "int",
+                    "striptags"
+                )));
+                $company->setIdCiiu($this->request->getPost("ciiu", array(
                     "int",
                     "striptags"
                 )));

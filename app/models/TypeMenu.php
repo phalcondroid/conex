@@ -1,5 +1,7 @@
 <?php
 
+use \Phalcon\Mvc\Model\Relation;
+
 class TypeMenu extends \Phalcon\Mvc\Model
 {
 
@@ -126,11 +128,27 @@ class TypeMenu extends \Phalcon\Mvc\Model
     }
 
     /**
+     *
+     */
+    public function beforeDelete() {
+        $behavior = new \Phalcon\Mvc\Model\Behavior\SoftDelete(array(
+            'field' => 'status',
+            'value' => '0'
+        ));
+        $this->addBehavior($behavior);
+    }
+
+    /**
      * Initialize method for model.
      */
     public function initialize()
     {
-        $this->hasMany('id_type_menu', 'Menu', 'id_type_menu', ['alias' => 'Menu']);
+        $this->hasMany('id_type_menu', 'Menu', 'id_type_menu', [
+            'alias' => 'Menu',
+            "foreignKey" => array(
+                "action" => Relation::ACTION_CASCADE,
+            )
+        ]);
     }
 
     /**

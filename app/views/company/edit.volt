@@ -166,17 +166,21 @@
                             Sector al que pertenece
                         </th>
                         <th>
-                            <select class="form-control" name="companySector">
-                                {% for item in companySector %}
+                            <select class="form-control" name="ciiu">
+                                {% for item in ciiuType %}
+                                     <optgroup label="{{ item.ciiu_type }}">
+                                         {% for itemCiiu in item.Ciiu %}
 
-                                    {% set selected = "" %}
-                                    {% if item.getIdCompanySector() == company.getIdCompanySector() %}
-                                        {% set selected = "selected" %}
-                                    {% endif %}
+                                             {% set selected = "" %}
+                                             {% if itemCiiu.id_ciiu == company.id_ciiu %}
+                                                 {% set selected = "selected" %}
+                                             {% endif %}
 
-                                    <option {{ selected }} value="{{ item.getIdCompanySector() }}">
-                                        {{ item.getCompanySector() }}
-                                    </option>
+                                             <option {{ selected }} value="{{ itemCiiu.id_ciiu }}">
+                                                 {{ itemCiiu.ciiu }}
+                                             </option>
+                                         {% endfor %}
+                                     </optgroup>
                                 {% endfor %}
                             </select>
                         </th>

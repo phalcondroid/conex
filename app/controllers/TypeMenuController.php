@@ -15,7 +15,7 @@ class TypemenuController extends ControllerBase
      */
     public function indexAction()
     {
-        $typeMenu = TypeMenu::find();
+        $typeMenu = TypeMenu::find("status = 1");
         $this->view->typeMenu = $typeMenu;
     }
 

@@ -9,6 +9,7 @@ class IndexController extends ControllerBase
     public function indexAction()
     {
         $this->view->companies = Company::find(array(
+            "conditions" => "status = 1",
             "limit" => 3
         ));
 
