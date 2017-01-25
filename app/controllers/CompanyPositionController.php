@@ -1,11 +1,16 @@
 <?php
- 
+
 use Phalcon\Mvc\Model\Criteria;
 use Phalcon\Paginator\Adapter\Model as Paginator;
 
 
 class CompanyPositionController extends ControllerBase
 {
+    public function initialize()
+    {
+        $this->view->setLayout("admin");
+    }
+
     /**
      * Index action
      */
@@ -19,6 +24,7 @@ class CompanyPositionController extends ControllerBase
      */
     public function searchAction()
     {
+        $this->persistent->parameters = null;
         $numberPage = 1;
         if ($this->request->isPost()) {
             $query = Criteria::fromInput($this->di, 'CompanyPosition', $_POST);
@@ -90,7 +96,7 @@ class CompanyPositionController extends ControllerBase
             $this->tag->setDefault("description", $company_position->description);
             $this->tag->setDefault("status", $company_position->status);
             $this->tag->setDefault("created_at", $company_position->created_at);
-            
+
         }
     }
 
@@ -113,7 +119,7 @@ class CompanyPositionController extends ControllerBase
         $company_position->description = $this->request->getPost("description");
         $company_position->status = $this->request->getPost("status");
         $company_position->created_at = $this->request->getPost("created_at");
-        
+
 
         if (!$company_position->save()) {
             foreach ($company_position->getMessages() as $message) {
@@ -170,7 +176,7 @@ class CompanyPositionController extends ControllerBase
         $company_position->description = $this->request->getPost("description");
         $company_position->status = $this->request->getPost("status");
         $company_position->created_at = $this->request->getPost("created_at");
-        
+
 
         if (!$company_position->save()) {
 

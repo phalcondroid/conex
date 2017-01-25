@@ -1,7 +1,7 @@
 <div class="row">
     <nav>
         <ul class="pager">
-            <li class="next">{{ link_to("ciiu/new", "Create ") }}</li>
+            <li class="next">{{ link_to("ciiutype/new", "Create ") }}</li>
         </ul>
     </nav>
 </div>
@@ -17,8 +17,8 @@
         <thead>
             <tr>
                 <th>Id Of Ciiu</th>
-            <th>Id Of Ciiu Of Type</th>
-            <th>Ciiu</th>
+            <th>Ciiu Of Type</th>
+            <th>Section</th>
             <th>Status</th>
             <th>Created</th>
 
@@ -28,16 +28,16 @@
         </thead>
         <tbody>
         {% if page.items is defined %}
-        {% for ciiu in page.items %}
+        {% for ciiu_type in page.items %}
             <tr>
-                <td>{{ ciiu.id_ciiu }}</td>
-            <td>{{ ciiu.id_ciiu_type }}</td>
-            <td>{{ ciiu.ciiu }}</td>
-            <td>{{ ciiu.status }}</td>
-            <td>{{ ciiu.created_at }}</td>
+                <td>{{ ciiu_type.id_ciiu }}</td>
+            <td>{{ ciiu_type.ciiu_type }}</td>
+            <td>{{ ciiu_type.section }}</td>
+            <td>{{ ciiu_type.status }}</td>
+            <td>{{ ciiu_type.created_at }}</td>
 
-                <td>{{ link_to("ciiu/edit/"~ciiu.id_ciiu, "Edit") }}</td>
-                <td>{{ link_to("ciiu/delete/"~ciiu.id_ciiu, "Delete") }}</td>
+                <td>{{ link_to("ciiutype/edit/"~ciiu_type.id_ciiu, "Edit") }}</td>
+                <td>{{ link_to("ciiutype/delete/"~ciiu_type.id_ciiu, "Delete") }}</td>
             </tr>
         {% endfor %}
         {% endif %}
@@ -54,10 +54,10 @@
     <div class="col-sm-11">
         <nav>
             <ul class="pagination">
-                <li>{{ link_to("ciiu/search", "First") }}</li>
-                <li>{{ link_to("ciiu/search?page="~page.before, "Previous") }}</li>
-                <li>{{ link_to("ciiu/search?page="~page.next, "Next") }}</li>
-                <li>{{ link_to("ciiu/search?page="~page.last, "Last") }}</li>
+                <li>{{ link_to("ciiutype/search", "First") }}</li>
+                <li>{{ link_to("ciiutype/search?page="~page.before, "Previous") }}</li>
+                <li>{{ link_to("ciiutype/search?page="~page.next, "Next") }}</li>
+                <li>{{ link_to("ciiutype/search?page="~page.last, "Last") }}</li>
             </ul>
         </nav>
     </div>

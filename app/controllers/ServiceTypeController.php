@@ -1,11 +1,17 @@
 <?php
- 
+
 use Phalcon\Mvc\Model\Criteria;
 use Phalcon\Paginator\Adapter\Model as Paginator;
 
 
 class ServiceTypeController extends ControllerBase
 {
+
+    public function initialize()
+    {
+        $this->view->setLayout("admin");
+    }
+
     /**
      * Index action
      */
@@ -19,6 +25,7 @@ class ServiceTypeController extends ControllerBase
      */
     public function searchAction()
     {
+        $this->persistent->parameters = null;
         $numberPage = 1;
         if ($this->request->isPost()) {
             $query = Criteria::fromInput($this->di, 'ServiceType', $_POST);
@@ -89,7 +96,7 @@ class ServiceTypeController extends ControllerBase
             $this->tag->setDefault("service_type", $service_type->service_type);
             $this->tag->setDefault("status", $service_type->status);
             $this->tag->setDefault("created_at", $service_type->created_at);
-            
+
         }
     }
 
@@ -111,7 +118,7 @@ class ServiceTypeController extends ControllerBase
         $service_type->service_type = $this->request->getPost("service_type");
         $service_type->status = $this->request->getPost("status");
         $service_type->created_at = $this->request->getPost("created_at");
-        
+
 
         if (!$service_type->save()) {
             foreach ($service_type->getMessages() as $message) {
@@ -167,7 +174,7 @@ class ServiceTypeController extends ControllerBase
         $service_type->service_type = $this->request->getPost("service_type");
         $service_type->status = $this->request->getPost("status");
         $service_type->created_at = $this->request->getPost("created_at");
-        
+
 
         if (!$service_type->save()) {
 

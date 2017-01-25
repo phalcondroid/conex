@@ -6,8 +6,9 @@ use Phalcon\Paginator\Adapter\Model as Paginator;
 
 class CiiuController extends ControllerBase
 {
-
-
+    /**
+     *
+     */
     public function initialize()
     {
         $this->view->setLayout("admin");
@@ -26,6 +27,7 @@ class CiiuController extends ControllerBase
      */
     public function searchAction()
     {
+        $this->persistent->parameters = null;
         $numberPage = 1;
         if ($this->request->isPost()) {
             $query = Criteria::fromInput($this->di, 'Ciiu', $_POST);
@@ -39,14 +41,14 @@ class CiiuController extends ControllerBase
             $parameters = [];
         }
         $parameters["order"] = "id_ciiu";
-
         $ciiu = Ciiu::find($parameters);
+
         if (count($ciiu) == 0) {
             $this->flash->notice("The search did not find any ciiu");
 
             $this->dispatcher->forward([
                 "controller" => "ciiu",
-                "action" => "index"
+                "action" => "search"
             ]);
 
             return;
@@ -76,6 +78,8 @@ class CiiuController extends ControllerBase
      */
     public function editAction($id_ciiu)
     {
+        $this->view->ciiuType = CiiuType::find("status = 1");
+
         if (!$this->request->isPost()) {
 
             $ciiu = Ciiu::findFirstByid_ciiu($id_ciiu);
@@ -91,12 +95,9 @@ class CiiuController extends ControllerBase
             }
 
             $this->view->id_ciiu = $ciiu->id_ciiu;
-
             $this->tag->setDefault("id_ciiu", $ciiu->id_ciiu);
             $this->tag->setDefault("id_ciiu_type", $ciiu->id_ciiu_type);
             $this->tag->setDefault("ciiu", $ciiu->ciiu);
-            $this->tag->setDefault("status", $ciiu->status);
-            $this->tag->setDefault("created_at", $ciiu->created_at);
 
         }
     }
@@ -109,7 +110,7 @@ class CiiuController extends ControllerBase
         if (!$this->request->isPost()) {
             $this->dispatcher->forward([
                 'controller' => "ciiu",
-                'action' => 'index'
+                'action' => 'search'
             ]);
 
             return;
@@ -118,9 +119,6 @@ class CiiuController extends ControllerBase
         $ciiu = new Ciiu();
         $ciiu->id_ciiu_type = $this->request->getPost("id_ciiu_type");
         $ciiu->ciiu = $this->request->getPost("ciiu");
-        $ciiu->status = $this->request->getPost("status");
-        $ciiu->created_at = $this->request->getPost("created_at");
-
 
         if (!$ciiu->save()) {
             foreach ($ciiu->getMessages() as $message) {
@@ -139,7 +137,7 @@ class CiiuController extends ControllerBase
 
         $this->dispatcher->forward([
             'controller' => "ciiu",
-            'action' => 'index'
+            'action' => 'search'
         ]);
     }
 
@@ -153,7 +151,7 @@ class CiiuController extends ControllerBase
         if (!$this->request->isPost()) {
             $this->dispatcher->forward([
                 'controller' => "ciiu",
-                'action' => 'index'
+                'action' => 'search'
             ]);
 
             return;
@@ -167,7 +165,7 @@ class CiiuController extends ControllerBase
 
             $this->dispatcher->forward([
                 'controller' => "ciiu",
-                'action' => 'index'
+                'action' => 'search'
             ]);
 
             return;
@@ -175,9 +173,6 @@ class CiiuController extends ControllerBase
 
         $ciiu->id_ciiu_type = $this->request->getPost("id_ciiu_type");
         $ciiu->ciiu = $this->request->getPost("ciiu");
-        $ciiu->status = $this->request->getPost("status");
-        $ciiu->created_at = $this->request->getPost("created_at");
-
 
         if (!$ciiu->save()) {
 
@@ -198,7 +193,7 @@ class CiiuController extends ControllerBase
 
         $this->dispatcher->forward([
             'controller' => "ciiu",
-            'action' => 'index'
+            'action' => 'search'
         ]);
     }
 
@@ -215,7 +210,7 @@ class CiiuController extends ControllerBase
 
             $this->dispatcher->forward([
                 'controller' => "ciiu",
-                'action' => 'index'
+                'action' => 'search'
             ]);
 
             return;
@@ -239,7 +234,7 @@ class CiiuController extends ControllerBase
 
         $this->dispatcher->forward([
             'controller' => "ciiu",
-            'action' => "index"
+            'action' => "search"
         ]);
     }
 

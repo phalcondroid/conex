@@ -1,11 +1,17 @@
 <?php
- 
+
 use Phalcon\Mvc\Model\Criteria;
 use Phalcon\Paginator\Adapter\Model as Paginator;
 
 
 class LegalConstitutionController extends ControllerBase
 {
+
+    public function initialize()
+    {
+        $this->view->setLayout("admin");
+    }
+
     /**
      * Index action
      */
@@ -19,6 +25,7 @@ class LegalConstitutionController extends ControllerBase
      */
     public function searchAction()
     {
+        $this->persistent->parameters = null;
         $numberPage = 1;
         if ($this->request->isPost()) {
             $query = Criteria::fromInput($this->di, 'LegalConstitution', $_POST);
@@ -89,7 +96,7 @@ class LegalConstitutionController extends ControllerBase
             $this->tag->setDefault("legal_constitution", $legal_constitution->legal_constitution);
             $this->tag->setDefault("status", $legal_constitution->status);
             $this->tag->setDefault("created_at", $legal_constitution->created_at);
-            
+
         }
     }
 
@@ -111,7 +118,7 @@ class LegalConstitutionController extends ControllerBase
         $legal_constitution->legal_constitution = $this->request->getPost("legal_constitution");
         $legal_constitution->status = $this->request->getPost("status");
         $legal_constitution->created_at = $this->request->getPost("created_at");
-        
+
 
         if (!$legal_constitution->save()) {
             foreach ($legal_constitution->getMessages() as $message) {
@@ -167,7 +174,7 @@ class LegalConstitutionController extends ControllerBase
         $legal_constitution->legal_constitution = $this->request->getPost("legal_constitution");
         $legal_constitution->status = $this->request->getPost("status");
         $legal_constitution->created_at = $this->request->getPost("created_at");
-        
+
 
         if (!$legal_constitution->save()) {
 

@@ -1,11 +1,17 @@
 <?php
- 
+
 use Phalcon\Mvc\Model\Criteria;
 use Phalcon\Paginator\Adapter\Model as Paginator;
 
 
 class EmployeeNumberController extends ControllerBase
 {
+
+    public function initialize()
+    {
+        $this->view->setLayout("admin");
+    }
+
     /**
      * Index action
      */
@@ -19,6 +25,7 @@ class EmployeeNumberController extends ControllerBase
      */
     public function searchAction()
     {
+        $this->persistent->parameters = null;
         $numberPage = 1;
         if ($this->request->isPost()) {
             $query = Criteria::fromInput($this->di, 'EmployeeNumber', $_POST);
@@ -89,7 +96,7 @@ class EmployeeNumberController extends ControllerBase
             $this->tag->setDefault("employee_number", $employee_number->employee_number);
             $this->tag->setDefault("status", $employee_number->status);
             $this->tag->setDefault("created_at", $employee_number->created_at);
-            
+
         }
     }
 
@@ -111,7 +118,7 @@ class EmployeeNumberController extends ControllerBase
         $employee_number->employee_number = $this->request->getPost("employee_number");
         $employee_number->status = $this->request->getPost("status");
         $employee_number->created_at = $this->request->getPost("created_at");
-        
+
 
         if (!$employee_number->save()) {
             foreach ($employee_number->getMessages() as $message) {
@@ -167,7 +174,7 @@ class EmployeeNumberController extends ControllerBase
         $employee_number->employee_number = $this->request->getPost("employee_number");
         $employee_number->status = $this->request->getPost("status");
         $employee_number->created_at = $this->request->getPost("created_at");
-        
+
 
         if (!$employee_number->save()) {
 

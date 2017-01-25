@@ -1,32 +1,27 @@
-<div class="row">
-    <nav>
-        <ul class="pager">
-            <li class="previous">{{ link_to("ciiu/search", "Go Back") }}</li>
-        </ul>
-    </nav>
-</div>
-
 <div class="page-header">
     <h1>
-        Create ciiu
+        Search company_assets
     </h1>
+    <p>
+        {{ link_to("companyassets/new", "Create company_assets") }}
+    </p>
 </div>
 
 {{ content() }}
 
-{{ form("ciiu/create", "method":"post", "autocomplete" : "off", "class" : "form-horizontal") }}
+{{ form("companyassets/search", "method":"post", "autocomplete" : "off", "class" : "form-horizontal") }}
 
 <div class="form-group">
-    <label for="fieldIdCiiuType" class="col-sm-2 control-label">Id Of Ciiu Of Type</label>
+    <label for="fieldIdCompanyAssets" class="col-sm-2 control-label">Id Of Company Of Assets</label>
     <div class="col-sm-10">
-        {{ text_field("id_ciiu_type", "type" : "numeric", "class" : "form-control", "id" : "fieldIdCiiuType") }}
+        {{ text_field("id_company_assets", "type" : "numeric", "class" : "form-control", "id" : "fieldIdCompanyAssets") }}
     </div>
 </div>
 
 <div class="form-group">
-    <label for="fieldCiiu" class="col-sm-2 control-label">Ciiu</label>
+    <label for="fieldCompanyAssets" class="col-sm-2 control-label">Company Of Assets</label>
     <div class="col-sm-10">
-        {{ text_field("ciiu", "size" : 30, "class" : "form-control", "id" : "fieldCiiu") }}
+        {{ text_field("company_assets", "size" : 30, "class" : "form-control", "id" : "fieldCompanyAssets") }}
     </div>
 </div>
 
@@ -47,7 +42,7 @@
 
 <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-        {{ submit_button('Save', 'class': 'btn btn-default') }}
+        {{ submit_button('Search', 'class': 'btn btn-default') }}
     </div>
 </div>
 

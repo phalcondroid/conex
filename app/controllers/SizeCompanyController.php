@@ -1,11 +1,16 @@
 <?php
- 
+
 use Phalcon\Mvc\Model\Criteria;
 use Phalcon\Paginator\Adapter\Model as Paginator;
 
 
 class SizeCompanyController extends ControllerBase
 {
+    public function initialize()
+    {
+        $this->view->setLayout("admin");
+    }
+
     /**
      * Index action
      */
@@ -19,6 +24,7 @@ class SizeCompanyController extends ControllerBase
      */
     public function searchAction()
     {
+        $this->persistent->parameters = null;
         $numberPage = 1;
         if ($this->request->isPost()) {
             $query = Criteria::fromInput($this->di, 'SizeCompany', $_POST);
@@ -89,7 +95,7 @@ class SizeCompanyController extends ControllerBase
             $this->tag->setDefault("size_company", $size_company->size_company);
             $this->tag->setDefault("status", $size_company->status);
             $this->tag->setDefault("created_at", $size_company->created_at);
-            
+
         }
     }
 
@@ -111,7 +117,7 @@ class SizeCompanyController extends ControllerBase
         $size_company->size_company = $this->request->getPost("size_company");
         $size_company->status = $this->request->getPost("status");
         $size_company->created_at = $this->request->getPost("created_at");
-        
+
 
         if (!$size_company->save()) {
             foreach ($size_company->getMessages() as $message) {
@@ -167,7 +173,7 @@ class SizeCompanyController extends ControllerBase
         $size_company->size_company = $this->request->getPost("size_company");
         $size_company->status = $this->request->getPost("status");
         $size_company->created_at = $this->request->getPost("created_at");
-        
+
 
         if (!$size_company->save()) {
 

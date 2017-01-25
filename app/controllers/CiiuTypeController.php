@@ -1,11 +1,17 @@
 <?php
- 
+
 use Phalcon\Mvc\Model\Criteria;
 use Phalcon\Paginator\Adapter\Model as Paginator;
 
 
 class CiiuTypeController extends ControllerBase
 {
+
+    public function initialize()
+    {
+        $this->view->setLayout("admin");
+    }
+
     /**
      * Index action
      */
@@ -19,6 +25,7 @@ class CiiuTypeController extends ControllerBase
      */
     public function searchAction()
     {
+        $this->persistent->parameters = null;
         $numberPage = 1;
         if ($this->request->isPost()) {
             $query = Criteria::fromInput($this->di, 'CiiuType', $_POST);
@@ -90,7 +97,7 @@ class CiiuTypeController extends ControllerBase
             $this->tag->setDefault("section", $ciiu_type->section);
             $this->tag->setDefault("status", $ciiu_type->status);
             $this->tag->setDefault("created_at", $ciiu_type->created_at);
-            
+
         }
     }
 
@@ -113,7 +120,7 @@ class CiiuTypeController extends ControllerBase
         $ciiu_type->section = $this->request->getPost("section");
         $ciiu_type->status = $this->request->getPost("status");
         $ciiu_type->created_at = $this->request->getPost("created_at");
-        
+
 
         if (!$ciiu_type->save()) {
             foreach ($ciiu_type->getMessages() as $message) {
@@ -170,7 +177,7 @@ class CiiuTypeController extends ControllerBase
         $ciiu_type->section = $this->request->getPost("section");
         $ciiu_type->status = $this->request->getPost("status");
         $ciiu_type->created_at = $this->request->getPost("created_at");
-        
+
 
         if (!$ciiu_type->save()) {
 

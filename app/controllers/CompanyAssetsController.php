@@ -1,11 +1,17 @@
 <?php
- 
+
 use Phalcon\Mvc\Model\Criteria;
 use Phalcon\Paginator\Adapter\Model as Paginator;
 
 
 class CompanyAssetsController extends ControllerBase
 {
+
+    public function initialize()
+    {
+        $this->view->setLayout("admin");
+    }
+
     /**
      * Index action
      */
@@ -19,6 +25,7 @@ class CompanyAssetsController extends ControllerBase
      */
     public function searchAction()
     {
+        $this->persistent->parameters = null;
         $numberPage = 1;
         if ($this->request->isPost()) {
             $query = Criteria::fromInput($this->di, 'CompanyAssets', $_POST);
@@ -89,7 +96,7 @@ class CompanyAssetsController extends ControllerBase
             $this->tag->setDefault("company_assets", $company_asset->company_assets);
             $this->tag->setDefault("status", $company_asset->status);
             $this->tag->setDefault("created_at", $company_asset->created_at);
-            
+
         }
     }
 
@@ -111,7 +118,7 @@ class CompanyAssetsController extends ControllerBase
         $company_asset->company_assets = $this->request->getPost("company_assets");
         $company_asset->status = $this->request->getPost("status");
         $company_asset->created_at = $this->request->getPost("created_at");
-        
+
 
         if (!$company_asset->save()) {
             foreach ($company_asset->getMessages() as $message) {
@@ -167,7 +174,7 @@ class CompanyAssetsController extends ControllerBase
         $company_asset->company_assets = $this->request->getPost("company_assets");
         $company_asset->status = $this->request->getPost("status");
         $company_asset->created_at = $this->request->getPost("created_at");
-        
+
 
         if (!$company_asset->save()) {
 

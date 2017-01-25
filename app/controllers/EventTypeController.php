@@ -1,11 +1,17 @@
 <?php
- 
+
 use Phalcon\Mvc\Model\Criteria;
 use Phalcon\Paginator\Adapter\Model as Paginator;
 
 
 class EventTypeController extends ControllerBase
 {
+
+    public function initialize()
+    {
+        $this->view->setLayout("admin");
+    }
+
     /**
      * Index action
      */
@@ -19,6 +25,7 @@ class EventTypeController extends ControllerBase
      */
     public function searchAction()
     {
+        $this->persistent->parameters = null;
         $numberPage = 1;
         if ($this->request->isPost()) {
             $query = Criteria::fromInput($this->di, 'EventType', $_POST);
@@ -89,7 +96,7 @@ class EventTypeController extends ControllerBase
             $this->tag->setDefault("event_type", $event_type->event_type);
             $this->tag->setDefault("status", $event_type->status);
             $this->tag->setDefault("created_at", $event_type->created_at);
-            
+
         }
     }
 
@@ -111,7 +118,7 @@ class EventTypeController extends ControllerBase
         $event_type->event_type = $this->request->getPost("event_type");
         $event_type->status = $this->request->getPost("status");
         $event_type->created_at = $this->request->getPost("created_at");
-        
+
 
         if (!$event_type->save()) {
             foreach ($event_type->getMessages() as $message) {
@@ -167,7 +174,7 @@ class EventTypeController extends ControllerBase
         $event_type->event_type = $this->request->getPost("event_type");
         $event_type->status = $this->request->getPost("status");
         $event_type->created_at = $this->request->getPost("created_at");
-        
+
 
         if (!$event_type->save()) {
 

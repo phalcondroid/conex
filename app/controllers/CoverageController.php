@@ -1,11 +1,16 @@
 <?php
- 
+
 use Phalcon\Mvc\Model\Criteria;
 use Phalcon\Paginator\Adapter\Model as Paginator;
 
 
 class CoverageController extends ControllerBase
 {
+    public function initialize()
+    {
+        $this->view->setLayout("admin");
+    }
+
     /**
      * Index action
      */
@@ -19,6 +24,7 @@ class CoverageController extends ControllerBase
      */
     public function searchAction()
     {
+        $this->persistent->parameters = null;
         $numberPage = 1;
         if ($this->request->isPost()) {
             $query = Criteria::fromInput($this->di, 'Coverage', $_POST);
@@ -89,7 +95,7 @@ class CoverageController extends ControllerBase
             $this->tag->setDefault("coverage", $coverage->coverage);
             $this->tag->setDefault("status", $coverage->status);
             $this->tag->setDefault("created_at", $coverage->created_at);
-            
+
         }
     }
 
@@ -111,7 +117,7 @@ class CoverageController extends ControllerBase
         $coverage->coverage = $this->request->getPost("coverage");
         $coverage->status = $this->request->getPost("status");
         $coverage->created_at = $this->request->getPost("created_at");
-        
+
 
         if (!$coverage->save()) {
             foreach ($coverage->getMessages() as $message) {
@@ -167,7 +173,7 @@ class CoverageController extends ControllerBase
         $coverage->coverage = $this->request->getPost("coverage");
         $coverage->status = $this->request->getPost("status");
         $coverage->created_at = $this->request->getPost("created_at");
-        
+
 
         if (!$coverage->save()) {
 

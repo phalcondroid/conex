@@ -1,7 +1,6 @@
 <div class="row">
     <nav>
         <ul class="pager">
-            <li class="previous">{{ link_to("coverage/index", "Go Back") }}</li>
             <li class="next">{{ link_to("coverage/new", "Create ") }}</li>
         </ul>
     </nav>
