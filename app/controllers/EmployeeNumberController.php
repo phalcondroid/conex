@@ -45,8 +45,8 @@ class EmployeeNumberController extends ControllerBase
             $this->flash->notice("The search did not find any employee_number");
 
             $this->dispatcher->forward([
-                "controller" => "employee_number",
-                "action" => "index"
+                "controller" => "employeenumber",
+                "action" => "search"
             ]);
 
             return;
@@ -83,8 +83,8 @@ class EmployeeNumberController extends ControllerBase
                 $this->flash->error("employee_number was not found");
 
                 $this->dispatcher->forward([
-                    'controller' => "employee_number",
-                    'action' => 'index'
+                    'controller' => "employeenumber",
+                    'action' => 'search'
                 ]);
 
                 return;
@@ -107,8 +107,8 @@ class EmployeeNumberController extends ControllerBase
     {
         if (!$this->request->isPost()) {
             $this->dispatcher->forward([
-                'controller' => "employee_number",
-                'action' => 'index'
+                'controller' => "employeenumber",
+                'action' => 'search'
             ]);
 
             return;
@@ -116,9 +116,7 @@ class EmployeeNumberController extends ControllerBase
 
         $employee_number = new EmployeeNumber();
         $employee_number->employee_number = $this->request->getPost("employee_number");
-        $employee_number->status = $this->request->getPost("status");
-        $employee_number->created_at = $this->request->getPost("created_at");
-
+        $employee_number->status = 1;
 
         if (!$employee_number->save()) {
             foreach ($employee_number->getMessages() as $message) {
@@ -126,7 +124,7 @@ class EmployeeNumberController extends ControllerBase
             }
 
             $this->dispatcher->forward([
-                'controller' => "employee_number",
+                'controller' => "employeenumber",
                 'action' => 'new'
             ]);
 
@@ -136,8 +134,8 @@ class EmployeeNumberController extends ControllerBase
         $this->flash->success("employee_number was created successfully");
 
         $this->dispatcher->forward([
-            'controller' => "employee_number",
-            'action' => 'index'
+            'controller' => "employeenumber",
+            'action' => 'search'
         ]);
     }
 
@@ -150,8 +148,8 @@ class EmployeeNumberController extends ControllerBase
 
         if (!$this->request->isPost()) {
             $this->dispatcher->forward([
-                'controller' => "employee_number",
-                'action' => 'index'
+                'controller' => "employeenumber",
+                'action' => 'search'
             ]);
 
             return;
@@ -164,17 +162,14 @@ class EmployeeNumberController extends ControllerBase
             $this->flash->error("employee_number does not exist " . $id_employee_number);
 
             $this->dispatcher->forward([
-                'controller' => "employee_number",
-                'action' => 'index'
+                'controller' => "employeenumber",
+                'action' => 'search'
             ]);
 
             return;
         }
 
         $employee_number->employee_number = $this->request->getPost("employee_number");
-        $employee_number->status = $this->request->getPost("status");
-        $employee_number->created_at = $this->request->getPost("created_at");
-
 
         if (!$employee_number->save()) {
 
@@ -183,7 +178,7 @@ class EmployeeNumberController extends ControllerBase
             }
 
             $this->dispatcher->forward([
-                'controller' => "employee_number",
+                'controller' => "employeenumber",
                 'action' => 'edit',
                 'params' => [$employee_number->id_employee_number]
             ]);
@@ -194,8 +189,8 @@ class EmployeeNumberController extends ControllerBase
         $this->flash->success("employee_number was updated successfully");
 
         $this->dispatcher->forward([
-            'controller' => "employee_number",
-            'action' => 'index'
+            'controller' => "employeenumber",
+            'action' => 'search'
         ]);
     }
 
@@ -211,8 +206,8 @@ class EmployeeNumberController extends ControllerBase
             $this->flash->error("employee_number was not found");
 
             $this->dispatcher->forward([
-                'controller' => "employee_number",
-                'action' => 'index'
+                'controller' => "employeenumber",
+                'action' => 'search'
             ]);
 
             return;
@@ -225,7 +220,7 @@ class EmployeeNumberController extends ControllerBase
             }
 
             $this->dispatcher->forward([
-                'controller' => "employee_number",
+                'controller' => "employeenumber",
                 'action' => 'search'
             ]);
 
@@ -235,8 +230,8 @@ class EmployeeNumberController extends ControllerBase
         $this->flash->success("employee_number was deleted successfully");
 
         $this->dispatcher->forward([
-            'controller' => "employee_number",
-            'action' => "index"
+            'controller' => "employeenumber",
+            'action' => "search"
         ]);
     }
 

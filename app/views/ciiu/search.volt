@@ -17,11 +17,10 @@
         <thead>
             <tr>
                 <th>Id Of Ciiu</th>
-            <th>Id Of Ciiu Of Type</th>
-            <th>Ciiu</th>
-            <th>Status</th>
-            <th>Created</th>
-
+                <th>Id Of Ciiu Of Type</th>
+                <th>Ciiu</th>
+                <th>Status</th>
+                <th>Created</th>
                 <th></th>
                 <th></th>
             </tr>
@@ -31,10 +30,10 @@
         {% for ciiu in page.items %}
             <tr>
                 <td>{{ ciiu.id_ciiu }}</td>
-            <td>{{ ciiu.id_ciiu_type }}</td>
-            <td>{{ ciiu.ciiu }}</td>
-            <td>{{ ciiu.status }}</td>
-            <td>{{ ciiu.created_at }}</td>
+                <td>{{ ciiu.CiiuType.ciiu_type }}</td>
+                <td>{{ ciiu.ciiu }}</td>
+                <td>{{ ciiu.status }}</td>
+                <td>{{ ciiu.created_at }}</td>
 
                 <td>{{ link_to("ciiu/edit/"~ciiu.id_ciiu, "Edit") }}</td>
                 <td>{{ link_to("ciiu/delete/"~ciiu.id_ciiu, "Delete") }}</td>

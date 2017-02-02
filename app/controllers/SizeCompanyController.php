@@ -44,8 +44,8 @@ class SizeCompanyController extends ControllerBase
             $this->flash->notice("The search did not find any size_company");
 
             $this->dispatcher->forward([
-                "controller" => "size_company",
-                "action" => "index"
+                "controller" => "sizecompany",
+                "action" => "search"
             ]);
 
             return;
@@ -82,8 +82,8 @@ class SizeCompanyController extends ControllerBase
                 $this->flash->error("size_company was not found");
 
                 $this->dispatcher->forward([
-                    'controller' => "size_company",
-                    'action' => 'index'
+                    'controller' => "sizecompany",
+                    'action' => 'search'
                 ]);
 
                 return;
@@ -106,8 +106,8 @@ class SizeCompanyController extends ControllerBase
     {
         if (!$this->request->isPost()) {
             $this->dispatcher->forward([
-                'controller' => "size_company",
-                'action' => 'index'
+                'controller' => "sizecompany",
+                'action' => 'search'
             ]);
 
             return;
@@ -115,9 +115,7 @@ class SizeCompanyController extends ControllerBase
 
         $size_company = new SizeCompany();
         $size_company->size_company = $this->request->getPost("size_company");
-        $size_company->status = $this->request->getPost("status");
-        $size_company->created_at = $this->request->getPost("created_at");
-
+        $size_company->status       = 1;
 
         if (!$size_company->save()) {
             foreach ($size_company->getMessages() as $message) {
@@ -135,8 +133,8 @@ class SizeCompanyController extends ControllerBase
         $this->flash->success("size_company was created successfully");
 
         $this->dispatcher->forward([
-            'controller' => "size_company",
-            'action' => 'index'
+            'controller' => "sizecompany",
+            'action' => 'search'
         ]);
     }
 
@@ -149,8 +147,8 @@ class SizeCompanyController extends ControllerBase
 
         if (!$this->request->isPost()) {
             $this->dispatcher->forward([
-                'controller' => "size_company",
-                'action' => 'index'
+                'controller' => "sizecompany",
+                'action' => 'search'
             ]);
 
             return;
@@ -163,17 +161,15 @@ class SizeCompanyController extends ControllerBase
             $this->flash->error("size_company does not exist " . $id_size_company);
 
             $this->dispatcher->forward([
-                'controller' => "size_company",
-                'action' => 'index'
+                'controller' => "sizecompany",
+                'action' => 'search'
             ]);
 
             return;
         }
 
         $size_company->size_company = $this->request->getPost("size_company");
-        $size_company->status = $this->request->getPost("status");
-        $size_company->created_at = $this->request->getPost("created_at");
-
+        $size_company->status = 1;
 
         if (!$size_company->save()) {
 
@@ -182,7 +178,7 @@ class SizeCompanyController extends ControllerBase
             }
 
             $this->dispatcher->forward([
-                'controller' => "size_company",
+                'controller' => "sizecompany",
                 'action' => 'edit',
                 'params' => [$size_company->id_size_company]
             ]);
@@ -193,8 +189,8 @@ class SizeCompanyController extends ControllerBase
         $this->flash->success("size_company was updated successfully");
 
         $this->dispatcher->forward([
-            'controller' => "size_company",
-            'action' => 'index'
+            'controller' => "sizecompany",
+            'action' => 'search'
         ]);
     }
 
@@ -210,8 +206,8 @@ class SizeCompanyController extends ControllerBase
             $this->flash->error("size_company was not found");
 
             $this->dispatcher->forward([
-                'controller' => "size_company",
-                'action' => 'index'
+                'controller' => "sizecompany",
+                'action' => 'search'
             ]);
 
             return;
@@ -224,7 +220,7 @@ class SizeCompanyController extends ControllerBase
             }
 
             $this->dispatcher->forward([
-                'controller' => "size_company",
+                'controller' => "sizecompany",
                 'action' => 'search'
             ]);
 
@@ -234,8 +230,8 @@ class SizeCompanyController extends ControllerBase
         $this->flash->success("size_company was deleted successfully");
 
         $this->dispatcher->forward([
-            'controller' => "size_company",
-            'action' => "index"
+            'controller' => "sizecompany",
+            'action' => "search"
         ]);
     }
 

@@ -23,22 +23,7 @@
     </div>
 </div>
 
-<div class="form-group">
-    <label for="fieldStatus" class="col-sm-2 control-label">Status</label>
-    <div class="col-sm-10">
-        {{ text_field("status", "type" : "numeric", "class" : "form-control", "id" : "fieldStatus") }}
-    </div>
-</div>
-
-<div class="form-group">
-    <label for="fieldCreatedAt" class="col-sm-2 control-label">Created</label>
-    <div class="col-sm-10">
-        {{ text_field("created_at", "size" : 30, "class" : "form-control", "id" : "fieldCreatedAt") }}
-    </div>
-</div>
-
-
-{{ hidden_field("id") }}
+{{ hidden_field("id_size_company") }}
 
 <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">

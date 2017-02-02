@@ -19,7 +19,7 @@
 <div class="form-group">
     <label for="fieldIdCiiuType" class="col-sm-2 control-label">Id Of Ciiu Of Type</label>
     <div class="col-sm-10">
-        {{ select('id_ciiu_type', ciiuType, 'using': ['id', 'ciiu_type'], "id" : "fieldIdCiiuType") }}
+        {{ select('id_ciiu_type', ciiuType, 'using': ['id_ciiu', 'ciiu_type'], "id" : "fieldIdCiiuType") }}
     </div>
 </div>
 

@@ -44,8 +44,8 @@ class CompanyPositionController extends ControllerBase
             $this->flash->notice("The search did not find any company_position");
 
             $this->dispatcher->forward([
-                "controller" => "company_position",
-                "action" => "index"
+                "controller" => "companyposition",
+                "action" => "search"
             ]);
 
             return;
@@ -82,8 +82,8 @@ class CompanyPositionController extends ControllerBase
                 $this->flash->error("company_position was not found");
 
                 $this->dispatcher->forward([
-                    'controller' => "company_position",
-                    'action' => 'index'
+                    'controller' => "companyposition",
+                    'action' => 'search'
                 ]);
 
                 return;
@@ -107,8 +107,8 @@ class CompanyPositionController extends ControllerBase
     {
         if (!$this->request->isPost()) {
             $this->dispatcher->forward([
-                'controller' => "company_position",
-                'action' => 'index'
+                'controller' => "companyposition",
+                'action' => 'search'
             ]);
 
             return;
@@ -117,8 +117,7 @@ class CompanyPositionController extends ControllerBase
         $company_position = new CompanyPosition();
         $company_position->position = $this->request->getPost("position");
         $company_position->description = $this->request->getPost("description");
-        $company_position->status = $this->request->getPost("status");
-        $company_position->created_at = $this->request->getPost("created_at");
+        $company_position->status = 1;
 
 
         if (!$company_position->save()) {
@@ -127,7 +126,7 @@ class CompanyPositionController extends ControllerBase
             }
 
             $this->dispatcher->forward([
-                'controller' => "company_position",
+                'controller' => "companyposition",
                 'action' => 'new'
             ]);
 
@@ -137,8 +136,8 @@ class CompanyPositionController extends ControllerBase
         $this->flash->success("company_position was created successfully");
 
         $this->dispatcher->forward([
-            'controller' => "company_position",
-            'action' => 'index'
+            'controller' => "companyposition",
+            'action' => 'search'
         ]);
     }
 
@@ -151,8 +150,8 @@ class CompanyPositionController extends ControllerBase
 
         if (!$this->request->isPost()) {
             $this->dispatcher->forward([
-                'controller' => "company_position",
-                'action' => 'index'
+                'controller' => "companyposition",
+                'action' => 'search'
             ]);
 
             return;
@@ -165,8 +164,8 @@ class CompanyPositionController extends ControllerBase
             $this->flash->error("company_position does not exist " . $id_company_position);
 
             $this->dispatcher->forward([
-                'controller' => "company_position",
-                'action' => 'index'
+                'controller' => "companyposition",
+                'action' => 'search'
             ]);
 
             return;
@@ -174,9 +173,7 @@ class CompanyPositionController extends ControllerBase
 
         $company_position->position = $this->request->getPost("position");
         $company_position->description = $this->request->getPost("description");
-        $company_position->status = $this->request->getPost("status");
-        $company_position->created_at = $this->request->getPost("created_at");
-
+        $company_position->status = 1;
 
         if (!$company_position->save()) {
 
@@ -185,7 +182,7 @@ class CompanyPositionController extends ControllerBase
             }
 
             $this->dispatcher->forward([
-                'controller' => "company_position",
+                'controller' => "companyposition",
                 'action' => 'edit',
                 'params' => [$company_position->id_company_position]
             ]);
@@ -196,8 +193,8 @@ class CompanyPositionController extends ControllerBase
         $this->flash->success("company_position was updated successfully");
 
         $this->dispatcher->forward([
-            'controller' => "company_position",
-            'action' => 'index'
+            'controller' => "companyposition",
+            'action' => 'search'
         ]);
     }
 
@@ -213,8 +210,8 @@ class CompanyPositionController extends ControllerBase
             $this->flash->error("company_position was not found");
 
             $this->dispatcher->forward([
-                'controller' => "company_position",
-                'action' => 'index'
+                'controller' => "companyposition",
+                'action' => 'search'
             ]);
 
             return;
@@ -227,7 +224,7 @@ class CompanyPositionController extends ControllerBase
             }
 
             $this->dispatcher->forward([
-                'controller' => "company_position",
+                'controller' => "companyposition",
                 'action' => 'search'
             ]);
 
@@ -237,8 +234,8 @@ class CompanyPositionController extends ControllerBase
         $this->flash->success("company_position was deleted successfully");
 
         $this->dispatcher->forward([
-            'controller' => "company_position",
-            'action' => "index"
+            'controller' => "companyposition",
+            'action' => "search"
         ]);
     }
 

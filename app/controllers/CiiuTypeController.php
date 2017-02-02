@@ -41,12 +41,13 @@ class CiiuTypeController extends ControllerBase
         $parameters["order"] = "id_ciiu";
 
         $ciiu_type = CiiuType::find($parameters);
+
         if (count($ciiu_type) == 0) {
             $this->flash->notice("The search did not find any ciiu_type");
 
             $this->dispatcher->forward([
-                "controller" => "ciiu_type",
-                "action" => "index"
+                "controller" => "ciiutype",
+                "action" => "search"
             ]);
 
             return;
@@ -83,8 +84,8 @@ class CiiuTypeController extends ControllerBase
                 $this->flash->error("ciiu_type was not found");
 
                 $this->dispatcher->forward([
-                    'controller' => "ciiu_type",
-                    'action' => 'index'
+                    'controller' => "ciiutype",
+                    'action' => 'search'
                 ]);
 
                 return;
@@ -108,27 +109,25 @@ class CiiuTypeController extends ControllerBase
     {
         if (!$this->request->isPost()) {
             $this->dispatcher->forward([
-                'controller' => "ciiu_type",
-                'action' => 'index'
+                'controller' => "ciiutype",
+                'action' => 'search'
             ]);
-
             return;
         }
 
         $ciiu_type = new CiiuType();
         $ciiu_type->ciiu_type = $this->request->getPost("ciiu_type");
-        $ciiu_type->section = $this->request->getPost("section");
-        $ciiu_type->status = $this->request->getPost("status");
-        $ciiu_type->created_at = $this->request->getPost("created_at");
-
+        $ciiu_type->section   = $this->request->getPost("section");
+        $ciiu_type->status    = 1;
 
         if (!$ciiu_type->save()) {
+            
             foreach ($ciiu_type->getMessages() as $message) {
                 $this->flash->error($message);
             }
 
             $this->dispatcher->forward([
-                'controller' => "ciiu_type",
+                'controller' => "ciiutype",
                 'action' => 'new'
             ]);
 
@@ -138,8 +137,8 @@ class CiiuTypeController extends ControllerBase
         $this->flash->success("ciiu_type was created successfully");
 
         $this->dispatcher->forward([
-            'controller' => "ciiu_type",
-            'action' => 'index'
+            'controller' => "ciiutype",
+            'action' => 'search'
         ]);
     }
 
@@ -152,8 +151,8 @@ class CiiuTypeController extends ControllerBase
 
         if (!$this->request->isPost()) {
             $this->dispatcher->forward([
-                'controller' => "ciiu_type",
-                'action' => 'index'
+                'controller' => "ciiutype",
+                'action' => 'search'
             ]);
 
             return;
@@ -166,18 +165,16 @@ class CiiuTypeController extends ControllerBase
             $this->flash->error("ciiu_type does not exist " . $id_ciiu);
 
             $this->dispatcher->forward([
-                'controller' => "ciiu_type",
-                'action' => 'index'
+                'controller' => "ciiutype",
+                'action' => 'search'
             ]);
 
             return;
         }
 
-        $ciiu_type->ciiu_type = $this->request->getPost("ciiu_type");
-        $ciiu_type->section = $this->request->getPost("section");
-        $ciiu_type->status = $this->request->getPost("status");
-        $ciiu_type->created_at = $this->request->getPost("created_at");
-
+        $ciiu_type->ciiu_type  = $this->request->getPost("ciiu_type");
+        $ciiu_type->section    = $this->request->getPost("section");
+        $ciiu_type->status     = 1;
 
         if (!$ciiu_type->save()) {
 
@@ -186,7 +183,7 @@ class CiiuTypeController extends ControllerBase
             }
 
             $this->dispatcher->forward([
-                'controller' => "ciiu_type",
+                'controller' => "ciiutype",
                 'action' => 'edit',
                 'params' => [$ciiu_type->id_ciiu]
             ]);
@@ -197,8 +194,8 @@ class CiiuTypeController extends ControllerBase
         $this->flash->success("ciiu_type was updated successfully");
 
         $this->dispatcher->forward([
-            'controller' => "ciiu_type",
-            'action' => 'index'
+            'controller' => "ciiutype",
+            'action' => 'search'
         ]);
     }
 
@@ -214,8 +211,8 @@ class CiiuTypeController extends ControllerBase
             $this->flash->error("ciiu_type was not found");
 
             $this->dispatcher->forward([
-                'controller' => "ciiu_type",
-                'action' => 'index'
+                'controller' => "ciiutype",
+                'action' => 'search'
             ]);
 
             return;
@@ -228,7 +225,7 @@ class CiiuTypeController extends ControllerBase
             }
 
             $this->dispatcher->forward([
-                'controller' => "ciiu_type",
+                'controller' => "ciiutype",
                 'action' => 'search'
             ]);
 
@@ -238,8 +235,8 @@ class CiiuTypeController extends ControllerBase
         $this->flash->success("ciiu_type was deleted successfully");
 
         $this->dispatcher->forward([
-            'controller' => "ciiu_type",
-            'action' => "index"
+            'controller' => "ciiutype",
+            'action' => "search"
         ]);
     }
 

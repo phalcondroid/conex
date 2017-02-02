@@ -45,7 +45,7 @@ class ServiceTypeController extends ControllerBase
             $this->flash->notice("The search did not find any service_type");
 
             $this->dispatcher->forward([
-                "controller" => "service_type",
+                "controller" => "servicetype",
                 "action" => "index"
             ]);
 
@@ -83,8 +83,8 @@ class ServiceTypeController extends ControllerBase
                 $this->flash->error("service_type was not found");
 
                 $this->dispatcher->forward([
-                    'controller' => "service_type",
-                    'action' => 'index'
+                    "controller" => "servicetype",
+                    'action' => 'search'
                 ]);
 
                 return;
@@ -107,8 +107,8 @@ class ServiceTypeController extends ControllerBase
     {
         if (!$this->request->isPost()) {
             $this->dispatcher->forward([
-                'controller' => "service_type",
-                'action' => 'index'
+                "controller" => "servicetype",
+                'action' => 'search'
             ]);
 
             return;
@@ -116,9 +116,7 @@ class ServiceTypeController extends ControllerBase
 
         $service_type = new ServiceType();
         $service_type->service_type = $this->request->getPost("service_type");
-        $service_type->status = $this->request->getPost("status");
-        $service_type->created_at = $this->request->getPost("created_at");
-
+        $service_type->status = 1;
 
         if (!$service_type->save()) {
             foreach ($service_type->getMessages() as $message) {
@@ -126,7 +124,7 @@ class ServiceTypeController extends ControllerBase
             }
 
             $this->dispatcher->forward([
-                'controller' => "service_type",
+                "controller" => "servicetype",
                 'action' => 'new'
             ]);
 
@@ -136,8 +134,8 @@ class ServiceTypeController extends ControllerBase
         $this->flash->success("service_type was created successfully");
 
         $this->dispatcher->forward([
-            'controller' => "service_type",
-            'action' => 'index'
+            "controller" => "servicetype",
+            'action' => 'search'
         ]);
     }
 
@@ -150,8 +148,8 @@ class ServiceTypeController extends ControllerBase
 
         if (!$this->request->isPost()) {
             $this->dispatcher->forward([
-                'controller' => "service_type",
-                'action' => 'index'
+                "controller" => "servicetype",
+                'action' => 'search'
             ]);
 
             return;
@@ -164,17 +162,14 @@ class ServiceTypeController extends ControllerBase
             $this->flash->error("service_type does not exist " . $id_service_type);
 
             $this->dispatcher->forward([
-                'controller' => "service_type",
-                'action' => 'index'
+                "controller" => "servicetype",
+                'action' => 'search'
             ]);
 
             return;
         }
 
         $service_type->service_type = $this->request->getPost("service_type");
-        $service_type->status = $this->request->getPost("status");
-        $service_type->created_at = $this->request->getPost("created_at");
-
 
         if (!$service_type->save()) {
 
@@ -183,7 +178,7 @@ class ServiceTypeController extends ControllerBase
             }
 
             $this->dispatcher->forward([
-                'controller' => "service_type",
+                "controller" => "servicetype",
                 'action' => 'edit',
                 'params' => [$service_type->id_service_type]
             ]);
@@ -194,8 +189,8 @@ class ServiceTypeController extends ControllerBase
         $this->flash->success("service_type was updated successfully");
 
         $this->dispatcher->forward([
-            'controller' => "service_type",
-            'action' => 'index'
+            "controller" => "servicetype",
+            'action' => 'search'
         ]);
     }
 
@@ -211,8 +206,8 @@ class ServiceTypeController extends ControllerBase
             $this->flash->error("service_type was not found");
 
             $this->dispatcher->forward([
-                'controller' => "service_type",
-                'action' => 'index'
+                "controller" => "servicetype",
+                'action' => 'search'
             ]);
 
             return;
@@ -225,7 +220,7 @@ class ServiceTypeController extends ControllerBase
             }
 
             $this->dispatcher->forward([
-                'controller' => "service_type",
+                "controller" => "servicetype",
                 'action' => 'search'
             ]);
 
@@ -235,8 +230,8 @@ class ServiceTypeController extends ControllerBase
         $this->flash->success("service_type was deleted successfully");
 
         $this->dispatcher->forward([
-            'controller' => "service_type",
-            'action' => "index"
+            "controller" => "servicetype",
+            'action' => "search"
         ]);
     }
 

@@ -83,7 +83,7 @@ class CoverageController extends ControllerBase
 
                 $this->dispatcher->forward([
                     'controller' => "coverage",
-                    'action' => 'index'
+                    'action' => 'search'
                 ]);
 
                 return;
@@ -107,7 +107,7 @@ class CoverageController extends ControllerBase
         if (!$this->request->isPost()) {
             $this->dispatcher->forward([
                 'controller' => "coverage",
-                'action' => 'index'
+                'action' => 'search'
             ]);
 
             return;
@@ -115,8 +115,7 @@ class CoverageController extends ControllerBase
 
         $coverage = new Coverage();
         $coverage->coverage = $this->request->getPost("coverage");
-        $coverage->status = $this->request->getPost("status");
-        $coverage->created_at = $this->request->getPost("created_at");
+        $coverage->status   = 1;
 
 
         if (!$coverage->save()) {
@@ -136,7 +135,7 @@ class CoverageController extends ControllerBase
 
         $this->dispatcher->forward([
             'controller' => "coverage",
-            'action' => 'index'
+            'action' => 'search'
         ]);
     }
 
@@ -150,7 +149,7 @@ class CoverageController extends ControllerBase
         if (!$this->request->isPost()) {
             $this->dispatcher->forward([
                 'controller' => "coverage",
-                'action' => 'index'
+                'action' => 'search'
             ]);
 
             return;
@@ -164,15 +163,14 @@ class CoverageController extends ControllerBase
 
             $this->dispatcher->forward([
                 'controller' => "coverage",
-                'action' => 'index'
+                'action' => 'search'
             ]);
 
             return;
         }
 
         $coverage->coverage = $this->request->getPost("coverage");
-        $coverage->status = $this->request->getPost("status");
-        $coverage->created_at = $this->request->getPost("created_at");
+        $coverage->status   = 1;
 
 
         if (!$coverage->save()) {
@@ -194,7 +192,7 @@ class CoverageController extends ControllerBase
 
         $this->dispatcher->forward([
             'controller' => "coverage",
-            'action' => 'index'
+            'action' => 'search'
         ]);
     }
 
@@ -211,7 +209,7 @@ class CoverageController extends ControllerBase
 
             $this->dispatcher->forward([
                 'controller' => "coverage",
-                'action' => 'index'
+                'action' => 'search'
             ]);
 
             return;
@@ -235,7 +233,7 @@ class CoverageController extends ControllerBase
 
         $this->dispatcher->forward([
             'controller' => "coverage",
-            'action' => "index"
+            'action' => "search"
         ]);
     }
 

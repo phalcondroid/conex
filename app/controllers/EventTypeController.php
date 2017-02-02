@@ -45,7 +45,7 @@ class EventTypeController extends ControllerBase
             $this->flash->notice("The search did not find any event_type");
 
             $this->dispatcher->forward([
-                "controller" => "event_type",
+                "controller" => "eventtype",
                 "action" => "index"
             ]);
 
@@ -83,8 +83,8 @@ class EventTypeController extends ControllerBase
                 $this->flash->error("event_type was not found");
 
                 $this->dispatcher->forward([
-                    'controller' => "event_type",
-                    'action' => 'index'
+                    'controller' => "eventtype",
+                    'action' => 'search'
                 ]);
 
                 return;
@@ -107,8 +107,8 @@ class EventTypeController extends ControllerBase
     {
         if (!$this->request->isPost()) {
             $this->dispatcher->forward([
-                'controller' => "event_type",
-                'action' => 'index'
+                'controller' => "eventtype",
+                'action' => 'search'
             ]);
 
             return;
@@ -116,8 +116,7 @@ class EventTypeController extends ControllerBase
 
         $event_type = new EventType();
         $event_type->event_type = $this->request->getPost("event_type");
-        $event_type->status = $this->request->getPost("status");
-        $event_type->created_at = $this->request->getPost("created_at");
+        $event_type->status = 1;
 
 
         if (!$event_type->save()) {
@@ -126,7 +125,7 @@ class EventTypeController extends ControllerBase
             }
 
             $this->dispatcher->forward([
-                'controller' => "event_type",
+                'controller' => "eventtype",
                 'action' => 'new'
             ]);
 
@@ -136,8 +135,8 @@ class EventTypeController extends ControllerBase
         $this->flash->success("event_type was created successfully");
 
         $this->dispatcher->forward([
-            'controller' => "event_type",
-            'action' => 'index'
+            'controller' => "eventtype",
+            'action' => 'search'
         ]);
     }
 
@@ -150,8 +149,8 @@ class EventTypeController extends ControllerBase
 
         if (!$this->request->isPost()) {
             $this->dispatcher->forward([
-                'controller' => "event_type",
-                'action' => 'index'
+                'controller' => "eventtype",
+                'action' => 'search'
             ]);
 
             return;
@@ -164,17 +163,14 @@ class EventTypeController extends ControllerBase
             $this->flash->error("event_type does not exist " . $id_event_type);
 
             $this->dispatcher->forward([
-                'controller' => "event_type",
-                'action' => 'index'
+                'controller' => "eventtype",
+                'action' => 'search'
             ]);
 
             return;
         }
 
         $event_type->event_type = $this->request->getPost("event_type");
-        $event_type->status = $this->request->getPost("status");
-        $event_type->created_at = $this->request->getPost("created_at");
-
 
         if (!$event_type->save()) {
 
@@ -183,7 +179,7 @@ class EventTypeController extends ControllerBase
             }
 
             $this->dispatcher->forward([
-                'controller' => "event_type",
+                'controller' => "eventtype",
                 'action' => 'edit',
                 'params' => [$event_type->id_event_type]
             ]);
@@ -194,8 +190,8 @@ class EventTypeController extends ControllerBase
         $this->flash->success("event_type was updated successfully");
 
         $this->dispatcher->forward([
-            'controller' => "event_type",
-            'action' => 'index'
+            'controller' => "eventtype",
+            'action' => 'search'
         ]);
     }
 
@@ -211,8 +207,8 @@ class EventTypeController extends ControllerBase
             $this->flash->error("event_type was not found");
 
             $this->dispatcher->forward([
-                'controller' => "event_type",
-                'action' => 'index'
+                'controller' => "eventtype",
+                'action' => 'search'
             ]);
 
             return;
@@ -225,7 +221,7 @@ class EventTypeController extends ControllerBase
             }
 
             $this->dispatcher->forward([
-                'controller' => "event_type",
+                'controller' => "eventtype",
                 'action' => 'search'
             ]);
 
@@ -235,8 +231,8 @@ class EventTypeController extends ControllerBase
         $this->flash->success("event_type was deleted successfully");
 
         $this->dispatcher->forward([
-            'controller' => "event_type",
-            'action' => "index"
+            'controller' => "eventtype",
+            'action' => "search"
         ]);
     }
 

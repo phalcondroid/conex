@@ -45,7 +45,7 @@ class LegalConstitutionController extends ControllerBase
             $this->flash->notice("The search did not find any legal_constitution");
 
             $this->dispatcher->forward([
-                "controller" => "legal_constitution",
+                "controller" => "legalconstitution",
                 "action" => "index"
             ]);
 
@@ -83,8 +83,8 @@ class LegalConstitutionController extends ControllerBase
                 $this->flash->error("legal_constitution was not found");
 
                 $this->dispatcher->forward([
-                    'controller' => "legal_constitution",
-                    'action' => 'index'
+                    "controller" => "legalconstitution",
+                    'action' => 'search'
                 ]);
 
                 return;
@@ -107,8 +107,8 @@ class LegalConstitutionController extends ControllerBase
     {
         if (!$this->request->isPost()) {
             $this->dispatcher->forward([
-                'controller' => "legal_constitution",
-                'action' => 'index'
+                "controller" => "legalconstitution",
+                'action' => 'search'
             ]);
 
             return;
@@ -116,9 +116,7 @@ class LegalConstitutionController extends ControllerBase
 
         $legal_constitution = new LegalConstitution();
         $legal_constitution->legal_constitution = $this->request->getPost("legal_constitution");
-        $legal_constitution->status = $this->request->getPost("status");
-        $legal_constitution->created_at = $this->request->getPost("created_at");
-
+        $legal_constitution->status = 1;
 
         if (!$legal_constitution->save()) {
             foreach ($legal_constitution->getMessages() as $message) {
@@ -126,7 +124,7 @@ class LegalConstitutionController extends ControllerBase
             }
 
             $this->dispatcher->forward([
-                'controller' => "legal_constitution",
+                "controller" => "legalconstitution",
                 'action' => 'new'
             ]);
 
@@ -136,7 +134,7 @@ class LegalConstitutionController extends ControllerBase
         $this->flash->success("legal_constitution was created successfully");
 
         $this->dispatcher->forward([
-            'controller' => "legal_constitution",
+            "controller" => "legalconstitution",
             'action' => 'index'
         ]);
     }
@@ -150,7 +148,7 @@ class LegalConstitutionController extends ControllerBase
 
         if (!$this->request->isPost()) {
             $this->dispatcher->forward([
-                'controller' => "legal_constitution",
+                "controller" => "legalconstitution",
                 'action' => 'index'
             ]);
 
@@ -164,7 +162,7 @@ class LegalConstitutionController extends ControllerBase
             $this->flash->error("legal_constitution does not exist " . $id_legal_constitution);
 
             $this->dispatcher->forward([
-                'controller' => "legal_constitution",
+                "controller" => "legalconstitution",
                 'action' => 'index'
             ]);
 
@@ -172,9 +170,6 @@ class LegalConstitutionController extends ControllerBase
         }
 
         $legal_constitution->legal_constitution = $this->request->getPost("legal_constitution");
-        $legal_constitution->status = $this->request->getPost("status");
-        $legal_constitution->created_at = $this->request->getPost("created_at");
-
 
         if (!$legal_constitution->save()) {
 
@@ -183,7 +178,7 @@ class LegalConstitutionController extends ControllerBase
             }
 
             $this->dispatcher->forward([
-                'controller' => "legal_constitution",
+                "controller" => "legalconstitution",
                 'action' => 'edit',
                 'params' => [$legal_constitution->id_legal_constitution]
             ]);
@@ -194,8 +189,8 @@ class LegalConstitutionController extends ControllerBase
         $this->flash->success("legal_constitution was updated successfully");
 
         $this->dispatcher->forward([
-            'controller' => "legal_constitution",
-            'action' => 'index'
+            "controller" => "legalconstitution",
+            'action' => 'search'
         ]);
     }
 
@@ -211,8 +206,8 @@ class LegalConstitutionController extends ControllerBase
             $this->flash->error("legal_constitution was not found");
 
             $this->dispatcher->forward([
-                'controller' => "legal_constitution",
-                'action' => 'index'
+                "controller" => "legalconstitution",
+                'action' => 'search'
             ]);
 
             return;
@@ -225,7 +220,7 @@ class LegalConstitutionController extends ControllerBase
             }
 
             $this->dispatcher->forward([
-                'controller' => "legal_constitution",
+                "controller" => "legalconstitution",
                 'action' => 'search'
             ]);
 
@@ -235,8 +230,8 @@ class LegalConstitutionController extends ControllerBase
         $this->flash->success("legal_constitution was deleted successfully");
 
         $this->dispatcher->forward([
-            'controller' => "legal_constitution",
-            'action' => "index"
+            "controller" => "legalconstitution",
+            'action' => "search"
         ]);
     }
 

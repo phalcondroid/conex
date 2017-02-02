@@ -41,12 +41,13 @@ class CompanyAssetsController extends ControllerBase
         $parameters["order"] = "id_company_assets";
 
         $company_assets = CompanyAssets::find($parameters);
+
         if (count($company_assets) == 0) {
             $this->flash->notice("The search did not find any company_assets");
 
             $this->dispatcher->forward([
-                "controller" => "company_assets",
-                "action" => "index"
+                "controller" => "companyassets",
+                "action" => "search"
             ]);
 
             return;
@@ -83,8 +84,8 @@ class CompanyAssetsController extends ControllerBase
                 $this->flash->error("company_asset was not found");
 
                 $this->dispatcher->forward([
-                    'controller' => "company_assets",
-                    'action' => 'index'
+                    'controller' => "companyassets",
+                    'action' => 'search'
                 ]);
 
                 return;
@@ -107,8 +108,8 @@ class CompanyAssetsController extends ControllerBase
     {
         if (!$this->request->isPost()) {
             $this->dispatcher->forward([
-                'controller' => "company_assets",
-                'action' => 'index'
+                'controller' => "companyassets",
+                'action' => 'search'
             ]);
 
             return;
@@ -116,9 +117,7 @@ class CompanyAssetsController extends ControllerBase
 
         $company_asset = new CompanyAssets();
         $company_asset->company_assets = $this->request->getPost("company_assets");
-        $company_asset->status = $this->request->getPost("status");
-        $company_asset->created_at = $this->request->getPost("created_at");
-
+        $company_asset->status = 1;
 
         if (!$company_asset->save()) {
             foreach ($company_asset->getMessages() as $message) {
@@ -126,7 +125,7 @@ class CompanyAssetsController extends ControllerBase
             }
 
             $this->dispatcher->forward([
-                'controller' => "company_assets",
+                'controller' => "companyassets",
                 'action' => 'new'
             ]);
 
@@ -136,8 +135,8 @@ class CompanyAssetsController extends ControllerBase
         $this->flash->success("company_asset was created successfully");
 
         $this->dispatcher->forward([
-            'controller' => "company_assets",
-            'action' => 'index'
+            'controller' => "companyassets",
+            'action' => 'search'
         ]);
     }
 
@@ -150,8 +149,8 @@ class CompanyAssetsController extends ControllerBase
 
         if (!$this->request->isPost()) {
             $this->dispatcher->forward([
-                'controller' => "company_assets",
-                'action' => 'index'
+                'controller' => "companyassets",
+                'action' => 'search'
             ]);
 
             return;
@@ -164,17 +163,14 @@ class CompanyAssetsController extends ControllerBase
             $this->flash->error("company_asset does not exist " . $id_company_assets);
 
             $this->dispatcher->forward([
-                'controller' => "company_assets",
-                'action' => 'index'
+                'controller' => "companyassets",
+                'action' => 'search'
             ]);
 
             return;
         }
 
         $company_asset->company_assets = $this->request->getPost("company_assets");
-        $company_asset->status = $this->request->getPost("status");
-        $company_asset->created_at = $this->request->getPost("created_at");
-
 
         if (!$company_asset->save()) {
 
@@ -183,7 +179,7 @@ class CompanyAssetsController extends ControllerBase
             }
 
             $this->dispatcher->forward([
-                'controller' => "company_assets",
+                'controller' => "companyassets",
                 'action' => 'edit',
                 'params' => [$company_asset->id_company_assets]
             ]);
@@ -194,8 +190,8 @@ class CompanyAssetsController extends ControllerBase
         $this->flash->success("company_asset was updated successfully");
 
         $this->dispatcher->forward([
-            'controller' => "company_assets",
-            'action' => 'index'
+            'controller' => "companyassets",
+            'action' => 'search'
         ]);
     }
 
@@ -211,8 +207,8 @@ class CompanyAssetsController extends ControllerBase
             $this->flash->error("company_asset was not found");
 
             $this->dispatcher->forward([
-                'controller' => "company_assets",
-                'action' => 'index'
+                'controller' => "companyassets",
+                'action' => 'search'
             ]);
 
             return;
@@ -225,7 +221,7 @@ class CompanyAssetsController extends ControllerBase
             }
 
             $this->dispatcher->forward([
-                'controller' => "company_assets",
+                'controller' => "companyassets",
                 'action' => 'search'
             ]);
 
@@ -235,8 +231,8 @@ class CompanyAssetsController extends ControllerBase
         $this->flash->success("company_asset was deleted successfully");
 
         $this->dispatcher->forward([
-            'controller' => "company_assets",
-            'action' => "index"
+            'controller' => "companyassets",
+            'action' => "search"
         ]);
     }
 
