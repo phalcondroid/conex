@@ -4,7 +4,7 @@ use Phalcon\Mvc\Model\Criteria;
 use Phalcon\Paginator\Adapter\Model as Paginator;
 
 
-class CompanyAssetsController extends ControllerBase
+class CompanyassetsController extends ControllerBase
 {
 
     public function initialize()

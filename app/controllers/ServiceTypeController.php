@@ -4,7 +4,7 @@ use Phalcon\Mvc\Model\Criteria;
 use Phalcon\Paginator\Adapter\Model as Paginator;
 
 
-class ServiceTypeController extends ControllerBase
+class ServicetypeController extends ControllerBase
 {
 
     public function initialize()

@@ -4,7 +4,7 @@ use Phalcon\Mvc\Model\Criteria;
 use Phalcon\Paginator\Adapter\Model as Paginator;
 
 
-class EventTypeController extends ControllerBase
+class EventtypeController extends ControllerBase
 {
 
     public function initialize()

@@ -4,7 +4,7 @@ use Phalcon\Mvc\Model\Criteria;
 use Phalcon\Paginator\Adapter\Model as Paginator;
 
 
-class LegalConstitutionController extends ControllerBase
+class LegalconstitutionController extends ControllerBase
 {
 
     public function initialize()

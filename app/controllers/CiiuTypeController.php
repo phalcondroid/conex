@@ -4,7 +4,7 @@ use Phalcon\Mvc\Model\Criteria;
 use Phalcon\Paginator\Adapter\Model as Paginator;
 
 
-class CiiuTypeController extends ControllerBase
+class CiiutypeController extends ControllerBase
 {
 
     public function initialize()
@@ -121,7 +121,7 @@ class CiiuTypeController extends ControllerBase
         $ciiu_type->status    = 1;
 
         if (!$ciiu_type->save()) {
-            
+
             foreach ($ciiu_type->getMessages() as $message) {
                 $this->flash->error($message);
             }
