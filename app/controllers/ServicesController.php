@@ -77,6 +77,10 @@ class ServicesController extends ControllerBase
                 "string",
                 "striptags"
             ));
+            $product->id_company = $this->request->getPost("company", array(
+                "int",
+                "striptags"
+            ));
             $product->id_product_type = $this->request->getPost("productType", array(
                 "int",
                 "striptags"
@@ -264,7 +268,7 @@ class ServicesController extends ControllerBase
                 0 => $this->session->get("user")->id_users
             )
         ));
-        
+
         if ($this->request->isPost()) {
 
             $advert = new Advertisement("status = 1");

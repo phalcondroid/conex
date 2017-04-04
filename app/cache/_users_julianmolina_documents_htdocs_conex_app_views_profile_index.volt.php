@@ -1,5 +1,5 @@
 
-<?= $this->tag->form(['profile/index', 'method' => 'post', 'enctype' => 'multipart/form-data']) ?>
+<?= $this->tag->form(['profile/index', 'method' => 'post', 'enctype' => 'multipart/form-data', 'id' => 'profile_form']) ?>
     <div class="panel panel-default" style="margin-top : 60px; background-color : #ffffff;">
         <div class="panel-body">
             <table class="table">
@@ -31,7 +31,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-xs-3 col-md-3">
-                                    <input type="file" name="image" value="">
+                                    <input type="file" name="image" value="" required>
                                 </div>
                             </div>
                         </th>
@@ -41,7 +41,7 @@
                             Nombre
                         </th>
                         <th>
-                            <input type="text" name="name" value="<?= $user->name ?>" class="form-control">
+                            <input type="text" name="name" value="<?= $user->name ?>" class="form-control" required>
                         </th>
                     </tr>
                     <tr>
@@ -49,7 +49,7 @@
                             Documento de identidad
                         </th>
                         <th>
-                            <input type="text" name="identify" value="<?= $user->identify ?>" class="form-control">
+                            <input type="text" name="identify" value="<?= $user->identify ?>" class="form-control" required>
                         </th>
                     </tr>
                     <tr>
@@ -57,7 +57,7 @@
                             Teléfono móvil
                         </th>
                         <th>
-                            <input type="text" name="phone" value="<?= $user->mobile_phone ?>" class="form-control">
+                            <input type="text" name="phone" value="<?= $user->mobile_phone ?>" class="form-control" required>
                         </th>
                     </tr>
                     <tr>
@@ -68,7 +68,7 @@
                             <div id="map" style="width : 300px; height:200px">
 
                             </div>
-                            <input type="text" name="address" id="address" value="<?= $user->address ?>" class="form-control">
+                            <input type="text" name="address" id="address" value="<?= $user->address ?>" class="form-control" required>
                         </th>
                     </tr>
                     <tr>
@@ -76,7 +76,7 @@
                             Correo institucional
                         </th>
                         <th>
-                            <input type="text" name="email" value="<?= $user->email ?>" class="form-control" >
+                            <input type="text" name="email" value="<?= $user->email ?>" class="form-control" required>
                         </th>
                     </tr>
                     <tr>
@@ -84,7 +84,7 @@
                             Otros email
                         </th>
                         <th>
-                            <input type="text" name="other_email" value="<?= $user->other_email ?>" class="form-control" >
+                            <input type="text" name="other_email" value="<?= $user->other_email ?>" class="form-control" required>
                         </th>
                     </tr>
                     <tr>
@@ -92,7 +92,7 @@
                             Fecha de nacimiento
                         </th>
                         <th>
-                            <input type="text" name="birthday" id="birthday" value="<?= $user->birthday ?>" class="form-control">
+                            <input type="text" name="birthday" id="birthday" value="<?= $user->birthday ?>" class="form-control" required>
                         </th>
                     </tr>
                     

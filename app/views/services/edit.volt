@@ -1,5 +1,5 @@
 
-{{ form("services/edit/" ~ service.id_service, "method" : "post", "enctype" : "multipart/form-data") }}
+{{ form("services/edit/" ~ service.id_service, "method" : "post", "enctype" : "multipart/form-data", "id" : "service_form") }}
 
     <h2>Editar servicio</h2>
 
@@ -36,8 +36,8 @@
                             Tipo de servicio
                         </th>
                         <th>
-                            <select class="form-control" name="serviceType">
-                                <option>......</option>
+                            <select class="form-control" name="serviceType" required>
+                                <option value="">......</option>
                                 {% for item in serviceType %}
                                     {% set selected = "" %}
                                     {% if item.id_service_type == service.id_service_type %}
@@ -53,8 +53,8 @@
                     <tr>
                         <th>Empresa</th>
                         <th>
-                             <select class="form-control" name="company">
-                                <option>......</option>
+                             <select class="form-control" name="company" required>
+                                <option value="">......</option>
                                 {% for item in companies %}
                                     {% set selected = "" %}
                                     {% if item.id_company == service.id_company %}
@@ -72,7 +72,7 @@
                             Nombre
                         </th>
                         <th>
-                            <input type="text" name="name" value="{{ service.name }}" class="form-control">
+                            <input type="text" name="name" value="{{ service.name }}" class="form-control" required>
                         </th>
                     </tr>
                     <tr>
@@ -80,7 +80,7 @@
                             Descripción
                         </th>
                         <th>
-                            <textarea class="form-control" name="description" id="description" rows="8" cols="40">
+                            <textarea class="form-control" name="description" id="description" rows="8" cols="40" required>
                             {{ service.description }}
                             </textarea>
                         </th>
@@ -105,5 +105,7 @@
         img1.imageupload();
 
         $("#description").jqte();
+
+        $("#service_form").validate();
     });
 </script>

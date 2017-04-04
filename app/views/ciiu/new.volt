@@ -14,7 +14,7 @@
 
 {{ content() }}
 
-{{ form("ciiu/create", "method":"post", "autocomplete" : "off", "class" : "form-horizontal") }}
+{{ form("ciiu/create", "method":"post", "autocomplete" : "off", "class" : "form-horizontal", "id" : "ciiu_form") }}
 
 <div class="form-group">
     <label for="fieldIdCiiuType" class="col-sm-2 control-label">Id Of Ciiu Of Type</label>

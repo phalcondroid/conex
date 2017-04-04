@@ -1,5 +1,5 @@
 
-{{ form("services/createService", "method" : "post", "enctype" : "multipart/form-data") }}
+{{ form("services/createService", "method" : "post", "enctype" : "multipart/form-data", "id" : "service_form") }}
 
     <h2>Nuevo servicio</h2>
 
@@ -37,7 +37,7 @@
                         </th>
                         <th>
                             <select class="form-control" name="serviceType">
-                                <option>......</option>
+                                <option value="">......</option>
                                 {% for item in serviceType %}
                                     <option value="{{ item.id_service_type }}">
                                         {{ item.service_type }}
@@ -50,7 +50,7 @@
                         <th>Empresa</th>
                         <th>
                              <select class="form-control" name="company">
-                                <option>......</option>
+                                <option value="">......</option>
                                 {% for item in companies %}
                                     <option value="{{ item.id_company }}">
                                         {{ item.name }}
@@ -101,5 +101,7 @@
         img3.imageupload();
 
         $("#description").jqte();
+
+        $("#service_form").validate();
     });
 </script>

@@ -1,5 +1,5 @@
 
-{{ form("advertisement/edit/" ~ idAdvertisement, "method" : "post") }}
+{{ form("advertisement/edit/" ~ idAdvertisement, "method" : "post", "id" : "advert_form") }}
 
     <h2>Editar Anuncio</h2>
     <a href="{{ url("services/index") }}" class="btn btn-danger pull-right">
@@ -16,14 +16,14 @@
                             Titulo
                         </th>
                         <th>
-                            <input type="text" class="form-control" name="name" value="{{advertisement.name}}">
+                            <input type="text" class="form-control" name="name" value="{{advertisement.name}}" required>
                         </th>
                     </tr>
                     <tr>
                         <th>Empresa</th>
                         <th>
-                             <select class="form-control" name="company">
-                                <option>......</option>
+                             <select class="form-control" name="company" required>
+                                <option value="">......</option>
                                 {% for item in companies %}
                                     {% set selected = "" %}
                                     {% if item.id_company == advertisement.id_company %}
@@ -50,7 +50,7 @@
                                     <input type="hidden" name="lng" id="lng" value="{{advertisement.lng}}">
                                 </div>
                             </div>
-                            <input type="text" class="form-control" name="address" id="address" value="{{advertisement.address}}">
+                            <input type="text" class="form-control" name="address" id="address" value="{{advertisement.address}}" required>
                         </th>
                     </tr>
                     <tr>
@@ -58,7 +58,7 @@
                             Descripción
                         </th>
                         <th>
-                            <textarea style="width : 100%;"name="description" id="description" rows="8" cols="40">
+                            <textarea style="width : 100%;"name="description" id="description" rows="8" cols="40" required>
                             {{advertisement.description}}
                             </textarea>
                         </th>
@@ -68,7 +68,7 @@
                             Fecha de publicación
                         </th>
                         <th>
-                            <input type="text" id="publishDate" name="publishDate" value="{{advertisement.publish_date}}" class="form-control">
+                            <input type="text" id="publishDate" name="publishDate" value="{{advertisement.publish_date}}" class="form-control" required>
                         </th>
                     </tr>
                     <tr>
@@ -76,7 +76,7 @@
                             Valor
                         </th>
                         <th>
-                            <input type="text" name="value" value="{{advertisement.value}}" class="form-control">
+                            <input type="text" name="value" value="{{advertisement.value}}" class="form-control" required>
                         </th>
                     </tr>
                     <tr>
@@ -100,6 +100,7 @@ $(function () {
     $("#publishDate").datepicker({
         dateFormat: "yy-mm-dd"
     });
+    $("#advert_form").validate();
 });
 
 var autocomplete, marker;

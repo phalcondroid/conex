@@ -2,7 +2,7 @@
     <i class="glyphicon glyphicon-backward"></i>
 </a>
 
-{{ form("company/edit/" ~ idCompany, "method" : "post", "enctype" : "multipart/form-data") }}
+{{ form("company/edit/" ~ idCompany, "method" : "post", "enctype" : "multipart/form-data", "id" : "company_form") }}
     <div class="panel panel-default" style="margin-top : 60px; background-color : #ffffff;">
         <div class="panel-body">
             <table class="table">
@@ -38,7 +38,7 @@
                             Nombre
                         </th>
                         <th>
-                            <input type="text" name="name" class="form-control" value="{{ company.getName() }}">
+                            <input type="text" name="name" class="form-control" value="{{ company.getName() }}" required>
                         </th>
                     </tr>
                     <tr>
@@ -46,7 +46,7 @@
                             Descripción
                         </th>
                         <th>
-                            <textarea name="description" id="description" class="form-control" rows="8" cols="40" style="width : 100%;">{{ company.getDescription() }}</textarea>
+                            <textarea name="description" id="description" class="form-control" rows="8" cols="40" style="width : 100%;" required>{{ company.getDescription() }}</textarea>
                         </th>
                     </tr>
                     <tr>
@@ -54,7 +54,7 @@
                             Constitución legal
                         </th>
                         <th>
-                            <select class="form-control" name="legalConstitution">
+                            <select class="form-control" name="legalConstitution" required>
                                 {% for item in legalConstitution %}
                                     {% set selected = "" %}
                                     {% if item.getIdLegalConstitution() == company.getIdLegalConstitution() %}
@@ -72,7 +72,7 @@
                             Covertura
                         </th>
                         <th>
-                            <select class="form-control" name="coverage">
+                            <select class="form-control" name="coverage" required>
                                 {% for item in coverage %}
                                     {% set selected = "" %}
                                     {% if item.getIdCoverage() == company.getIdCoverage() %}
@@ -90,7 +90,7 @@
                             Cargo ocupado en la empresa
                         </th>
                         <th>
-                            <select class="form-control" name="companyPosition">
+                            <select class="form-control" name="companyPosition" required>
                                 {% for item in companyPosition %}
                                     {% set selected = "" %}
                                     {% if item.getIdCompanyPosition() == company.getIdCompanyPosition() %}
@@ -108,7 +108,7 @@
                             Tamaño de empresa
                         </th>
                         <th>
-                            <select class="form-control" name="sizeCompany">
+                            <select class="form-control" name="sizeCompany" required>
                                 {% for item in sizeCompany %}
                                     {% set selected = "" %}
                                     {% if item.getIdSizeCompany() == company.getIdSizeCompany() %}
@@ -126,7 +126,7 @@
                             Activos de empresa
                         </th>
                         <th>
-                            <select class="form-control" name="companyAssets">
+                            <select class="form-control" name="companyAssets" required>
                                 {% for item in companyAssets %}
 
                                     {% set selected = "" %}
@@ -146,7 +146,7 @@
                             Número de empleados
                         </th>
                         <th>
-                            <select class="form-control" name="employeeNumber">
+                            <select class="form-control" name="employeeNumber" required>
                                 {% for item in employeeNumber %}
 
                                     {% set selected = "" %}
@@ -166,7 +166,7 @@
                             Sector al que pertenece
                         </th>
                         <th>
-                            <select class="form-control" name="ciiu">
+                            <select class="form-control" name="ciiu" required>
                                 {% for item in ciiuType %}
                                      <optgroup label="{{ item.ciiu_type }}">
                                          {% for itemCiiu in item.Ciiu %}
@@ -212,7 +212,7 @@
                             Año de regístro
                         </th>
                         <th>
-                            <input type="text" name="register_year" id="register_year" class="form-control" value="{{ company.getComerceCameraYear() }}">
+                            <input type="text" name="register_year" id="register_year" class="form-control" value="{{ company.getComerceCameraYear() }}" required>
                         </th>
                     </tr>
                     <tr>
@@ -223,7 +223,7 @@
                             <div id="map" style="width : 300px; height:200px">
 
                             </div>
-                            <input type="text" name="address" id="address" class="form-control" value="{{ company.getAddress() }}">
+                            <input type="text" name="address" id="address" class="form-control" value="{{ company.getAddress() }}" required>
                         </th>
                     </tr>
                     <tr>
@@ -231,7 +231,7 @@
                             Página web
                         </th>
                         <th>
-                            <input type="text" name="webPage" class="form-control" value="{{ company.getWebPage() }}">
+                            <input type="text" name="webPage" class="form-control" value="{{ company.getWebPage() }}" required>
                         </th>
                     </tr>
                     <tr>
@@ -239,7 +239,7 @@
                             Número de contácto
                         </th>
                         <th>
-                            <input type="text" name="contactNumber" class="form-control" value="{{ company.getContactNumber() }}">
+                            <input type="text" name="contactNumber" class="form-control" value="{{ company.getContactNumber() }}" required>
                         </th>
                     </tr>
                     <tr>
@@ -247,7 +247,7 @@
                             Correo electrónico
                         </th>
                         <th>
-                            <input type="email" name="email" value="{{ company.getEmail() }}" class="form-control">
+                            <input type="email" name="email" value="{{ company.getEmail() }}" class="form-control" required>
                         </th>
                     </tr>
                     <tr>
@@ -279,6 +279,8 @@ $(function () {
     });
 
     $("#description").jqte();
+
+    $("#company_form").validate();
 });
 
 var autocomplete, marker;
