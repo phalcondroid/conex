@@ -3,7 +3,7 @@
     <i class="glyphicon glyphicon-backward"></i>
 </a>
 
-{{ form("company/save", "method" : "post", "enctype" : "multipart/form-data") }}
+{{ form("company/save", "method" : "post", "enctype" : "multipart/form-data", "id" : "company_form") }}
     <div class="panel panel-default" style="margin-top : 60px; background-color : #ffffff;">
         <div class="panel-body">
             <table class="table">
@@ -29,7 +29,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-xs-3 col-md-3">
-                                    <input type="file" name="logo" id="logo" value="">
+                                    <input type="file" name="logo" id="logo" value="" required>
                                 </div>
                             </div>
                         </th>
@@ -39,7 +39,7 @@
                             Nombre
                         </th>
                         <th>
-                            <input type="text" name="name" class="form-control" value="">
+                            <input type="text" name="name" class="form-control" value="" required>
                         </th>
                     </tr>
                     <tr>
@@ -47,7 +47,7 @@
                             Descripción
                         </th>
                         <th>
-                            <textarea name="description" id="description" class="form-control" rows="8" cols="40" style="width : 100%;"></textarea>
+                            <textarea name="description" id="description" class="form-control" rows="8" cols="40" style="width : 100%;" required></textarea>
                         </th>
                     </tr>
                     <tr>
@@ -55,7 +55,7 @@
                             Constitución legal
                         </th>
                         <th>
-                            <select class="form-control" name="legalConstitution">
+                            <select class="form-control" name="legalConstitution" required>
                                 {% for item in legalConstitution %}
                                     <option value="{{ item.getIdLegalConstitution() }}">
                                         {{ item.getLegalConstitution() }}
@@ -69,7 +69,7 @@
                             Covertura
                         </th>
                         <th>
-                            <select class="form-control" name="coverage">
+                            <select class="form-control" name="coverage" required>
                                 {% for item in coverage %}
                                     <option value="{{ item.getIdCoverage() }}">
                                         {{ item.getCoverage() }}
@@ -83,7 +83,7 @@
                             Cargo ocupado en la empresa
                         </th>
                         <th>
-                            <select class="form-control" name="companyPosition">
+                            <select class="form-control" name="companyPosition" required>
                                 {% for item in companyPosition %}
                                     <option value="{{ item.getIdCompanyPosition() }}">
                                         {{ item.getPosition() }}
@@ -97,7 +97,7 @@
                             Tamaño de empresa
                         </th>
                         <th>
-                            <select class="form-control" name="sizeCompany">
+                            <select class="form-control" name="sizeCompany" required>
                                 {% for item in sizeCompany %}
                                     <option value="{{ item.getIdSizeCompany() }}">
                                         {{ item.getSizeCompany() }}
@@ -111,7 +111,7 @@
                             Activos de empresa
                         </th>
                         <th>
-                            <select class="form-control" name="companyAssets">
+                            <select class="form-control" name="companyAssets" required>
                                 {% for item in companyAssets %}
                                     <option value="{{ item.getIdCompanyAssets() }}">
                                         {{ item.getCompanyAssets() }}
@@ -125,7 +125,7 @@
                             Número de empleados
                         </th>
                         <th>
-                            <select class="form-control" name="employeeNumber">
+                            <select class="form-control" name="employeeNumber" required>
                                 {% for item in employeeNumber %}
                                     <option value="{{ item.getIdEmployeeNumber() }}">
                                         {{ item.getEmployeeNumber() }}
@@ -139,7 +139,7 @@
                             Sector al que pertenece
                         </th>
                         <th>
-                            <select class="form-control" name="ciiu">
+                            <select class="form-control" name="ciiu" required>
                                 {% for item in ciiuType %}
                                      <optgroup label="{{ item.ciiu_type }}">
                                          {% for itemCiiu in item.Ciiu %}
@@ -168,7 +168,7 @@
                             Año de regístro
                         </th>
                         <th>
-                            <input type="text" name="register_year" id="register_year" class="form-control" value="">
+                            <input type="text" name="register_year" id="register_year" class="form-control" value="" required>
                         </th>
                     </tr>
                     <tr>
@@ -179,7 +179,7 @@
                             <div id="map" style="width : 300px; height:200px">
 
                             </div>
-                            <input type="text" name="address" id="address" class="form-control" value="">
+                            <input type="text" name="address" id="address" class="form-control" value="" required>
                         </th>
                     </tr>
                     <tr>
@@ -187,7 +187,7 @@
                             Página web
                         </th>
                         <th>
-                            <input type="text" name="webPage" class="form-control" value="">
+                            <input type="text" name="webPage" class="form-control" value="" required>
                         </th>
                     </tr>
                     <tr>
@@ -195,7 +195,7 @@
                             Número de contácto
                         </th>
                         <th>
-                            <input type="text" name="contactNumber" class="form-control" value="">
+                            <input type="text" name="contactNumber" class="form-control" value="" required>
                         </th>
                     </tr>
                     <tr>
@@ -203,7 +203,7 @@
                             Correo electrónico
                         </th>
                         <th>
-                            <input type="email" name="email" value="" class="form-control">
+                            <input type="email" name="email" value="" class="form-control" required>
                         </th>
                     </tr>
                     <tr>
@@ -235,6 +235,8 @@ $(function () {
     });
 
     $("#description").jqte();
+
+    $("#company_form").validate();
 });
 
 var autocomplete, marker;

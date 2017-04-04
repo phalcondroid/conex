@@ -1,5 +1,5 @@
 
-{{ form("events/edit/" ~ idEvents, "method" : "post", "enctype" : "multipart/form-data") }}
+{{ form("events/edit/" ~ idEvents, "method" : "post", "enctype" : "multipart/form-data", "id" : "event_form") }}
     <h2>Nuevo evento</h2>
     <a href="{{ url("services/index") }}" class="btn btn-danger pull-right">
         <i class="glyphicon glyphicon-share-alt"></i>
@@ -14,7 +14,7 @@
                             Nombre
                         </th>
                         <th>
-                            <input type="text" class="form-control" name="name" value="{{event.name}}">
+                            <input type="text" class="form-control" name="name" value="{{event.name}}" required>
                         </th>
                     </tr>
                     <tr>
@@ -22,8 +22,8 @@
                             Tipo de evento
                         </th>
                         <th>
-                            <select class="form-control" name="eventType">
-                                <option>......</option>
+                            <select class="form-control" name="eventType" required>
+                                <option value="">......</option>
                                 {% for item in eventType %}
                                     {% set selected = "" %}
                                     {% if item.id_event_type == event.id_event_type %}
@@ -39,8 +39,8 @@
                     <tr>
                         <th>Empresa</th>
                         <th>
-                             <select class="form-control" name="company">
-                                <option>......</option>
+                             <select class="form-control" name="company" required>
+                                <option value="">......</option>
                                 {% for item in companies %}
                                     {% set selected = "" %}
                                     {% if item.id_company == event.id_company %}
@@ -67,7 +67,7 @@
                             </div>
                             <input type="hidden" name="lat" id="lat" value="{{event.lat}}">
                             <input type="hidden" name="lng" id="lng" value="{{event.lng}}">
-                            <input type="text" name="address" id="address" value="{{event.address}}" class="form-control">
+                            <input type="text" name="address" id="address" value="{{event.address}}" class="form-control" required>
                         </th>
                     </tr>
                     <tr>
@@ -75,7 +75,7 @@
                             Descripción
                         </th>
                         <th>
-                            <textarea class="form-control" name="description" id="description" rows="8" cols="40">
+                            <textarea class="form-control" name="description" id="description" rows="8" cols="40" required>
                                 {{event.description}}
                             </textarea>
                         </th>
@@ -85,7 +85,7 @@
                             Fecha de inicio
                         </th>
                         <th>
-                            <input type="text" class="form-control" name="startDate" id="startDate" value="{{event.start_date}}">
+                            <input type="text" class="form-control" name="startDate" id="startDate" value="{{event.start_date}}" required>
                         </th>
                     </tr>
                     <tr>
@@ -93,7 +93,7 @@
                             Fecha de finalización
                         </th>
                         <th>
-                            <input type="text" class="form-control" name="finishDate" id="finishDate" value="{{event.finish_date}}">
+                            <input type="text" class="form-control" name="finishDate" id="finishDate" value="{{event.finish_date}}" required>
                         </th>
                     </tr>
                     <tr>
@@ -123,6 +123,8 @@
         });
 
         $("#description").jqte();
+
+        $("#event_form").validate();
     });
 
     var autocomplete, marker;

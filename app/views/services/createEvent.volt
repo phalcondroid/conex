@@ -1,5 +1,5 @@
 
-{{ form("services/createEvent", "method" : "post", "enctype" : "multipart/form-data") }}
+{{ form("services/createEvent", "method" : "post", "enctype" : "multipart/form-data", "id" : "event_form") }}
     <h2>Nuevo evento</h2>
     <a href="{{ url("services/index") }}" class="btn btn-danger pull-right">
         <i class="glyphicon glyphicon-share-alt"></i>
@@ -14,7 +14,7 @@
                             Nombre
                         </th>
                         <th>
-                            <input type="text" class="form-control" name="name" value="">
+                            <input type="text" class="form-control" name="name" value="" required>
                         </th>
                     </tr>
                     <tr>
@@ -22,8 +22,8 @@
                             Tipo de evento
                         </th>
                         <th>
-                            <select class="form-control" name="eventType">
-                                <option>......</option>
+                            <select class="form-control" name="eventType" required>
+                                <option value="">......</option>
                                 {% for item in eventType %}
                                     <option value="{{ item.id_event_type }}">
                                         {{ item.event_type }}
@@ -35,8 +35,8 @@
                     <tr>
                         <th>Empresa</th>
                         <th>
-                             <select class="form-control" name="company">
-                                <option>......</option>
+                             <select class="form-control" name="company" required>
+                                <option value="">......</option>
                                 {% for item in companies %}
                                     <option value="{{ item.id_company }}">
                                         {{ item.name }}
@@ -59,7 +59,7 @@
                             </div>
                             <input type="hidden" name="lat" id="lat" value="">
                             <input type="hidden" name="lng" id="lng" value="">
-                            <input type="text" name="address" id="address" class="form-control">
+                            <input type="text" name="address" id="address" class="form-control" required>
                         </th>
                     </tr>
                     <tr>
@@ -67,7 +67,7 @@
                             Descripción
                         </th>
                         <th>
-                            <textarea class="form-control" name="description" id="description" rows="8" cols="40"></textarea>
+                            <textarea class="form-control" name="description" id="description" rows="8" cols="40" required></textarea>
                         </th>
                     </tr>
                     <tr>
@@ -83,7 +83,7 @@
                             Fecha de inicio
                         </th>
                         <th>
-                            <input type="text" class="form-control" name="startDate" id="startDate" value="">
+                            <input type="text" class="form-control" name="startDate" id="startDate" value="" required>
                         </th>
                     </tr>
                     <tr>
@@ -91,7 +91,7 @@
                             Fecha de finalización
                         </th>
                         <th>
-                            <input type="text" class="form-control" name="finishDate" id="finishDate" value="">
+                            <input type="text" class="form-control" name="finishDate" id="finishDate" value="" required>
                         </th>
                     </tr>
                     <tr>
@@ -121,6 +121,8 @@
         });
 
         $("#description").jqte();
+
+        $("#event_form").validate();
     });
 
     var autocomplete, marker;

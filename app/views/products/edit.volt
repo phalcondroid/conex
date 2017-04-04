@@ -1,6 +1,6 @@
 
 
-{{ form("products/edit/" ~ idProduct, "method" : "post", "enctype" : "multipart/form-data") }}
+{{ form("products/edit/" ~ idProduct, "method" : "post", "enctype" : "multipart/form-data", "id": "edit_form") }}
     <h2>Edición de producto</h2>
     <a href="{{ url("services/index") }}" class="btn btn-danger pull-right">
         <i class="glyphicon glyphicon-share-alt"></i>
@@ -24,7 +24,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-xs-3 col-md-3">
-                                    <input type="file" name="image" value="">
+                                    <input type="file" name="image" value="" id="image">
                                 </div>
                             </div>
                         </th>
@@ -34,14 +34,14 @@
                             Nombre
                         </th>
                         <th>
-                            <input type="text" name="name" class="form-control" value="{{product.name}}">
+                            <input type="text" name="name" class="form-control" value="{{product.name}}" id="name">
                         </th>
                     </tr>
                     <tr>
                         <th>Empresa</th>
                         <th>
-                             <select class="form-control" name="company">
-                                <option>......</option>
+                             <select class="form-control" name="company" id="company" required>
+                                <option value="">......</option>
                                 {% for item in companies %}
                                     {% set selected = "" %}
                                     {% if item.id_company == product.id_company %}
@@ -59,8 +59,8 @@
                             Tipo de producto
                         </th>
                         <th>
-                            <select class="form-control" name="productType">
-                                <option>......</option>
+                            <select class="form-control" name="productType" id="productType" required>
+                                <option value="">......</option>
                                 {% for item in productType %}
                                     {% set selected = "" %}
                                     {% if item.id_product_type == product.id_product_type %}
@@ -78,8 +78,8 @@
                             Capacidad de producción
                         </th>
                         <th>
-                            <select class="form-control" name="productCapacity">
-                                <option>......</option>
+                            <select class="form-control" name="productCapacity" id="productCapacity" required>
+                                <option value="">......</option>
                                 {% for item in productCapacity %}
                                     {% set selected = "" %}
                                     {% if item.id_product_capacity == product.id_product_capacity %}
@@ -97,7 +97,7 @@
                             Descripción
                         </th>
                         <th>
-                            <textarea name="description" id="description" rows="10" cols="40" >{{product.description}}</textarea>
+                            <textarea name="description" id="description" rows="10" cols="40" required>{{product.description}}</textarea>
                         </th>
                     </tr>
                     <tr>
@@ -117,5 +117,6 @@
 <script>
 $(function () {
     $("#description").jqte();
+    $('#edit_form').validate();
 });
 </script>

@@ -1,5 +1,5 @@
 
-<?= $this->tag->form(['services/createProduct', 'method' => 'post', 'enctype' => 'multipart/form-data']) ?>
+<?= $this->tag->form(['services/createProduct', 'method' => 'post', 'enctype' => 'multipart/form-data', 'id' => 'create_prod_form']) ?>
 
     <h2>Nuevo producto</h2>
 
@@ -26,9 +26,22 @@
                             </div>
                             <div class="row">
                                 <div class="col-xs-3 col-md-3">
-                                    <input type="file" name="image" value="">
+                                    <input type="file" name="image" value="" required>
                                 </div>
                             </div>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>Empresa</th>
+                        <th>
+                             <select class="form-control" name="company" id="company" required>
+                                <option value="">......</option>
+                                <?php foreach ($companies as $item) { ?>
+                                    <option value="<?= $item->id_company ?>">
+                                        <?= $item->name ?>
+                                    </option>
+                                <?php } ?>
+                            </select>
                         </th>
                     </tr>
                     <tr>
@@ -36,7 +49,7 @@
                             Nombre
                         </th>
                         <th>
-                            <input type="text" name="name" class="form-control">
+                            <input type="text" name="name" class="form-control" id="name" required>
                         </th>
                     </tr>
                     <tr>
@@ -44,8 +57,8 @@
                             Tipo de producto
                         </th>
                         <th>
-                            <select class="form-control" name="productType">
-                                <option>......</option>
+                            <select class="form-control" name="productType" id="productType" required>
+                                <option value="">......</option>
                                 <?php foreach ($productType as $item) { ?>
                                     <option value="<?= $item->id_product_type ?>">
                                         <?= $item->product_type ?>
@@ -59,8 +72,8 @@
                             Capacidad de producción
                         </th>
                         <th>
-                            <select class="form-control" name="productCapacity">
-                                <option>......</option>
+                            <select class="form-control" name="productCapacity" id="productCapacity" required>
+                                <option value="">......</option>
                                 <?php foreach ($productCapacity as $item) { ?>
                                     <option value="<?= $item->id_product_capacity ?>">
                                         <?= $item->product_capacity ?>
@@ -74,7 +87,7 @@
                             Descripción
                         </th>
                         <th>
-                            <textarea name="description" id="description" rows="10" cols="40" ></textarea>
+                            <textarea name="description" id="description" rows="10" cols="40" required></textarea>
                         </th>
                     </tr>
                     <tr>
@@ -92,7 +105,10 @@
 <?= $this->tag->endForm() ?>
 
 <script>
-$(function () {
-    $("#description").jqte();
-});
+
+    $(function () {
+        $("#description").jqte();
+    });
+
+    $('#create_prod_form').validate();
 </script>

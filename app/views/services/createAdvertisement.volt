@@ -1,5 +1,5 @@
 
-{{ form("services/createAdvertisement", "method" : "post") }}
+{{ form("services/createAdvertisement", "method" : "post", "id" : "advert_form") }}
 
     <h2>Nuevo Anuncio</h2>
     <a href="{{ url("services/index") }}" class="btn btn-danger pull-right">
@@ -16,14 +16,14 @@
                             Titulo
                         </th>
                         <th>
-                            <input type="text" class="form-control" name="name" value="">
+                            <input type="text" class="form-control" name="name" value="" required>
                         </th>
                     </tr>
                     <tr>
                         <th>Empresa</th>
                         <th>
-                             <select class="form-control" name="company">
-                                <option>......</option>
+                             <select class="form-control" name="company" required>
+                                <option value="">......</option>
                                 {% for item in companies %}
                                     <option value="{{ item.id_company }}">
                                         {{ item.name }}
@@ -46,7 +46,7 @@
                                     <input type="hidden" name="lng" id="lng" value="">
                                 </div>
                             </div>
-                            <input type="text" class="form-control" name="address" id="address" value="">
+                            <input type="text" class="form-control" name="address" id="address" value="" required>
                         </th>
                     </tr>
                     <tr>
@@ -54,7 +54,7 @@
                             Descripción
                         </th>
                         <th>
-                            <textarea style="width : 100%;"name="description" id="description" rows="8" cols="40"></textarea>
+                            <textarea style="width : 100%;"name="description" id="description" rows="8" cols="40" required></textarea>
                         </th>
                     </tr>
                     <tr>
@@ -62,7 +62,7 @@
                             Fecha de publicación
                         </th>
                         <th>
-                            <input type="text" id="publishDate" name="publishDate" value="" class="form-control">
+                            <input type="text" id="publishDate" name="publishDate" value="" class="form-control" required>
                         </th>
                     </tr>
                     <tr>
@@ -72,7 +72,7 @@
                         <th>
                             <input type="text" name="value" value="" class="form-control">
                             <span>A convenir</span>
-                            <input type="checkbox" name="value" value="">
+                            <input type="checkbox" name="value" value="" required>
                         </th>
                     </tr>
                     <tr>
@@ -96,6 +96,7 @@ $(function () {
     $("#publishDate").datepicker({
         dateFormat: "yy-mm-dd"
     });
+    $("#advert_form").validate();
 });
 
 var autocomplete, marker;
@@ -113,6 +114,8 @@ function setMap(lat, lng) {
     $(function () {
         $("#lat").val(lat);
         $("#lng").val(lng);
+
+        $("#advert_form").validate();
     });
 
     var latlng = {lat: lat, lng: lng};
